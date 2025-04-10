@@ -71,10 +71,15 @@ nlu:
 - intent: inform_location
   examples: |
     - [南关区](location)
+    - [二道区](location)
+    - [双阳区](location)
     - [宽城区](location)
-
+    - [朝阳区](location)
+    - [绿园区](location)
+ 
 - intent: inform detail_type
   examples: |
+    - [办理地点](detail_type)   
     - [办理时间](detail_type)
     - [咨询方式](detail_type)
     - [是否收费](detail_type) 
