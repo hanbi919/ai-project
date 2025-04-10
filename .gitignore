@@ -7,6 +7,7 @@ __pycache__/
 *.so
 .rasa/
 models/
+log/
 # Distribution / packaging
 .Python
 build/

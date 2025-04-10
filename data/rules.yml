@@ -1,13 +1,37 @@
 version: "3.1"
 
 rules:
+  # 激活表单
+  - rule: Activate form
+    steps:
+      - intent: ask_disability_service
+      - action: disability_service_form
+      - active_loop: disability_service_form
 
-- rule: Say goodbye anytime the user says goodbye
-  steps:
-  - intent: goodbye
-  - action: utter_goodbye
+  # 主项填充后查询业务项
+  - rule: After main_item filled
+    condition:
+      - active_loop: disability_service_form
+      - slot_was_set:
+        - main_item: "残疾人证办理"
+    steps:
+      - action: action_query_business_items
 
-- rule: Say 'I am a bot' anytime the user challenges
-  steps:
-  - intent: bot_challenge
-  - action: utter_iamabot
+  # 业务项填充后查询情形
+  - rule: After business_item filled
+    condition:
+      - active_loop: disability_service_form
+      - slot_was_set:
+        -  business_item: "残疾人证换领"
+    steps:
+      - action: action_query_scenarios
+
+  # 表单提交
+  - rule: Submit form
+    condition:
+      - active_loop: disability_service_form
+      - slot_was_set:
+        -  scenario: "残损换新（居住地）"
+    steps:
+      - action: action_query_materials
+      - active_loop: null

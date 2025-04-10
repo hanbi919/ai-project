@@ -1,34 +1,58 @@
 version: "3.1"
 
 intents:
-  - greet
-  - goodbye
-  - affirm
-  - deny
-  - mood_great
+  - ask_disability_service
   - mood_unhappy
   - bot_challenge
 
+actions:
+  - action_query_materials
+  - action_query_business_items
+  - action_query_scenarios
+  - action_ask_main_item
+  - action_ask_business_item
+  - action_ask_scenario
+
+entities:
+  - main_item
+  - business_item
+  - scenario
+
+slots:
+  main_item:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: main_item
+  business_item:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: business_item
+  scenario:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: scenario
+
 responses:
-  utter_greet:
-  - text: "Hey! How are you?"
+  utter_ask_main_item:
+    - text: "请选择您要查询的主项名称：\n- 残疾人证办理!\n- 残疾人康复服务!"
+  utter_ask_business_item:
+    - text: "请选择业务办理项名称：\n{options}"
+  utter_ask_scenario:
+    - text: "请选择情形：\n{options}"
+  utter_show_materials:
+    - text: "您需要准备以下材料：\n{materials}"
+  utter_no_materials_found:
+    - text: "未找到对应的材料信息，请确认您的选择是否正确。"
 
-  utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
-
-  utter_did_that_help:
-  - text: "Did that help you?"
-
-  utter_happy:
-  - text: "Great, carry on!"
-
-  utter_goodbye:
-  - text: "Bye"
-
-  utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
-
-session_config:
-  session_expiration_time: 60
-  carry_over_slots_to_new_session: true
+forms:
+  disability_service_form:
+    required_slots:
+      - main_item
+      - business_item
+      - scenario

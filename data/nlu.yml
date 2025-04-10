@@ -1,70 +1,38 @@
 version: "3.1"
 
 nlu:
-- intent: greet
-  examples: |
-    - hey
-    - hello
-    - hi
-    - hello there
-    - good morning
-    - good evening
-    - moin
-    - hey there
-    - let's go
-    - hey dude
-    - goodmorning
-    - goodevening
-    - good afternoon
 
-- intent: goodbye
+- intent: active_main_item
   examples: |
-    - cu
-    - good by
-    - cee you later
-    - good night
-    - bye
-    - goodbye
-    - have a nice day
-    - see you around
-    - bye bye
-    - see you later
+      - [残疾人证办理](main_item)
+      - [残疾人康复服务](main_item)
 
-- intent: affirm
+- intent: inform_main_item
   examples: |
-    - yes
-    - y
-    - indeed
-    - of course
-    - that sounds good
-    - correct
+    - 我想查询[残疾人]{"entity": "main_item", "value": "残疾人证办理"}业务
+    - [残疾人证]{"entity": "main_item", "value": "残疾人证办理"}办理需要什么材料
+    - [残疾人]{"entity": "main_item", "value": "残疾人证办理"}康复服务
+    - [残疾人证]{"entity": "main_item", "value": "残疾人证办理"}新办
+    - [残疾人证]{"entity": "main_item", "value": "残疾人证办理"}换领需要什么材料
 
-- intent: deny
+- intent: inform_main_item
   examples: |
-    - no
-    - n
-    - never
-    - I don't think so
-    - don't like that
-    - no way
-    - not really
+    - [残疾人证挂失补办](business_item)
+    - [残疾人证换领](business_item)
+    - [残疾人证新办](business_item)
+    - [残疾人证注销](business_item)
+    - [残疾人证迁移](business_item)
+    - [残疾类别/等级变更](business_item)
+- intent: inform_scenario
+  examples: |
+    - [居住地申请](scenario)
+    - [户籍地申请](scenario)
 
-- intent: mood_great
+- intent: ask_disability_service
   examples: |
-    - perfect
-    - great
-    - amazing
-    - feeling like a king
-    - wonderful
-    - I am feeling very good
-    - I am great
-    - I am amazing
-    - I am going to save the world
-    - super stoked
-    - extremely good
-    - so so perfect
-    - so good
-    - so perfect
+    - 办理残疾人业务
+    - 你可以办理啥业务啊
+    - 开始办理
 
 - intent: mood_unhappy
   examples: |
