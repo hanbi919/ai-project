@@ -4,6 +4,10 @@ intents:
   - ask_disability_service
   - mood_unhappy
   - bot_challenge
+  - active_main_item
+  - inform_main_item
+  - inform_scenario
+  - ask_service_details
 
 actions:
   - action_query_materials
@@ -12,11 +16,15 @@ actions:
   - action_ask_main_item
   - action_ask_business_item
   - action_ask_scenario
+  - action_ask_location
+  - action_query_service_details
 
 entities:
   - main_item
   - business_item
   - scenario
+  - detail_type  # 新增查询信息类型的实体
+  - location 
 
 slots:
   main_item:
@@ -37,6 +45,18 @@ slots:
     mappings:
     - type: from_entity
       entity: scenario
+  detail_type:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: detail_type
+  location:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: location
 
 responses:
   utter_ask_main_item:
@@ -49,6 +69,9 @@ responses:
     - text: "您需要准备以下材料：\n{materials}"
   utter_no_materials_found:
     - text: "未找到对应的材料信息，请确认您的选择是否正确。"
+  utter_ask_detail_type:
+    - text: "您想查询哪方面的信息？\n- 办理时间\n- 咨询方式\n- 是否收费\n- 承诺办结时限\n- 全部信息"
+  
 
 forms:
   disability_service_form:
@@ -56,3 +79,9 @@ forms:
       - main_item
       - business_item
       - scenario
+  service_details_form:
+    required_slots:
+      - main_item
+      - business_item
+      - location
+      - detail_type

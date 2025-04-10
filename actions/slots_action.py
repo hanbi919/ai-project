@@ -187,3 +187,65 @@ class AskForScenarioSlotAction(Action):
                 driver.close()
 
         return []
+
+
+class AskForLocationSlotAction(Action):
+    def name(self) -> Text:
+        return "action_ask_location"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        # 获取当前slot值并记录
+        main_item = tracker.get_slot("main_item")
+        business_item = tracker.get_slot("business_item")
+        logger.debug(f"Current 'main_item' slot value: {main_item}")
+        # 记录开始执行action
+        logger.debug("Starting action_ask_location execution")
+
+        if not business_item:
+            return []
+
+        # 连接Neo4j数据库
+        driver = GraphDatabase.driver(
+            "bolt://localhost:7687", auth=("neo4j", "password"))
+
+        try:
+            # 连接数据库
+            with driver.session() as session:
+                # 查询所有不重复的主项名称
+                result = session.run("""
+                    MATCH (:MainItem {name: $main_item})-[:HAS_BUSINESS_ITEM]->
+                      (b:BusinessItem {name: $business_item})-[:LOCATED_IN]->(s:District)
+                RETURN s.name AS district
+                ORDER BY s.name
+            """, main_item=main_item, business_item=business_item)
+
+                # 提取结果
+                districts = [record["district"] for record in result]
+                logger.debug(
+                    f"Found {len(districts)} main items in database")
+                if districts:
+                    # 格式化输出
+                    options = "\n- ".join([""] + districts)
+                    message = f"请选择区划名称：{options}"
+                    logger.debug(
+                        f"Prepared message with {len(districts)} options")
+                else:
+                    message = f"未找到'{business_item}'下的区划名称"
+                    logger.warning("No scenarios items found in database")
+
+                # 发送回复
+                dispatcher.utter_message(text=message)
+                logger.debug("Response message sent to user")
+
+        except Exception as e:
+            dispatcher.utter_message(text=f"查询区划名称时出错：{str(e)}")
+
+        finally:
+            # 确保关闭连接
+            if 'driver' in locals():
+                driver.close()
+
+        return []

@@ -7,13 +7,13 @@ nlu:
       - [残疾人证办理](main_item)
       - [残疾人康复服务](main_item)
 
-- intent: inform_main_item
-  examples: |
-    - 我想查询[残疾人]{"entity": "main_item", "value": "残疾人证办理"}业务
-    - [残疾人证]{"entity": "main_item", "value": "残疾人证办理"}办理需要什么材料
-    - [残疾人]{"entity": "main_item", "value": "残疾人证办理"}康复服务
-    - [残疾人证]{"entity": "main_item", "value": "残疾人证办理"}新办
-    - [残疾人证]{"entity": "main_item", "value": "残疾人证办理"}换领需要什么材料
+# - intent: inform_main_item
+#   examples: |
+#     - 我想查询[残疾人]{"entity": "main_item", "value": "残疾人证办理"}业务
+#     - [残疾人证]{"entity": "main_item", "value": "残疾人证办理"}办理需要什么材料
+#     - [残疾人]{"entity": "main_item", "value": "残疾人证办理"}康复服务
+#     - [残疾人证]{"entity": "main_item", "value": "残疾人证办理"}新办
+#     - [残疾人证]{"entity": "main_item", "value": "残疾人证办理"}换领需要什么材料
 
 - intent: inform_main_item
   examples: |
@@ -57,3 +57,25 @@ nlu:
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
+
+- intent: ask_service_details
+  examples: |
+    - 我想查询办理时间
+    - 这个业务的咨询电话是多少
+    - 是否收费
+    - 承诺多久能办完
+    - 告诉我全部信息
+    - 这个业务在哪里办理
+    - 办公时间是几点
+
+- intent: inform_location
+  examples: |
+    - [南关区](location)
+    - [宽城区](location)
+
+- intent: inform detail_type
+  examples: |
+    - [办理时间](detail_type)
+    - [咨询方式](detail_type)
+    - [是否收费](detail_type) 
+    - [承诺办结时限](detail_type)
