@@ -15,16 +15,33 @@ pipeline:
   dictionary_path: "pipeline/jieba_userdict" 
 - name: RegexFeaturizer
 - name: LexicalSyntacticFeaturizer
-- name: CountVectorsFeaturizer
-  analyzer: "char_wb"
-  min_ngram: 1
-  max_ngram: 4
+- name: LanguageModelFeaturizer
+  model_name: "bert"
+  model_weights: "pipeline/bert-base-chinese"
+# - name: CountVectorsFeaturizer
+#   analyzer: "char_wb"
+#   min_ngram: 1
+#   max_ngram: 4
 - name: DIETClassifier
   epochs: 100
   learning_rate: 0.001
   # tensorboard_log_directory: ./log
   tensorboard_log_level: EPOCH
   constrain_similarities: True
+- name: FallbackClassifier
+  threshold: 0.8
+- name: ResponseSelector
+  retrieval_intent: faq
+  epochs: 100
+  learning_rate: 0.001
+  constrain_similarities: True
+  scale_loss: false
+- name: ResponseSelector
+  retrieval_intent: chitchat
+  epochs: 100
+  learning_rate: 0.001
+  constrain_similarities: True
+  scale_loss: false
 - name: EntitySynonymMapper
 # # No configuration for the NLU pipeline was provided. The following default pipeline was used to train your model.
 # # If you'd like to customize it, uncomment and adjust the pipeline.

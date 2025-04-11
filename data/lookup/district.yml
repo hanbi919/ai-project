@@ -1,0 +1,10 @@
+version: "3.1"
+nlu:
+  - lookup: district
+    examples: |
+      - 南关区
+      - 二道区
+      - 双阳区
+      - 宽城区
+      - 朝阳区
+      - 绿园区

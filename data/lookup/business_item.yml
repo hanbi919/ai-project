@@ -1,0 +1,10 @@
+version: "3.1"
+nlu:
+  - lookup: business_item
+    examples: |
+      - 残疾人证挂失补办
+      - 残疾人证换领
+      - 残疾人证新办
+      - 残疾人证注销
+      - 残疾人证迁移
+      - 残疾类别/等级变更

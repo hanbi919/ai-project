@@ -3,9 +3,9 @@ version: "3.1"
 nlu:
  
   - synonym: "南关区"  # 标准值
-    examples: 
-      "南关"
+    examples: |
+      - "南关"
   - synonym: "朝阳区"
-    examples:
-      "朝阳"
+    examples: |
+      - "朝阳"
     

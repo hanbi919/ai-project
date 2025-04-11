@@ -1,6 +1,17 @@
 version: "3.1"
 
 rules:
+  - rule: 初级回退
+    steps:
+      - intent: nlu_fallback
+      - action: utter_fallback
+      - action: action_listen  # 等待用户重新输入
+
+  - rule: 转人工客服
+    steps:
+      - intent: secondary_fallback  # 用户连续多次未表达清楚
+      - action: utter_escalate
+      
   # 激活表单
   - rule: Activate form
     steps:

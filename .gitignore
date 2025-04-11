@@ -8,6 +8,7 @@ __pycache__/
 .rasa/
 models/
 log/
+bert-base-chinese/
 # Distribution / packaging
 .Python
 build/
