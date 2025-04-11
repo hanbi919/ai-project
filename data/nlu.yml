@@ -6,34 +6,6 @@ nlu:
   examples: |
       - [残疾人证办理](main_item)
       - [残疾人康复服务](main_item)
-
-# - intent: inform_main_item
-#   examples: |
-#     - 我想查询[残疾人]{"entity": "main_item", "value": "残疾人证办理"}业务
-#     - [残疾人证]{"entity": "main_item", "value": "残疾人证办理"}办理需要什么材料
-#     - [残疾人]{"entity": "main_item", "value": "残疾人证办理"}康复服务
-#     - [残疾人证]{"entity": "main_item", "value": "残疾人证办理"}新办
-#     - [残疾人证]{"entity": "main_item", "value": "残疾人证办理"}换领需要什么材料
-
-- intent: inform_main_item
-  examples: |
-    - [残疾人证挂失补办](business_item)
-    - [残疾人证换领](business_item)
-    - [残疾人证新办](business_item)
-    - [残疾人证注销](business_item)
-    - [残疾人证迁移](business_item)
-    - [残疾类别/等级变更](business_item)
-- intent: inform_scenario
-  examples: |
-    - [居住地申请](scenario)
-    - [户籍地申请](scenario)
-
-- intent: ask_disability_service
-  examples: |
-    - 办理残疾人业务
-    - 你可以办理啥业务啊
-    - 开始办理
-
 - intent: mood_unhappy
   examples: |
     - my day was horrible
@@ -57,6 +29,34 @@ nlu:
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
+# - intent: inform_main_item
+#   examples: |
+#     - 我想查询[残疾人]{"entity": "main_item", "value": "残疾人证办理"}业务
+#     - [残疾人证]{"entity": "main_item", "value": "残疾人证办理"}办理需要什么材料
+#     - [残疾人]{"entity": "main_item", "value": "残疾人证办理"}康复服务
+#     - [残疾人证]{"entity": "main_item", "value": "残疾人证办理"}新办
+#     - [残疾人证]{"entity": "main_item", "value": "残疾人证办理"}换领需要什么材料
+
+- intent: inform_main_item
+  examples: |
+    - [残疾人证挂失补办](business_item)
+    - [残疾人证换领](business_item)
+    - [残疾人证新办](business_item)
+    - [残疾人证注销](business_item)
+    - [残疾人证迁移](business_item)
+    - [残疾类别/等级变更](business_item)
+
+- intent: inform_scenario
+  examples: |
+    - [居住地申请](scenario)
+    - [户籍地申请](scenario)
+
+- intent: ask_disability_service #咨询材料的相关问题
+  examples: |
+    - 办理残疾人业务
+    - 你可以办理啥业务啊
+    - 开始办理
+    - 我在[双阳区](district)，我想问一下[办理残疾人证](main_item:残疾人证办理)需要什么材料
 
 - intent: ask_service_details
   examples: |
@@ -67,20 +67,29 @@ nlu:
     - 告诉我全部信息
     - 这个业务在哪里办理
     - 办公时间是几点
+    - 去哪里可以办理业务
 
-- intent: inform_location
+- intent: inform_district # 
   examples: |
-    - [南关区](location)
-    - [二道区](location)
-    - [双阳区](location)
-    - [宽城区](location)
-    - [朝阳区](location)
-    - [绿园区](location)
+    - [南关区](district)
+    - [二道区](district)
+    - [双阳区](district)
+    - [宽城区](district)
+    - [朝阳区](district)
+    - [绿园区](district)
  
-- intent: inform detail_type
+- intent: inform_detail_type
   examples: |
     - [办理地点](detail_type)   
     - [办理时间](detail_type)
     - [咨询方式](detail_type)
-    - [是否收费](detail_type) 
+    - [是否收费](detail_type)
     - [承诺办结时限](detail_type)
+    - [全部信息](detail_type)
+
+# - synonym: "南关区"  # 标准值
+#   examples: 
+#     "南关"
+# - synonym: "朝阳区"
+#   examples:
+#     "朝阳"

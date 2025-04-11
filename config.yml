@@ -22,7 +22,7 @@ pipeline:
 - name: DIETClassifier
   epochs: 100
   learning_rate: 0.001
-  tensorboard_log_directory: ./log
+  # tensorboard_log_directory: ./log
   tensorboard_log_level: EPOCH
   constrain_similarities: True
 - name: EntitySynonymMapper

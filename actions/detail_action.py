@@ -16,7 +16,7 @@ class QueryServiceDetailsAction(Action):
         main_item = tracker.get_slot("main_item")
         business_item = tracker.get_slot("business_item")
         detail_type = tracker.get_slot("detail_type")
-        district = tracker.get_slot("location")
+        district = tracker.get_slot("district")
 
         if not all([main_item, business_item, detail_type]):
             return []

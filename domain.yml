@@ -8,6 +8,7 @@ intents:
   - inform_main_item
   - inform_scenario
   - ask_service_details
+  - inform_district
 
 actions:
   - action_query_materials
@@ -16,7 +17,7 @@ actions:
   - action_ask_main_item
   - action_ask_business_item
   - action_ask_scenario
-  - action_ask_location
+  - action_ask_district
   - action_query_service_details
 
 entities:
@@ -24,7 +25,7 @@ entities:
   - business_item
   - scenario
   - detail_type  # 新增查询信息类型的实体
-  - location 
+  - district 
 
 slots:
   main_item:
@@ -51,12 +52,12 @@ slots:
     mappings:
     - type: from_entity
       entity: detail_type
-  location:
+  district:
     type: text
     influence_conversation: true
     mappings:
     - type: from_entity
-      entity: location
+      entity: district
 
 responses:
   utter_ask_main_item:
@@ -83,5 +84,5 @@ forms:
     required_slots:
       - main_item
       - business_item
-      - location
+      - district
       - detail_type

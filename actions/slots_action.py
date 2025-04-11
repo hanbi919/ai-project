@@ -189,9 +189,9 @@ class AskForScenarioSlotAction(Action):
         return []
 
 
-class AskForLocationSlotAction(Action):
+class AskForDistrictSlotAction(Action):
     def name(self) -> Text:
-        return "action_ask_location"
+        return "action_ask_district"
 
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
