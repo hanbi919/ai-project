@@ -1,6 +1,17 @@
 version: "3.1"
 
 rules:
+  # - rule: 发送欢迎词
+  #   conversation_start: true  # 仅在对话开始时触发
+  #   steps:
+  #     - action: action_session_start
+  #     - action: utter_welcome  # 发送欢迎词
+
+  - rule: 发送欢迎词1
+    steps:
+      - intent: greet
+      - action: utter_welcome  # 发送欢迎词
+
   - rule: 初级回退
     steps:
       - intent: nlu_fallback
@@ -11,7 +22,7 @@ rules:
     steps:
       - intent: secondary_fallback  # 用户连续多次未表达清楚
       - action: utter_escalate
-      
+
   # 激活表单
   - rule: Activate form
     steps:

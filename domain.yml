@@ -3,16 +3,16 @@ version: "3.1"
 intents:
   - nlu_fallback
   - secondary_fallback
-  - ask_disability_service
-  - mood_unhappy
-  - bot_challenge
+  - greet 
   - active_main_item
   - inform_main_item
   - inform_scenario
+  - ask_disability_service
   - ask_service_details
   - inform_district
 
 actions:
+  - action_session_start  # 声明使用系统默认动作
   - action_query_materials
   - action_query_business_items
   - action_query_scenarios
@@ -62,6 +62,15 @@ slots:
       entity: district
 
 responses:
+  utter_welcome:
+    # - text: "您好！我是您的助手，请问有什么可以帮您？"
+    # 可添加按钮
+    - text: "欢迎使用！请选择："
+      buttons:
+        - title: "材料查询"
+          payload: "/ask_disability_service"
+        - title: "办理地点相关"
+          payload: "/ask_service_details"
   utter_fallback:
     - text: "我没理解您的意思，请再试一次。"
   utter_escalate:
