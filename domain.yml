@@ -3,7 +3,9 @@ version: "3.1"
 intents:
   - nlu_fallback
   - secondary_fallback
+  - debug
   - greet 
+  - restart
   - inform_main_item
   - inform_business_item
   - inform_scenario
@@ -23,6 +25,9 @@ actions:
   - action_ask_district
   - action_query_service_details
   - validate_main_item_form
+  - action_restart
+  - action_debug_entities
+  # - utter_restart
 
 entities:
   - main_item
@@ -57,11 +62,18 @@ slots:
     - type: from_entity
       entity: scenario
   detail_type:
-    type: text
+    type: categorical
     influence_conversation: true
     mappings:
     - type: from_entity
       entity: detail_type
+    values:
+      - 办理地点
+      - 办理时间
+      - 咨询方式
+      - 是否收费
+      - 承诺办结时限
+      - 全部信息
   district:
     type: text
     influence_conversation: true
@@ -101,8 +113,12 @@ responses:
     - text: "未找到对应的材料信息，请确认您的选择是否正确。"
   utter_ask_detail_type:
     - text: "您想查询哪方面的信息？\n- 办理地点\n- 办理时间\n- 咨询方式\n- 是否收费\n- 承诺办结时限\n- 全部信息"
-  
-
+  utter_restart:
+    - text: "好的，让我们重新开始。请问有什么可以帮您？"
+    - text: "已重置对话，请问您需要什么帮助？"
+    - text: "好的，我们重新开始。您想了解什么呢？"
+  utter_debug_header:
+    - text: "调试信息："
 forms:
   disability_service_form:
     required_slots:

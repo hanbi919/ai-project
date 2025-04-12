@@ -46,6 +46,7 @@ nlu:
     - 要带啥东西
     - 要带啥材料
     - 我的[残疾证](main_item:残疾人证办理)快到期了，咋[换新](business_item:残疾人证换领)的？
+    - 残损换新（居住地）
 
 - intent: inform_scenario
   examples: |
@@ -104,13 +105,14 @@ nlu:
     - 告诉我[全部信息](detail_type)
     - [详细信息](detail_type:全部信息)
     - 这个业务在[哪里](detail_type:办理地点)办理
-    - 在[哪里](detail_type:办理地点)办
+    - [在哪里办](detail_type:办理地点)
     - 办公时间是[几点](detail_type:办理时间)
     - [去哪里](detail_type:办理地点)可以办理业务
     - [当天能拿新证吗](detail_type:承诺办结时限) 
     - 补办[要交钱](detail_type:是否收费)不
     - [周末](detail_type:办理时间)能办不
     - 整个流程[要多久](detail_type:承诺办结时限)
+    - [在哪儿办](detail_type:办理地点)
 
 - intent: select
   examples: |
@@ -127,3 +129,33 @@ nlu:
 # - synonym: "朝阳区"
 #   examples:
 #     "朝阳"
+- intent: restart
+  examples: |
+    - 重新开始
+    - 重启对话
+    - 再来一次
+    - 重置
+    - 重新来过
+    - 重新启动
+    - 我要重新开始
+    - 回到开头
+    - 从头开始
+    - 清除历史
+    - 开始新的对话
+    - 刷新对话
+    - 退出当前对话
+    - 结束当前对话
+    - 重启
+
+- intent: debug
+  examples: |
+    - 显示调试信息
+    - 输出当前数据
+    - 查看实体
+    - 调试模式
+    - 显示所有实体
+    - 当前收集了哪些信息
+    - 查看我的输入数据
+    - 显示识别结果
+    - debug
+    - 调试

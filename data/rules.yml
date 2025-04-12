@@ -6,6 +6,12 @@ rules:
   #   steps:
   #     - action: action_session_start
   #     - action: utter_welcome  # 发送欢迎词
+  - rule: 重启对话
+    conversation_start: false
+    steps:
+      - intent: restart
+      - action: action_restart
+      - action: utter_restart
 
   - rule: 发送欢迎词1
     steps:
@@ -22,7 +28,13 @@ rules:
     steps:
       - intent: secondary_fallback  # 用户连续多次未表达清楚
       - action: utter_escalate
-
+      
+  - rule: 触发调试输出
+    steps:
+      - intent: debug
+      - action: utter_debug_header
+      - action: action_debug_entities
+      
   # 激活表单
   - rule: Activate form
     steps:
