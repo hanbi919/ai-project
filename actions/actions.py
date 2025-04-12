@@ -119,4 +119,4 @@ class QueryMaterialsAction(Action):
         else:
             dispatcher.utter_message(text="未找到对应的材料信息，请确认您的选择是否正确。")
 
-        return []
+        return [SlotSet("scenario", None),]

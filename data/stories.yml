@@ -1,18 +1,16 @@
 version: "3.1"
 
 stories:
-  # - story: Happy path for disability service query
+  # - story: 残疾人证挂失补办
   #   steps:
+  #     - intent: inform_business_item
   #     - intent: ask_disability_service
   #     - action: disability_service_form
   #     - active_loop: disability_service_form
-  #     - slot_was_set:
-  #         - main_item: "残疾人证办理"
-  #     - action: action_query_business_items
-  #     - slot_was_set:
-  #         - business_item: "残疾人证换领"
-  #     - action: action_query_scenarios
-  #     - slot_was_set:
-  #         - scenario: "残损换新（居住地）"
-  #     - action: action_query_materials
-  #     - active_loop: null
+
+  # - story: 残疾人证 补办
+  #   steps:
+  #     - intent: inform_detail_type
+  #     - intent: ask_service_details
+  #     - action: service_details_form
+  #     - active_loop: service_details_form

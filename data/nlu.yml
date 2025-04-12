@@ -2,10 +2,12 @@ version: "3.1"
 
 nlu:
 
-- intent: active_main_item
+- intent: inform_main_item
   examples: |
       - [残疾人证办理](main_item)
       - [残疾人康复服务](main_item)
+      - 你好，我想办个[残疾证](main_item:残疾人证办理)
+      
 - intent: greet
   examples: |
     - 你好
@@ -28,41 +30,54 @@ nlu:
     - 在不在
     - 早上好，你好吗?
 
-- intent: inform_main_item
+- intent: inform_business_item
   examples: |
+    - 你好，我想给我妈[办个](business_item:残疾人证新办)[残疾证](main_item:残疾人证办理)，该咋办啊？
     - [残疾人证挂失补办](business_item)
     - [残疾人证换领](business_item)
-    - [残疾人证新办](business_item)
+    - [残疾人证](main_item:残疾人证办理)[新办](business_item:残疾人证新办)
     - [残疾人证注销](business_item)
     - [残疾人证迁移](business_item)
     - [残疾类别/等级变更](business_item)
+    - 我的[残疾证](main_item:残疾人证办理)[丢了](business_item:残疾人证挂失补办)，咋补办啊？
+    - 补办要带啥东西
+    - 带啥东西
+    - 带啥材料
+    - 要带啥东西
+    - 要带啥材料
+    - 我的[残疾证](main_item:残疾人证办理)快到期了，咋[换新](business_item:残疾人证换领)的？
 
 - intent: inform_scenario
   examples: |
     - [居住地申请](scenario)
     - [户籍地申请](scenario)
+    - [智力、精神类残疾人和未成年人申请残疾人证（居住地申请）](scenario)
+    - [智力、精神类残疾人和未成年人申请残疾人证（户籍地申请）](scenario)
+    - [除智力、精神类残疾人和未成年人以外申请残疾人证（居住地申请）](scenario)
+    - [除智力、精神类残疾人和未成年人以外申请残疾人证（户籍地申请）](scenario)
 
 - intent: ask_disability_service #咨询材料的相关问题
   examples: |
-    - 办理残疾人业务
+    - 办理[残疾人证](main_item:残疾人证办理)业务
     - 你可以办理啥业务啊
     - 开始办理
+    - 需要什么材料
+    - 需要带啥材料
     - 我在[双阳区](district)，我想问一下[办理残疾人证](main_item:残疾人证办理)需要什么材料
 
 - intent: ask_service_details
   examples: |
-    - 我想查询办理时间
-    - 这个业务的咨询电话是多少
-    - 是否收费
-    - 承诺多久能办完
-    - 告诉我全部信息
-    - 这个业务在哪里办理
-    - 办公时间是几点
-    - 去哪里可以办理业务
+
+    - 我在[南关](district)，我想问一下[残疾人证](main_item:残疾人证办理)在[哪里](detail_type:办理地点)办
+    - 我在[朝阳](district)，我想问一下[新办](business_item:残疾人证新办)[残疾人证](main_item:残疾人证办理)在[哪里](detail_type:办理地点)办
+    - 我在[朝阳区](district)，打算[新办](business_item:残疾人证新办)[残疾人证](main_item:残疾人证办理)，[几点](detail_type:办理时间)可以去
 
 - intent: inform_district # 
   examples: |
-    - [南关区](district)
+    - 我在[南关区](district)
+    - 我在[南关](district)        
+    - [南关区](district)在哪里办理业务    
+    - [南关街道](district)怎么走？ 
     - [二道区](district)
     - [双阳区](district)
     - [宽城区](district)
@@ -77,10 +92,38 @@ nlu:
     - [是否收费](detail_type)
     - [承诺办结时限](detail_type)
     - [全部信息](detail_type)
+    - 办这个证[要钱](detail_type:是否收费)吗？
+    - [多久](detail_type:承诺办结时限)能拿到
+    - [电话多少](detail_type:咨询方式)
+    - [几点](detail_type:办理时间)开始上班啊
+    - [电话](detail_type:咨询方式)
+    - 我想查询[办理时间](detail_type)
+    - 这个业务的[咨询电话](detail_type:咨询方式)是多少
+    - [是否收费](detail_type)
+    - 需要[多久](detail_type:承诺办结时限)能办完
+    - 告诉我[全部信息](detail_type)
+    - [详细信息](detail_type:全部信息)
+    - 这个业务在[哪里](detail_type:办理地点)办理
+    - 在[哪里](detail_type:办理地点)办
+    - 办公时间是[几点](detail_type:办理时间)
+    - [去哪里](detail_type:办理地点)可以办理业务
+    - [当天能拿新证吗](detail_type:承诺办结时限) 
+    - 补办[要交钱](detail_type:是否收费)不
+    - [周末](detail_type:办理时间)能办不
+    - 整个流程[要多久](detail_type:承诺办结时限)
 
-# - synonym: "南关区"  # 标准值
-#   examples: 
-#     "南关"
+- intent: select
+  examples: |
+    - [第一个](metion) 
+    - 我选[1](metion)
+    - 我选[首个](metion)
+    - [1](metion)
+
+- synonym: "1"  # 标准值
+  examples: |
+    - 第一个
+    - 首个
+    - 头一个
 # - synonym: "朝阳区"
 #   examples:
 #     "朝阳"

@@ -2,10 +2,18 @@ version: "3.1"
 
 nlu:
  
-  - synonym: "南关区"  # 标准值
+  - synonym: 南关区  # 标准值
     examples: |
-      - "南关"
-  - synonym: "朝阳区"
+      - 南关
+      - 南关街道    
+  - synonym: 朝阳区
     examples: |
-      - "朝阳"
+      - 朝阳
+      - 朝阳街道 
+  - synonym: 残疾人证换领
+    examples:  |
+      - 换新  
+      - 更换  
+      - 到期换证  
+      - 换发
     

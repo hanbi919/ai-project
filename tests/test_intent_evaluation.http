@@ -1,0 +1,33 @@
+### 测试意图评估接口
+POST http://localhost:5005/model/test/intents
+Content-Type: application/json
+
+{
+  "query": "这个业务的咨询电话是多少",
+  "intent": "ask_service_details",
+  "entities": [
+    {
+      "start": 5,
+      "end": 9,
+      "value": "咨询电话",
+      "entity": "咨询方式"
+    }
+  ]
+}
+
+### 测试意图识别 (NLU解析)
+POST http://localhost:5005/model/parse
+Content-Type: application/json
+
+{
+  "text": "怎么办理残疾证"
+}
+
+### 测试对话 (Rest输入通道)
+POST http://localhost:5005/webhooks/rest/webhook
+Content-Type: application/json
+
+{
+  "sender": "user1",
+  "message": "你好"
+}

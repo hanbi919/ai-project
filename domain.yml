@@ -4,15 +4,16 @@ intents:
   - nlu_fallback
   - secondary_fallback
   - greet 
-  - active_main_item
   - inform_main_item
+  - inform_business_item
   - inform_scenario
+  - inform_detail_type
   - ask_disability_service
   - ask_service_details
   - inform_district
 
 actions:
-  - action_session_start  # 声明使用系统默认动作
+  # - action_session_start  # 声明使用系统默认动作
   - action_query_materials
   - action_query_business_items
   - action_query_scenarios
@@ -21,6 +22,7 @@ actions:
   - action_ask_scenario
   - action_ask_district
   - action_query_service_details
+  - validate_main_item_form
 
 entities:
   - main_item
@@ -28,6 +30,7 @@ entities:
   - scenario
   - detail_type  # 新增查询信息类型的实体
   - district 
+  - metion
 
 slots:
   main_item:
@@ -36,6 +39,11 @@ slots:
     mappings:
     - type: from_entity
       entity: main_item
+    # - type: custom
+    #   action: validate_main_item_form
+    #   conditions:
+    #     - active_loop: disability_service_form  # 只在表单中触发  # 触发自定义验证
+    #     - active_loop: service_details_form
   business_item:
     type: text
     influence_conversation: true
@@ -60,6 +68,12 @@ slots:
     mappings:
     - type: from_entity
       entity: district
+  metion:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: metion
 
 responses:
   utter_welcome:

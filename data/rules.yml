@@ -29,7 +29,25 @@ rules:
       - intent: ask_disability_service
       - action: disability_service_form
       - active_loop: disability_service_form
+      
+  - rule: Activate main form
+    steps:
+      - intent: inform_main_item
+      - action: disability_service_form
+      - active_loop: disability_service_form
+  
+  - rule: Activate business form
+    steps:
+      - intent: inform_business_item
+      - action: disability_service_form
+      - active_loop: disability_service_form
 
+  - rule: Activate detail form
+    steps:
+      - intent: inform_scenario
+      - action: disability_service_form
+      - active_loop: disability_service_form
+      
   # 表单提交
   - rule: Submit form
     condition:
@@ -40,10 +58,22 @@ rules:
       - slot_was_set:
         - requested_slot: null
       - action: action_query_materials
+  
   # 激活表单
   - rule: Activate detail form
     steps:
       - intent: ask_service_details
+      - action: service_details_form
+      - active_loop: service_details_form
+  - rule: Activate detail form
+    steps:
+      - intent: inform_detail_type
+      - action: service_details_form
+      - active_loop: service_details_form
+
+  - rule: Activate detail form
+    steps:
+      - intent: inform_district
       - action: service_details_form
       - active_loop: service_details_form
 
