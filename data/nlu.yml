@@ -84,6 +84,12 @@ nlu:
     - [宽城区](district)
     - [朝阳区](district)
     - [绿园区](district)
+    - [二道](district)
+    - [双阳](district)
+    - [宽城](district)
+    - [朝阳](district)
+    - [绿园](district)
+    - [南关](district)
  
 - intent: inform_detail_type
   examples: |
@@ -105,15 +111,17 @@ nlu:
     - 告诉我[全部信息](detail_type)
     - [详细信息](detail_type:全部信息)
     - 这个业务在[哪里](detail_type:办理地点)办理
-    - [在哪里办](detail_type:办理地点)
+    - 在[哪里办](detail_type:办理地点)
     - 办公时间是[几点](detail_type:办理时间)
-    - [去哪里](detail_type:办理地点)可以办理业务
+    - 去[哪里](detail_type:办理地点)可以办理业务
     - [当天能拿新证吗](detail_type:承诺办结时限) 
     - 补办[要交钱](detail_type:是否收费)不
     - [周末](detail_type:办理时间)能办不
     - 整个流程[要多久](detail_type:承诺办结时限)
     - [在哪儿办](detail_type:办理地点)
-
+    - 打哪个[电话](detail_type:咨询方式)
+    - [需要去哪里办](detail_type:办理地点)
+    
 - intent: select
   examples: |
     - [第一个](metion) 
@@ -129,6 +137,16 @@ nlu:
 # - synonym: "朝阳区"
 #   examples:
 #     "朝阳"
+- intent: restart_session
+  examples: |
+    - 重启会话
+    - 开始新的对话
+    - 忘记之前说的
+    - 重置对话
+    - 我们重新开始吧
+    - 清除之前的对话
+    - 我想重新开始
+
 - intent: restart
   examples: |
     - 重新开始
@@ -159,3 +177,186 @@ nlu:
     - 显示识别结果
     - debug
     - 调试
+
+- intent: ask_processing_location
+  examples: |
+    - 需要去[哪里](detail_type:办理地点)办理
+    - 这个业务要[到哪](detail_type:办理地点)办
+    - [什么地方](detail_type:办理地点)可以办理
+    - 请问[哪个地点](detail_type:办理地点)能办
+    - 应该去[哪个部门](detail_type:办理地点)办理
+    - 办理这个要去[哪里](detail_type:办理地点)
+    - [哪个窗口](detail_type:办理地点)可以办这个
+    - 需要[到什么机构](detail_type:办理地点)办理
+    - [具体去哪](detail_type:办理地点)能办这个
+    - 这个手续[在哪儿](detail_type:办理地点)办
+    - 应该[前往何处](detail_type:办理地点)办理
+    - [哪个办事处](detail_type:办理地点)能处理
+    - 需要[到什么地点](detail_type:办理地点)办手续
+    - 这个要去[哪个办公室](detail_type:办理地点)办
+    - [什么场所](detail_type:办理地点)可以办理
+    - 应该[到哪个中心](detail_type:办理地点)办理
+    - [具体位置](detail_type:办理地点)是哪里办理
+    - 需要[到什么服务点](detail_type:办理地点)办
+    - [哪个服务大厅](detail_type:办理地点)能办
+    - 这个业务[办理地点](detail_type:办理地点)在哪
+
+- intent: ask_processing_time  
+  examples: |
+    - 这个业务[什么时候](detail_type:办理时间)能办
+    - [几点](detail_type:办理时间)开始办理
+    - 办理需要[多长时间](detail_type:办理时间)
+    - [多久](detail_type:办理时间)可以办完
+    - [截止时间](detail_type:办理时间)是什么时候
+    - [最晚](detail_type:办理时间)几点能办
+    - [工作日](detail_type:办理时间)才能办理吗
+    - [周末](detail_type:办理时间)能办吗
+    - [节假日](detail_type:办理时间)是否开放
+    - 需要[提前几天](detail_type:办理时间)预约
+    - [当天](detail_type:办理时间)能办结吗
+    - [有效期](detail_type:办理时间)到哪天
+    - [上午还是下午](detail_type:办理时间)办理
+    - [中午休息时间](detail_type:办理时间)能办吗
+    - [晚上](detail_type:办理时间)可以办理吗
+    - [具体时段](detail_type:办理时间)是什么
+    - [几点到几点](detail_type:办理时间)之间受理
+    - [时间限制](detail_type:办理时间)是多少
+
+
+- intent: ask_processing_deadline
+  examples: |
+    - 这项业务[承诺多久](detail_type:承诺办结时限)办结
+    - [法定办结时限](detail_type:承诺办结时限)是多少天
+    - 你们[承诺几天](detail_type:承诺办结时限)内完成
+    - [最长办理周期](detail_type:承诺办结时限)是多久
+    - [规定办结时间](detail_type:承诺办结时限)是多长
+    - [官方承诺时限](detail_type:承诺办结时限)多少工作日
+    - [标准处理时长](detail_type:承诺办结时限)是多少
+    - [最快多长时间](detail_type:承诺办结时限)能办好
+    - [对外公布的时限](detail_type:承诺办结时限)是几天
+    - [政务承诺期限](detail_type:承诺办结时限)具体多久
+    - [流程时限](detail_type:承诺办结时限)有明确规定吗
+    - [承诺的办理天数](detail_type:承诺办结时限)是多少
+    - [最多等待几天](detail_type:承诺办结时限)必须有结果
+    - [制度规定的时限](detail_type:承诺办结时限)是多少
+    - [政府承诺的最长期限](detail_type:承诺办结时限)
+    - [必须多少天内](detail_type:承诺办结时限)办结
+    - [窗口承诺的时效](detail_type:承诺办结时限)是多久
+    - [文件规定的时限](detail_type:承诺办结时限)几天
+    - [服务承诺里写的时限](detail_type:承诺办结时限)
+    - [最多不超过几天](detail_type:承诺办结时限)完成
+
+- intent: ask_payment_requirement
+  examples: |
+    - 这个服务[收费吗](detail_type:是否收费)
+    - 办理需要[花钱吗](detail_type:是否收费)
+    - [是否免费](detail_type:是否收费)
+    - 这项业务[收不收费](detail_type:是否收费)
+    - 你们[要钱吗](detail_type:是否收费)
+    - [有无费用](detail_type:是否收费)
+    - [免费办理吗](detail_type:是否收费)
+    - 需要[支付费用吗](detail_type:是否收费)
+    - [会不会收费](detail_type:是否收费)
+    - [零费用吗](detail_type:是否收费)
+    - [是否产生费用](detail_type:是否收费)
+    - [需要缴费吗](detail_type:是否收费)
+    - [收费还是免费](detail_type:是否收费)
+    - [要收费吗](detail_type:是否收费)
+    - [免不免费](detail_type:是否收费)
+    - [有无手续费](detail_type:是否收费)
+    - [收钱不](detail_type:是否收费)
+    - [要付钱吗](detail_type:是否收费)
+    - [是否无偿](detail_type:是否收费)
+    - [是否要交钱](detail_type:是否收费)
+
+- intent: ask_contact_method  
+  examples: |
+    - 怎么[电话咨询](detail_type:咨询方式)  
+    - [打哪个电话](detail_type:咨询方式)能联系  
+    - [客服热线](detail_type:咨询方式)是多少  
+    - 有没有[在线咨询](detail_type:咨询方式)渠道  
+    - [用什么方式](detail_type:咨询方式)可以咨询  
+    - [怎么联系](detail_type:咨询方式)你们  
+    - 提供[微信咨询](detail_type:咨询方式)吗  
+    - [人工服务](detail_type:咨询方式)怎么接入  
+    - [邮箱地址](detail_type:咨询方式)是什么  
+    - 有没有[现场咨询](detail_type:咨询方式)  
+    - [怎么找到](detail_type:咨询方式)工作人员  
+    - [咨询电话](detail_type:咨询方式)能发我吗  
+    - 如何[电话联系](detail_type:咨询方式)  
+    - [联系方式](detail_type:咨询方式)有哪些  
+    - 支持[视频咨询](detail_type:咨询方式)吗  
+    - [投诉电话](detail_type:咨询方式)是多少  
+    - [24小时热线](detail_type:咨询方式)有吗  
+    - [哪个APP](detail_type:咨询方式)可以咨询  
+    - [上门咨询](detail_type:咨询方式)需要预约吗  
+    - [智能客服](detail_type:咨询方式)怎么用  
+
+- intent: request_full_info  
+  examples: |
+    - 请提供[完整信息](detail_type:全部信息)  
+    - 我需要了解[全部内容](detail_type:全部信息)  
+    - 能否告知[整套资料](detail_type:全部信息)  
+    - 想要[所有细节](detail_type:全部信息)  
+    - 请发我[详尽说明](detail_type:全部信息)  
+    - 需要[完整的介绍](detail_type:全部信息)  
+    - 给我[全部要求](detail_type:全部信息)  
+    - 请说明[所有条款](detail_type:全部信息)  
+    - 想掌握[全面情况](detail_type:全部信息)  
+    - 需要[整套文件](detail_type:全部信息)  
+    - 请展示[完整版](detail_type:全部信息)内容  
+    - 我要[所有相关信息](detail_type:全部信息)  
+    - 请列出[全部条目](detail_type:全部信息)  
+    - 需要[无删减版本](detail_type:全部信息)  
+    - 请给[最全的资料](detail_type:全部信息)  
+    - 想获取[100%内容](detail_type:全部信息)  
+    - 需要[包括所有细节](detail_type:全部信息)的版本  
+    - 请提供[不省略任何部分](detail_type:全部信息)的说明  
+    - 我要[从头到尾](detail_type:全部信息)的所有信息  
+    - 请给[最完整的指南](detail_type:全部信息)  
+
+
+- intent: query_district
+  examples: |
+    - 我要去[南关](district)
+    - [南关区](district)的政府在哪？
+    - [南关街道](district)附近有医院吗？
+    - 我在[朝阳](district)
+    - [朝阳区](district)的商场在哪里？
+    - [朝阳街道](district)怎么走？
+    - 到[二道](district)怎么坐车？
+    - [二道区](district)的派出所
+    - 住在[二道街](district)
+    - [双阳](district)有什么好玩的？
+    - [双阳区](district)的景区
+    - 去[双阳街道](district)
+    - [宽城](district)的火车站
+    - [宽城区](district)有哪些学校？
+    - 在[宽城街](district)吃饭
+    - [绿园](district)的公园
+    - [绿园区](district)的地铁站
+    - 到[绿园街道](district)
+    - [南关](district)的银行
+    - [朝阳](district)的医院
+    - [二道](district)的超市
+    - [双阳](district)的酒店
+    - [宽城](district)的学校
+    - [绿园](district)的餐厅
+    - 我在[南关区](district)工作
+    - [朝阳区](district)的房价
+    - [二道区](district)的交通
+    - [双阳区](district)的天气
+    - [宽城区](district)的医院
+    - [绿园区](district)的商场
+    - 怎么去[南关街道](district)？
+    - [朝阳街道](district)的派出所
+    - [二道街](district)的邮局
+    - [双阳街道](district)的公园
+    - [宽城街](district)的银行
+    - [绿园街道](district)的学校
+    - 请问[南关](district)怎么走？
+    - [朝阳](district)附近有地铁吗？
+    - [二道](district)的快递点
+    - [双阳](district)的旅游景点
+    - [宽城](district)的购物中心
+    - [绿园](district)的公交站

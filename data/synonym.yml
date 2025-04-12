@@ -10,6 +10,22 @@ nlu:
     examples: |
       - 朝阳
       - 朝阳街道 
+  - synonym: 二道区  # 标准值
+    examples: |
+      - 二道
+      - 二道街道    
+  - synonym: 双阳区
+    examples: |
+      - 双阳
+      - 双阳街道 
+  - synonym: 绿园区  # 标准值
+    examples: |
+      - 绿园
+      - 绿园街道    
+  - synonym: 宽城区
+    examples: |
+      - 宽城
+      - 宽城街道 
   - synonym: 残疾人证换领
     examples:  |
       - 换新  

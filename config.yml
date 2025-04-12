@@ -28,6 +28,7 @@ pipeline:
   # tensorboard_log_directory: ./log
   tensorboard_log_level: EPOCH
   constrain_similarities: True
+  augmentation: 50 
 - name: FallbackClassifier
   threshold: 0.7  # 意图识别置信度阈值（低于此值触发回退）
   ambiguity_threshold: 0.1  # 可选：最高意图和第二意图的最小差值阈值

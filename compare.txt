@@ -1,0 +1,21 @@
+MATCH (m:MainItem {name: '残疾人证办理'})-[:HAS_BUSINESS_ITEM]->
+      (b:BusinessItem {name: '残疾人证挂失补办'})-[:LOCATED_IN]->
+      (d:District {name: '南山区'})-[:HAS_LOCATION]->(l:Location)
+RETURN d.name AS district, 
+       l.address AS location,
+       l.schedule AS schedule,
+       l.phone AS phone,
+       l.fee AS fee,
+       l.deadline AS deadline
+LIMIT 1
+
+MATCH (m:MainItem {name: '残疾人证办理'})-[:HAS_BUSINESS_ITEM]->
+      (b:BusinessItem {name: '残疾人证挂失补办'})-[:LOCATED_IN]->
+      (d:District {name: '南关区'})-[:HAS_LOCATION]->(l:Location)
+RETURN d.name AS district, 
+       l.address AS location,
+       l.schedule AS schedule,
+       l.phone AS phone,
+       l.fee AS fee,
+       l.deadline AS deadline
+LIMIT 1

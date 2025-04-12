@@ -6,6 +6,7 @@ intents:
   - debug
   - greet 
   - restart
+  - restart_session
   - inform_main_item
   - inform_business_item
   - inform_scenario
@@ -26,6 +27,7 @@ actions:
   - action_query_service_details
   - validate_main_item_form
   - action_restart
+  - action_restart_session
   - action_debug_entities
   # - utter_restart
 

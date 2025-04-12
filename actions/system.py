@@ -66,3 +66,21 @@ class ActionDebugSlots(Action):
         dispatcher.utter_message(text=slot_info)
 
         return []
+
+
+class ActionRestartSession(Action):
+    def name(self) -> Text:
+        return "action_restart_session"
+
+    async def run(
+        self,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any],
+    ) -> List[Dict[Text, Any]]:
+
+        # 发送确认消息
+        dispatcher.utter_message(text="好的，我们将重新开始对话。")
+
+        # 返回Restarted事件来重置对话
+        return [Restarted()]

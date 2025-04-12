@@ -3,7 +3,15 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet, FollowupAction
 from neo4j import GraphDatabase
+import logging
 
+# 配置日志格式（带文件名和行号）
+logging.basicConfig(
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s [%(filename)s:%(lineno)d]',
+    level=logging.DEBUG
+)
+# 初始化日志记录器
+logger = logging.getLogger(__name__)
 
 class QueryServiceDetailsAction(Action):
     def name(self) -> Text:
@@ -17,6 +25,22 @@ class QueryServiceDetailsAction(Action):
         business_item = tracker.get_slot("business_item")
         detail_type = tracker.get_slot("detail_type")
         district = tracker.get_slot("district")
+        # 获取所有需要记录的slot值
+        slots_to_log = {
+            "main_item": tracker.get_slot("main_item"),
+            "business_item": tracker.get_slot("business_item"),
+            "detail_type": tracker.get_slot("detail_type"),
+            "district": tracker.get_slot("district")
+        }
+
+        # 使用不同日志级别记录信息
+        logger.debug(f"当前对话ID: {tracker.sender_id}")  # 调试信息
+
+        for slot_name, slot_value in slots_to_log.items():
+            if slot_value is None:
+                logger.warning(f"Slot '{slot_name}' 未设置或为None")  # 警告级别
+            else:
+                logger.info(f"Slot '{slot_name}' = {slot_value}")  # 常规信息
 
         if not all([main_item, business_item, detail_type]):
             return []
@@ -42,13 +66,14 @@ class QueryServiceDetailsAction(Action):
         driver.close()
 
         if not record:
-            dispatcher.utter_message(text="未找到对应的业务信息")
+            dispatcher.utter_message(text="数据库未找到对应的业务信息")
             return []
 
         details = ""
         district = record["district"]
         location = record["location"]
-
+        if detail_type not in ["全部信息", "办理时间", "咨询方式", "是否收费", "承诺办结时限", "办理地点"]:
+            detail_type = "全部信息"
         # 处理不同信息类型
         if detail_type == "全部信息":
             details += f"⏰ 办理时间：{record['schedule']}\n"
