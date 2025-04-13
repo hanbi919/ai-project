@@ -332,7 +332,7 @@ nlu:
     - 去[双阳街道](district)
     - [宽城](district)的火车站
     - [宽城区](district)有哪些学校？
-    - 在[宽城街](district)吃饭
+    - 在[宽城街道](district)吃饭
     - [绿园](district)的公园
     - [绿园区](district)的地铁站
     - 到[绿园街道](district)
@@ -348,11 +348,11 @@ nlu:
     - [双阳区](district)的天气
     - [宽城区](district)的医院
     - [绿园区](district)的商场
-    - 怎么去[南关街道](district)？
+    - 怎么去[南关街道](district)
     - [朝阳街道](district)的派出所
-    - [二道街](district)的邮局
+    - [二道街道](district)的邮局
     - [双阳街道](district)的公园
-    - [宽城街](district)的银行
+    - [宽城街道](district)的银行
     - [绿园街道](district)的学校
     - 请问[南关](district)怎么走？
     - [朝阳](district)附近有地铁吗？
