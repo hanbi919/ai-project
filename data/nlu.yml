@@ -32,7 +32,7 @@ nlu:
 
 - intent: inform_business_item
   examples: |
-    - 你好，我想给我妈[办个](business_item:残疾人证新办)[残疾证](main_item:残疾人证办理)，该咋办啊？
+    - 你好，我想[办个](business_item:残疾人证新办)[残疾证](main_item:残疾人证办理)，该咋办啊？
     - [残疾人证挂失补办](business_item)
     - [残疾人证换领](business_item)
     - [残疾人证](main_item:残疾人证办理)[新办](business_item:残疾人证新办)
@@ -41,6 +41,7 @@ nlu:
     - [残疾类别/等级变更](business_item)
     - 我的[残疾证](main_item:残疾人证办理)[丢了](business_item:残疾人证挂失补办)，咋补办啊？
     - 补办要带啥东西
+    - 我在[南关](district)，我想了解[残疾证](main_item:残疾人证办理)的事情
     - 带啥东西
     - 带啥材料
     - 要带啥东西
@@ -221,7 +222,6 @@ nlu:
     - [具体时段](detail_type:办理时间)是什么
     - [几点到几点](detail_type:办理时间)之间受理
     - [时间限制](detail_type:办理时间)是多少
-
 
 - intent: ask_processing_deadline
   examples: |
