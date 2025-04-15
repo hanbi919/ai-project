@@ -6,6 +6,7 @@ __pycache__/
 # C extensions
 *.so
 .rasa/
+*.xlsx
 models/
 log/
 bert-base-chinese/

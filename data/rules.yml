@@ -52,7 +52,38 @@ rules:
       - intent: inform_main_item
       - action: disability_service_form
       - active_loop: disability_service_form
-  
+
+  - rule: Activate main form validate
+    condition:
+    - active_loop: disability_service_form
+    - slot_was_set:
+      - requested_slot: main_item
+    steps:
+      - intent: select_option
+      - action: disability_service_form
+
+  - rule: Activate business form validate
+    condition:
+    - active_loop: disability_service_form
+    - slot_was_set:
+      - requested_slot: scenario
+    steps:
+      - intent: select_option
+      - action: action_ordinal_mention
+      - action: disability_service_form
+
+  # - rule: Activate scenario form validate
+  #   condition:
+  #     - active_loop: disability_service_form
+  #     - intent: select_option
+  #   steps:
+  #     - action: action_ordinal_mention
+
+  - rule: validate form
+    steps:
+    - intent: select_option
+    - action: action_ordinal_mention
+
   - rule: Activate business form
     steps:
       - intent: inform_business_item

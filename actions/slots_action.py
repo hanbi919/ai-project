@@ -21,10 +21,10 @@ NEO4J_AUTH = ("neo4j", "password")
 def parse_options(options_str: str) -> dict:
     """
     解析选项字符串，返回数字到选项的映射字典
-    
+
     参数:
         options_str: 包含选项的字符串，格式为"1. 选项1\n2. 选项2"
-    
+
     返回:
         字典，格式如 {"1": "选项1", "2": "选项2"}
     """
@@ -53,12 +53,12 @@ class AskForMainItemSlotAction(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         """
         执行动作，查询并展示所有可用的主项名称
-        
+
         参数:
             dispatcher: 用于发送消息给用户的工具
             tracker: 当前对话状态跟踪器
             domain: 对话领域配置
-            
+
         返回:
             空的事件列表
         """
@@ -124,12 +124,12 @@ class AskForBusinessItemSlotAction(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         """
         根据选择的主项查询对应的业务办理项
-        
+
         参数:
             dispatcher: 用于发送消息给用户的工具
             tracker: 当前对话状态跟踪器
             domain: 对话领域配置
-            
+
         返回:
             空的事件列表
         """
@@ -152,6 +152,7 @@ class AskForBusinessItemSlotAction(Action):
                         MATCH (m:MainItem {name: $main_item})-[:HAS_BUSINESS_ITEM]->(b:BusinessItem)
                         RETURN b.name AS business_item
                         ORDER BY b.name
+                        LIMIT 10
                     """, main_item=main_item)
 
                     # 提取结果并创建按钮
@@ -196,12 +197,12 @@ class AskForScenarioSlotAction(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         """
         根据选择的业务办理项查询对应的情形
-        
+
         参数:
             dispatcher: 用于发送消息给用户的工具
             tracker: 当前对话状态跟踪器
             domain: 对话领域配置
-            
+
         返回:
             空的事件列表
         """
@@ -233,15 +234,24 @@ class AskForScenarioSlotAction(Action):
                         f"Found {len(scenarios)} scenarios for {business_item}")
 
                     if scenarios:
+                        # 转换为字典格式：{序号: 情形名称}
+                        scenarios_dict = {str(i+1): record
+                                          for i, record in enumerate(scenarios)}
+                        logger.debug(f"Scenarios dict: {scenarios_dict}")
+                        # 1. 保存到current_options，用于用户通过数字选择
+                        slot_event = [
+                            SlotSet("current_options", scenarios_dict)]
                         options = "\n".join(
                             [f"{i+1}. {item}" for i, item in enumerate(scenarios)])
                         message = f"请选择'{business_item}'下的情形：\n{options}"
+                        dispatcher.utter_message(text=message)
+                        return slot_event
                     else:
                         message = f"'{business_item}'下没有可用的情形"
                         logger.warning(
                             f"No scenarios found for {business_item}")
-
-                    dispatcher.utter_message(text=message)
+                        dispatcher.utter_message(text=message)
+                        return []
 
         except Exception as e:
             logger.error(f"查询情形时出错：{str(e)}")
@@ -262,12 +272,12 @@ class AskForDistrictSlotAction(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         """
         根据选择的业务办理项查询对应的区划
-        
+
         参数:
             dispatcher: 用于发送消息给用户的工具
             tracker: 当前对话状态跟踪器
             domain: 对话领域配置
-            
+
         返回:
             空的事件列表
         """

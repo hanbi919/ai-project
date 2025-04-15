@@ -75,7 +75,7 @@ rasa example project
 
 1. 办理材料表单：
 
-1.1 需要如下实体：
+需要如下实体：
 
 > (1)主项名称：main_item
 

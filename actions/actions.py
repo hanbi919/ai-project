@@ -3,6 +3,15 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
 from neo4j import GraphDatabase
+import logging
+
+# 配置日志格式（带文件名和行号）
+logging.basicConfig(
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s [%(filename)s:%(lineno)d]',
+    level=logging.DEBUG
+)
+# 初始化日志记录器
+logger = logging.getLogger(__name__)
 
 
 class QueryBusinessItemsAction(Action):
@@ -120,3 +129,36 @@ class QueryMaterialsAction(Action):
             dispatcher.utter_message(text="未找到对应的材料信息，请确认您的选择是否正确。")
 
         return [SlotSet("scenario", None),]
+
+
+class OrdinalAction(Action):
+    def name(self) -> Text:
+        return "action_ordinal_mention"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        requested_slot = tracker.get_slot("requested_slot")
+        if not requested_slot:
+            dispatcher.utter_message(text="系统错误：未找到当前请求的slot")
+            return []
+
+        # 2. 获取用户输入的数字
+        value = tracker.latest_message.get("text", "").strip()
+
+        options = tracker.get_slot("current_options") or {}
+        # 检查输入是否是数字且在 options 的范围内
+        if value.isdigit():
+            # 检查数字是否在 options 的键中
+            if value in options:
+                selected_value = options[value]
+                return [SlotSet(requested_slot, selected_value)]
+            else:
+                # 数字超出范围（比如 options 只有1-3，但用户输入4）
+                max_option = max(
+                    options.keys(), key=lambda x: int(x)) if options else "0"
+                dispatcher.utter_message(text=f"请输入1到{max_option}之间的数字！"
+                                         )
+        else:
+            # 输入不是数字
+            dispatcher.utter_message(text="请输入有效的数字（如1、2、3）！")

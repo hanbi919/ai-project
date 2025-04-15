@@ -123,18 +123,18 @@ nlu:
     - 打哪个[电话](detail_type:咨询方式)
     - [需要去哪里办](detail_type:办理地点)
     
-- intent: select
-  examples: |
-    - [第一个](metion) 
-    - 我选[1](metion)
-    - 我选[首个](metion)
-    - [1](metion)
+# - intent: select
+#   examples: |
+#     - [第一个](metion) 
+#     - 我选[1](metion)
+#     - 我选[首个](metion)
+#     - [1](metion)
 
-- synonym: "1"  # 标准值
-  examples: |
-    - 第一个
-    - 首个
-    - 头一个
+# - synonym: "1"  # 标准值
+#   examples: |
+#     - 第一个
+#     - 首个
+#     - 头一个
 # - synonym: "朝阳区"
 #   examples:
 #     "朝阳"
@@ -360,3 +360,12 @@ nlu:
     - [双阳](district)的旅游景点
     - [宽城](district)的购物中心
     - [绿园](district)的公交站
+
+- intent: select_option
+  examples: |
+    - 1
+    - 选择2
+    - 我选3
+    - 第四个
+    - 选项4
+    - 数字1
