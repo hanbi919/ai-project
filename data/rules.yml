@@ -175,3 +175,20 @@ rules:
         - requested_slot: null
       - action: action_query_service_details
 
+  - rule: Activate all_business_item_intent form
+    steps:
+      - intent: all_business_item_intent
+      - action: disability_service_form
+      - active_loop: disability_service_form
+
+  - rule: Activate all_main_item_intent form
+    steps:
+      - intent: all_main_item_intent
+      - action: disability_service_form
+      - active_loop: disability_service_form 
+
+  - rule: Activate all_scenario_intent form
+    steps:
+      - intent: all_scenario_intent
+      - action: disability_service_form
+      - active_loop: disability_service_form      

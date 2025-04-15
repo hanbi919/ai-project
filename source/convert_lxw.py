@@ -62,7 +62,8 @@ class Neo4jImporter:
                 """, main_item=main_item, business_item=business_item)
 
                 # 创建情形节点和关系
-                if pd.notna(scenario):
+                # 有情形
+                if pd.notna(scenario): 
                     session.run("""
                         MERGE (s:Scenario {name: $scenario, business_item: $business_item})
                         WITH s
@@ -72,27 +73,37 @@ class Neo4jImporter:
                                 scenario=scenario,
                                 business_item=business_item,
                                 main_item=main_item)
-
-                    # 创建材料节点和关系
-                    for material in materials:
-                        material = material.strip()
-                        if material:
-                            session.run("""
-                            MERGE (mat:Material {name: $material})
-                            WITH mat
-                            MATCH (s:Scenario {name: $scenario, business_item: $business_item})
-                            MERGE (s)-[:REQUIRES]->(mat)
-                            """, material=material, scenario=scenario, business_item=business_item,)
+                # 无情形 
+                else:
+                    session.run("""
+                        MERGE (s:Scenario {name: $scenario, business_item: $business_item})
+                        WITH s
+                        MATCH (m:MainItem {name: $main_item})-[:HAS_BUSINESS_ITEM]->(b:BusinessItem {name: $business_item})
+                        MERGE (b)-[:HAS_SCENARIO]->(s)
+                                """,
+                                scenario="默认",
+                                business_item=business_item,
+                                main_item=main_item)
+                # 创建材料节点和关系
+                for material in materials:
+                    material = material.strip()
+                    if material:
+                        session.run("""
+                        MERGE (mat:Material {name: $material})
+                        WITH mat
+                        MATCH (s:Scenario {name: $scenario, business_item: $business_item})
+                        MERGE (s)-[:REQUIRES]->(mat)
+                        """, material=material, scenario=scenario, business_item=business_item,)
 
             print("测试数据导入完成")
 
     def import_business_data(self, business_data_path):
         """导入残疾人证业务.xlsx"""
-        print("开始导入业务数据...")
+        print("开始导入详细业务数据...")
         df = pd.read_excel(business_data_path, sheet_name="Sheet1")
 
         with self.driver.session() as session:
-            for _, row in tqdm(df.iterrows(), total=len(df), desc="导入业务数据"):
+            for _, row in tqdm(df.iterrows(), total=len(df), desc="导入详细业务数据"):
                 district = row["区划名称"]
                 main_item = row["主项名称"]
                 business_item = row["业务办理项名称"]

@@ -78,7 +78,15 @@ class AskForMainItemSlotAction(Action):
                         MATCH (m:MainItem)
                         RETURN DISTINCT m.name AS main_item
                         ORDER BY m.name
+                        LIMIT 10
                     """)
+                    # 用于调试
+                    # result = session.run("""
+                    #     MATCH (m:MainItem {name:"自行招用保安员单位的备案"})
+                    #     RETURN DISTINCT m.name AS main_item
+                    #     ORDER BY m.name
+                    #     LIMIT 10
+                    # """)
 
                     # 提取结果并创建按钮
                     main_items = [record["main_item"] for record in result]
@@ -152,7 +160,7 @@ class AskForBusinessItemSlotAction(Action):
                         MATCH (m:MainItem {name: $main_item})-[:HAS_BUSINESS_ITEM]->(b:BusinessItem)
                         RETURN b.name AS business_item
                         ORDER BY b.name
-                        LIMIT 10
+                        
                     """, main_item=main_item)
 
                     # 提取结果并创建按钮
@@ -164,10 +172,12 @@ class AskForBusinessItemSlotAction(Action):
                     if business_items:
                         buttons = [
                             {
-                                "title": item,
+                                "title":  item,
+                                # "title": f"{idx + 1}. {item}",
                                 "payload": f"/inform_business_item{{\"business_item\":\"{item}\"}}"
                             }
                             for item in business_items
+                            # for idx, item in enumerate(business_items)
                         ]
                         message = f"请选择'{main_item}'下的业务办理项："
                     else:
@@ -232,7 +242,9 @@ class AskForScenarioSlotAction(Action):
                     scenarios = [record["scenario"] for record in result]
                     logger.debug(
                         f"Found {len(scenarios)} scenarios for {business_item}")
-
+                    # 无情形
+                    if len(scenarios) == 1:
+                        return [SlotSet("scenario", "默认"), SlotSet("requested_slot",None)]
                     if scenarios:
                         # 转换为字典格式：{序号: 情形名称}
                         scenarios_dict = {str(i+1): record

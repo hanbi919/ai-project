@@ -9,12 +9,14 @@ intents:
   - restart_session
   - inform_main_item
   - inform_business_item
-  - inform_scenario
   - inform_detail_type
   - ask_disability_service
   - ask_service_details
   - inform_district
   - select_option
+  - all_business_item_intent
+  - all_main_item_intent
+  - all_scenario_intent
 
 actions:
   # - action_session_start  # 声明使用系统默认动作

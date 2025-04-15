@@ -1,6 +1,2 @@
 version: "3.1"
 nlu:
-  - lookup: main_item
-    examples: |
-      - 残疾人证办理
-      - 残疾人康复服务

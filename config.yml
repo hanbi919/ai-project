@@ -15,19 +15,20 @@ pipeline:
   dictionary_path: "pipeline/jieba_userdict" 
 - name: RegexFeaturizer
 - name: LexicalSyntacticFeaturizer
-- name: LanguageModelFeaturizer
-  model_name: "bert"
-  model_weights: "pipeline/bert-base-chinese"
-# - name: CountVectorsFeaturizer
-#   analyzer: "char_wb"
-#   min_ngram: 1
-#   max_ngram: 4
+# - name: LanguageModelFeaturizer
+#   model_name: "bert"
+#   model_weights: "pipeline/bert-base-chinese"
+- name: CountVectorsFeaturizer
+  analyzer: "char_wb"
+  min_ngram: 1
+  max_ngram: 4
 - name: DIETClassifier
   epochs: 100
   learning_rate: 0.001
   # tensorboard_log_directory: ./log
   tensorboard_log_level: EPOCH
   constrain_similarities: True
+  # embedding_dimension: 768
   augmentation: 50 
 - name: FallbackClassifier
   threshold: 0.7  # 意图识别置信度阈值（低于此值触发回退）

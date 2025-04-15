@@ -4,9 +4,20 @@ nlu:
 
 - intent: inform_main_item
   examples: |
-      - [残疾人证办理](main_item)
-      - [残疾人康复服务](main_item)
-      - 你好，我想办个[残疾证](main_item:残疾人证办理)
+    - 能办身份证、户口本这些证件业务！
+    - 能交水电费、燃气费这些生活费用！
+    - 能办社保、医保这些看病养老的手续！
+    - 能查公积金、办贷款这些钱的事儿！
+    - 能给车上牌、补驾照这些车管业务！
+    - 能办结婚证、离婚证这些婚姻登记！
+    - 能开各种证明，比如居住证、无犯罪证明！
+    - 能办营业执照，做小买卖开店都用得上！
+    - 能领老年证、残疾证这些特殊证件！
+    - 能咨询所有政府部门的办事流程！
+    - 我可以办理哪些业务
+    - 我想办事
+    - 你可以办业务吗
+    - 你好，我想办个[残疾证](main_item:残疾人证办理)
       
 - intent: greet
   examples: |
@@ -33,12 +44,7 @@ nlu:
 - intent: inform_business_item
   examples: |
     - 你好，我想[办个](business_item:残疾人证新办)[残疾证](main_item:残疾人证办理)，该咋办啊？
-    - [残疾人证挂失补办](business_item)
-    - [残疾人证换领](business_item)
     - [残疾人证](main_item:残疾人证办理)[新办](business_item:残疾人证新办)
-    - [残疾人证注销](business_item)
-    - [残疾人证迁移](business_item)
-    - [残疾类别/等级变更](business_item)
     - 我的[残疾证](main_item:残疾人证办理)[丢了](business_item:残疾人证挂失补办)，咋补办啊？
     - 补办要带啥东西
     - 我在[南关](district)，我想了解[残疾证](main_item:残疾人证办理)的事情
@@ -47,16 +53,6 @@ nlu:
     - 要带啥东西
     - 要带啥材料
     - 我的[残疾证](main_item:残疾人证办理)快到期了，咋[换新](business_item:残疾人证换领)的？
-    - 残损换新（居住地）
-
-- intent: inform_scenario
-  examples: |
-    - [居住地申请](scenario)
-    - [户籍地申请](scenario)
-    - [智力、精神类残疾人和未成年人申请残疾人证（居住地申请）](scenario)
-    - [智力、精神类残疾人和未成年人申请残疾人证（户籍地申请）](scenario)
-    - [除智力、精神类残疾人和未成年人以外申请残疾人证（居住地申请）](scenario)
-    - [除智力、精神类残疾人和未成年人以外申请残疾人证（户籍地申请）](scenario)
 
 - intent: ask_disability_service #咨询材料的相关问题
   examples: |
@@ -69,7 +65,6 @@ nlu:
 
 - intent: ask_service_details
   examples: |
-
     - 我在[南关](district)，我想问一下[残疾人证](main_item:残疾人证办理)在[哪里](detail_type:办理地点)办
     - 我在[朝阳](district)，我想问一下[新办](business_item:残疾人证新办)[残疾人证](main_item:残疾人证办理)在[哪里](detail_type:办理地点)办
     - 我在[朝阳区](district)，打算[新办](business_item:残疾人证新办)[残疾人证](main_item:残疾人证办理)，[几点](detail_type:办理时间)可以去
@@ -141,7 +136,6 @@ nlu:
 - intent: restart_session
   examples: |
     - 重启会话
-    - 开始新的对话
     - 忘记之前说的
     - 重置对话
     - 我们重新开始吧
