@@ -145,7 +145,7 @@ class OrdinalAction(Action):
 
         # 2. 获取用户输入的数字
         value = tracker.latest_message.get("text", "").strip()
-
+    
         options = tracker.get_slot("current_options") or {}
         # 检查输入是否是数字且在 options 的范围内
         if value.isdigit():

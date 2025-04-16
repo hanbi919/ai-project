@@ -69,6 +69,10 @@ rasa example project
 
     ⑤咨询方式：
 
+    受理条件
+
+    办理流程（manual）
+
     ⑥全部信息
 
 #### 设计了2个表单：

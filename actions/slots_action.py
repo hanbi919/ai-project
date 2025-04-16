@@ -244,7 +244,7 @@ class AskForScenarioSlotAction(Action):
                         f"Found {len(scenarios)} scenarios for {business_item}")
                     # 无情形
                     if len(scenarios) == 1:
-                        return [SlotSet("scenario", "默认"), SlotSet("requested_slot",None)]
+                        return [SlotSet("scenario", "默认"), SlotSet("current_options", {}), SlotSet("requested_slot", None)]
                     if scenarios:
                         # 转换为字典格式：{序号: 情形名称}
                         scenarios_dict = {str(i+1): record

@@ -60,7 +60,10 @@ class MainServiceForm(FormValidationAction):
         tracker: Tracker,
         domain: Dict[Text, Any],
     ) -> Dict[Text, Any]:
-        return {"main_item": value.strip()}
+        # 发现重置了主项，就更新办理子项
+        if tracker.get_slot("main_item") != value:
+            return {"main_item": value, "business_item": None}
+        # return {"main_item": value.strip()}
 
     async def validate_business_item(
         self,

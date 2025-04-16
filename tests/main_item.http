@@ -1,0 +1,25 @@
+POST http://localhost:5005/model/parse
+Content-Type: application/json
+
+{
+  "text": "我想办事"
+}
+###
+POST http://localhost:5005/model/parse
+Content-Type: application/json; charset=utf-8
+Accept: application/json; charset=utf-8
+
+{
+  "text": "你可以办业务吗"
+}
+
+
+###
+POST http://localhost:5005/webhooks/rest/webhook
+Content-Type: application/json; charset=utf-8
+Accept: application/json; charset=utf-8
+
+{
+  "message": "你好，我想办个残疾证，该咋办啊"
+}
+
