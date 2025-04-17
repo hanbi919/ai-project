@@ -20,6 +20,19 @@ Content-Type: application/json; charset=utf-8
 Accept: application/json; charset=utf-8
 
 {
+  "sender": "user_id",
   "message": "你好，我想办个残疾证，该咋办啊"
 }
+
+
+###
+POST http://localhost:5005/webhooks/rest/webhook
+Content-Type: application/json; charset=utf-8
+Accept: application/json; charset=utf-8
+
+{
+  "sender": "user_id",
+  "message": "/ask_disability_service{\"main_item\": \"就业信息服务\",\"business_item\": \"就业政策法规咨询\",}"
+}
+
 

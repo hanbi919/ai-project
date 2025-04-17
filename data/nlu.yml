@@ -95,6 +95,7 @@ nlu:
     - [是否收费](detail_type)
     - [承诺办结时限](detail_type)
     - [全部信息](detail_type)
+    - [受理条件](detail_type)
     - 办这个证[要钱](detail_type:是否收费)吗？
     - [多久](detail_type:承诺办结时限)能拿到
     - [电话多少](detail_type:咨询方式)

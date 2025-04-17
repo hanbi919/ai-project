@@ -107,3 +107,9 @@ rasa example project
 
 
 结果：根据用户选择的不同条件，显示不同的信息
+
+
+### 导入到neo4j的脚本说明
+
+1. 执行 python source/district.py 导入区划
+2. 执行 python source/convert_sunlf.py 导入主项等

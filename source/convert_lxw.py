@@ -81,7 +81,7 @@ class Neo4jImporter:
                         MATCH (m:MainItem {name: $main_item})-[:HAS_BUSINESS_ITEM]->(b:BusinessItem {name: $business_item})
                         MERGE (b)-[:HAS_SCENARIO]->(s)
                                 """,
-                                scenario="默认",
+                                scenario="无情形",
                                 business_item=business_item,
                                 main_item=main_item)
                 # 创建材料节点和关系
