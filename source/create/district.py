@@ -7,6 +7,9 @@ URI = "bolt://localhost:7687"
 USER = "neo4j"
 PASSWORD = "password"  # 替换为您的密码
 
+"""_summary_
+    根据全部的区划数据导入neo4j
+"""
 
 class DistrictImporter:
     def __init__(self, uri, user, password):
@@ -22,8 +25,8 @@ class DistrictImporter:
         # 创建唯一约束
         # with self.driver.session() as session:
         #     session.run("""
-        #     CREATE CONSTRAINT unique_district IF NOT EXISTS 
-        #     FOR (d:District) 
+        #     CREATE CONSTRAINT unique_district IF NOT EXISTS
+        #     FOR (d:District)
         #     REQUIRE (d.name, d.parent_names) IS NODE KEY
         #     """)
 
@@ -67,7 +70,8 @@ class DistrictImporter:
 if __name__ == "__main__":
     importer = DistrictImporter(URI, USER, PASSWORD)
     try:
-        importer.import_districts("source/不重复区划数据.xlsx")
-        print("数据导入完成！")
+        print("开始区划数据导入完成！")
+        importer.import_districts("source/create/不重复区划数据.xlsx")
+        print("区划数据导入完成！")
     finally:
         importer.close()

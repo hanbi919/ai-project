@@ -13,6 +13,7 @@ logging.basicConfig(
 # 初始化日志记录器
 logger = logging.getLogger(__name__)
 
+
 class QueryServiceDetailsAction(Action):
     def name(self) -> Text:
         return "action_query_service_details"
@@ -57,7 +58,7 @@ class QueryServiceDetailsAction(Action):
                       (d:District {name: $district})-[:HAS_LOCATION]->(l:Location)
                 RETURN d.name AS district, l.address AS location, 
                        l.schedule AS schedule, l.phone AS phone,
-                       l.fee AS fee, l.deadline AS deadline
+                       l.fee AS fee, l.deadline AS deadline,l.condition AS condition
                 LIMIT 1
             """, main_item=main_item, business_item=business_item, district=district)
 
@@ -72,7 +73,7 @@ class QueryServiceDetailsAction(Action):
         details = ""
         district = record["district"]
         location = record["location"]
-        if detail_type not in ["全部信息", "办理时间", "咨询方式", "是否收费", "承诺办结时限", "办理地点"]:
+        if detail_type not in ["全部信息", "办理时间", "咨询方式", "是否收费", "承诺办结时限", "办理地点", "受理条件"]:
             detail_type = "全部信息"
         # 处理不同信息类型
         if detail_type == "全部信息":
@@ -80,6 +81,7 @@ class QueryServiceDetailsAction(Action):
             details += f"📞 咨询方式：{record['phone']}\n"
             details += f"💰 是否收费：{record['fee']}\n"
             details += f"⏳ 承诺办结时限：{record['deadline']}个工作日\n"
+            details += f"✅ 受理条件：{record['condition']}\n"
             details += f"📍 办理地点：{location}"
         else:
             if detail_type == "办理时间":
@@ -88,6 +90,8 @@ class QueryServiceDetailsAction(Action):
                 details += f"📞 咨询方式：{record['phone']}\n📍 办理地点：{location}"
             elif detail_type == "是否收费":
                 details += f"💰 是否收费：{record['fee']}\n📍 办理地点：{location}"
+            elif detail_type == "受理条件":
+                details += f"✅ 受理条件{record['condition']}\n📍 办理地点：{location}"
             elif detail_type == "承诺办结时限":
                 details += f"⏳ 承诺办结时限：{record['deadline']}个工作日\n📍 办理地点：{location}"
             elif detail_type == "办理地点":
@@ -100,6 +104,6 @@ class QueryServiceDetailsAction(Action):
                 header = ""
             dispatcher.utter_message(text=f"{header}\n{details}".strip())
         else:
-            dispatcher.utter_message(text="未找到对应的业务信息")
+            dispatcher.utter_message(text="未找到对应的详细业务信息")
 
         return []
