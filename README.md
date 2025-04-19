@@ -129,3 +129,4 @@ rasa example project
 3. rasa calm 有什么新的功能特性
 4. rasa如何和llm结合呢
 5. 我这里的规则都定义在rules.yml文件里，stories.yml什么都没有，这样对吗
+6. t_loss=5.72, i_acc=0.983, e_f1=0.972 这些参数说明什么，如何调整

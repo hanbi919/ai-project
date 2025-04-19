@@ -1,7 +1,7 @@
 from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
-from rasa_sdk.events import SlotSet
+from rasa_sdk.events import SlotSet, FollowupAction
 from neo4j import GraphDatabase
 import logging
 
@@ -168,7 +168,10 @@ class AskForBusinessItemSlotAction(Action):
                                       for record in result]
                     logger.debug(
                         f"Found {len(business_items)} business items for {main_item}")
-
+                    if len(business_items) == 1:
+                        if tracker.active_loop:
+                            form_name=tracker.active_loop.get("name") 
+                        return [SlotSet("business_item", business_items[0]), FollowupAction(form_name)]
                     if business_items:
                         buttons = [
                             {

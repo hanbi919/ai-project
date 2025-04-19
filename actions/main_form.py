@@ -28,25 +28,29 @@ class MainServiceForm(FormValidationAction):
         domain: Dict[Text, Any],
     ) -> List[Text]:
         # 在这里根据条件返回需要的槽位列表
+        value = tracker.get_slot("business_item")
+        if value:
+            return ["main_item", "scenario"]
+
         return ["main_item", "business_item", "scenario"]
     
-    def slot_mappings(self) ->  Dict[Text, Union[Dict, List[Dict]]]:
-        return {
-            "main_item": [
-                self.from_entity(entity="main_item"),
-                self.from_text()  # 捕获用户原始输入（数字或文本）
-            ],
-            "business_item": [
-                self.from_entity(entity="business_item"),
-                self.from_text()  # 捕获用户原始输入（数字或文本）
-            ],
-            "scenario": [
-                # self.from_entity(entity="scenario"),
-                self.from_intent(intent="select_option",
-                                 entity="scenario"),
-                self.from_text()  # 捕获用户原始输入（数字或文本）
-            ]
-        }
+    # def slot_mappings(self) ->  Dict[Text, Union[Dict, List[Dict]]]:
+    #     return {
+    #         "main_item": [
+    #             self.from_entity(entity="main_item"),
+    #             self.from_text()  # 捕获用户原始输入（数字或文本）
+    #         ],
+    #         "business_item": [
+    #             self.from_entity(entity="business_item"),
+    #             self.from_text()  # 捕获用户原始输入（数字或文本）
+    #         ],
+    #         "scenario": [
+    #             # self.from_entity(entity="scenario"),
+    #             self.from_intent(intent="select_option",
+    #                              entity="scenario"),
+    #             self.from_text()  # 捕获用户原始输入（数字或文本）
+    #         ]
+    #     }
 
     def submit(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict]:
         # 表单提交后的逻辑（可选）
