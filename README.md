@@ -114,3 +114,18 @@ rasa example project
 
 1. 执行 python source/district.py 导入区划
 2. 执行 python source/convert_sunlf.py 导入主项等
+
+
+### 后续任务：
+
+1. 自动化测试工具
+2. 自动化数据导入以及数据完整性校验
+3. neo4j 索引
+
+### 需要和rasa沟通
+
+1. 我还可以使用 rasa x 辅助开发吗
+2. 我有很多的业务实体，包括业务主项、业务办理项，以及这些项目需要的材料。还有办理地点、办理时间等，我需要如何自动创建训练数据，满足rasa可以准确的识别用户的意图呢
+3. rasa calm 有什么新的功能特性
+4. rasa如何和llm结合呢
+5. 我这里的规则都定义在rules.yml文件里，stories.yml什么都没有，这样对吗
