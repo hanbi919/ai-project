@@ -302,6 +302,7 @@ class AskForDistrictSlotAction(Action):
         # 获取相关slot值
         main_item = tracker.get_slot("main_item")
         business_item = tracker.get_slot("business_item")
+        level = tracker.get_slot("level")
 
         if not business_item:
             dispatcher.utter_message(text="请先选择业务办理项")
@@ -314,10 +315,10 @@ class AskForDistrictSlotAction(Action):
                     # 查询指定业务办理项对应的区划
                     result = session.run("""
                         MATCH (:MainItem {name: $main_item})-[:HAS_BUSINESS_ITEM]->
-                          (b:BusinessItem {name: $business_item})-[:LOCATED_IN]->(s:District)
+                          (b:BusinessItem {name: $business_item})-[:LOCATED_IN]->(s:District {level:$level})
                         RETURN s.name AS district
                         ORDER BY s.name
-                    """, main_item=main_item, business_item=business_item)
+                    """, main_item=main_item, business_item=business_item,level=level)
 
                     # 提取结果并格式化选项
                     districts = [record["district"] for record in result]
@@ -338,5 +339,76 @@ class AskForDistrictSlotAction(Action):
         except Exception as e:
             logger.error(f"查询区划时出错：{str(e)}")
             dispatcher.utter_message(text="查询服务区划时发生错误，请稍后再试")
+
+        return []
+    
+
+class AskForLevelSlotAction(Action):
+    """询问用户选层级的动作"""
+
+    def name(self) -> Text:
+        """返回动作名称"""
+        return "action_ask_level"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        """
+        根据选择的业务办理项查询对应的层级
+
+        参数:
+            dispatcher: 用于发送消息给用户的工具
+            tracker: 当前对话状态跟踪器
+            domain: 对话领域配置
+
+        返回:
+            空的事件列表
+        """
+        logger.debug("Starting action_ask_level execution")
+
+        # 获取相关slot值
+        main_item = tracker.get_slot("main_item")
+        business_item = tracker.get_slot("business_item")
+
+        if not business_item:
+            dispatcher.utter_message(text="请先选择业务办理项")
+            return []
+
+        try:
+            # 连接Neo4j数据库
+            with GraphDatabase.driver(NEO4J_URI, auth=NEO4J_AUTH) as driver:
+                with driver.session() as session:
+                    # 查询指定业务办理项对应的区划
+                    result = session.run("""
+                        MATCH (:MainItem {name: $main_item})-[:HAS_BUSINESS_ITEM]->
+                          (b:BusinessItem {name: $business_item})-[:LOCATED_IN]->(s:District)
+                        WITH DISTINCT s.level AS level
+                        RETURN level
+                        ORDER BY level
+                    """, main_item=main_item, business_item=business_item)
+
+                    # 提取结果并格式化选项
+                    levels = [record["level"] for record in result]
+                    if len(levels) == 1:
+                        if tracker.active_loop:
+                            form_name = tracker.active_loop.get("name")
+                        return [SlotSet("level", levels[0]), FollowupAction(form_name)]
+                    logger.debug(
+                        f"Found {len(levels)} levels for {business_item}")
+
+                    if levels:
+                        options = "\n".join(
+                            [f"{i+1}. {item}" for i, item in enumerate(levels)])
+                        message = f"请选择'{business_item}'服务的层级：\n{options}"
+                    else:
+                        message = f"'{business_item}'没有指定服务层级"
+                        logger.warning(
+                            f"No levels found for {business_item}")
+
+                    dispatcher.utter_message(text=message)
+
+        except Exception as e:
+            logger.error(f"查询层级时出错：{str(e)}")
+            dispatcher.utter_message(text="查询服务层级时发生错误，请稍后再试")
 
         return []

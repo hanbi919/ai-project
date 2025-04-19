@@ -1,1 +1,1 @@
-rasa train --debug && rasa run --enable-api --cors "*" --debug
+rasa train --debug && rasa run --enable-api --cors "*" --debug -port 5080

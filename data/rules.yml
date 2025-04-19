@@ -113,6 +113,13 @@ rules:
       - intent: ask_service_details
       - action: service_details_form
       - active_loop: service_details_form
+  
+  - rule: Activate detail form
+    steps:
+      - intent: all_district_intent
+      - action: service_details_form
+      - active_loop: service_details_form
+  
   - rule: Activate detail1 form
     steps:
       - intent: inform_detail_type

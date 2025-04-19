@@ -27,6 +27,7 @@ actions:
   - action_ask_main_item
   - action_ask_business_item
   - action_ask_scenario
+  - action_ask_level
   - action_ask_district
   - action_query_service_details
   - validate_main_item_form
@@ -43,6 +44,7 @@ entities:
   - scenario
   - detail_type  # 新增查询信息类型的实体
   - district 
+  - level # 层级
   - metion
 
 slots:
@@ -91,6 +93,13 @@ slots:
     mappings:
     - type: from_entity
       entity: district
+  # 区划名称
+  level:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: level
 
   metion:
     type: text
@@ -147,5 +156,6 @@ forms:
     required_slots:
       - main_item
       - business_item
+      - level
       - district
       - detail_type
