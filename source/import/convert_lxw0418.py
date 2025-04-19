@@ -19,8 +19,11 @@ class Neo4jImporter:
     def clear_database(self):
         """清空数据库"""
         with self.driver.session() as session:
-            session.run("MATCH (n) DETACH DELETE n")
-            print("数据库已清空")
+            session.run("""MATCH(n)
+                        WHERE NOT n: District
+                        DETACH DELETE n
+                        """)
+            print("除区划外的数据库已清空")
 
     def import_data(self, file_path: str):
         """导入Excel数据到Neo4j"""
@@ -172,9 +175,9 @@ if __name__ == "__main__":
     try:
         # 清空数据库（可选）
         # importer.clear_database()
-        # importer.clear_database()
+        importer.clear_database()
         # 导入数据
-        importer.import_data("source/import/test.xlsx")
+        importer.import_data("source/import/清洗后全市数据.xlsx")
     except Exception as e:
         print(f"导入过程中出错: {e}")
     finally:
