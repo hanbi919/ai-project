@@ -43,11 +43,11 @@ class Neo4jImporter:
         with self.driver.session() as session:
             # 导入主项和业务项
             print("\n正在导入主项和业务项...")
-            self._import_main_and_business_items(session, df)
+            # self._import_main_and_business_items(session, df)
 
             # 导入区划和地点信息
             print("\n正在导入区划和地点信息...")
-            self._import_districts_and_locations(session, df)
+            # self._import_districts_and_locations(session, df)
             
             # # # 建立业务项与区划的关系
             # print("\n正在建立业务项与区划的关系...")
@@ -55,9 +55,9 @@ class Neo4jImporter:
 
             
 
-            # # 导入情形和材料
-            # print("\n正在导入情形和材料...")
-            # self._import_scenarios_and_materials(session, df)
+            # 导入情形和材料
+            print("\n正在导入情形和材料...")
+            self._import_scenarios_and_materials(session, df)
 
         print("\n数据导入完成!")
 
@@ -195,10 +195,10 @@ if __name__ == "__main__":
     try:
         # 清空数据库（可选）
         # importer.clear_database()
-        importer.clear_all_database()
+        # importer.clear_all_database()
         # 导入数据
-        # importer.import_data("source/import/excel_main88.xlsx")
-        importer.import_data("source/import/清洗后全市数据.xlsx")
+        importer.import_data("source/import/excel_main88.xlsx")
+        # importer.import_data("source/import/清洗后全市数据.xlsx")
     except Exception as e:
         print(f"导入过程中出错: {e}")
     finally:
