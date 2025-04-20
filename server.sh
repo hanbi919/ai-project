@@ -1,1 +1,1 @@
-rasa run --enable-api --cors "*" --debug --port 5080
+rasa run --enable-api --cors "*" --debug  --auth-token "LjjLOxlZtImfEukYfHcTs0zlIL9PmJzt"

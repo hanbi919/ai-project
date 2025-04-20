@@ -25,6 +25,14 @@ class Neo4jImporter:
                         """)
             print("除区划外的数据库已清空")
 
+    def clear_all_database(self):
+        """清空数据库"""
+        with self.driver.session() as session:
+            session.run("""MATCH(n)
+                        DETACH DELETE n
+                        """)
+            print("除区划外的数据库已清空")
+
     def import_data(self, file_path: str):
         """导入Excel数据到Neo4j"""
         # 读取Excel文件
@@ -37,17 +45,19 @@ class Neo4jImporter:
             print("\n正在导入主项和业务项...")
             self._import_main_and_business_items(session, df)
 
-            # 导入情形和材料
-            print("\n正在导入情形和材料...")
-            self._import_scenarios_and_materials(session, df)
-
             # 导入区划和地点信息
             print("\n正在导入区划和地点信息...")
             self._import_districts_and_locations(session, df)
+            
+            # # # 建立业务项与区划的关系
+            # print("\n正在建立业务项与区划的关系...")
+            # self._link_business_items_to_districts(session, df)
 
-            # 建立业务项与区划的关系
-            print("\n正在建立业务项与区划的关系...")
-            self._link_business_items_to_districts(session, df)
+            
+
+            # # 导入情形和材料
+            # print("\n正在导入情形和材料...")
+            # self._import_scenarios_and_materials(session, df)
 
         print("\n数据导入完成!")
 
@@ -109,11 +119,13 @@ class Neo4jImporter:
     def _import_districts_and_locations(self, session, df: pd.DataFrame):
         """导入区划和地点信息"""
         # 获取唯一的区划和地点组合
-        unique_locations = df[['区划名称', '办理地点', '办理时间',
+        unique_locations = df[['主项名称', '业务办理项名称', '区划名称', '办理地点', '办理时间',
                                '咨询方式', '是否收费', '承诺办结时限', '受理条件']].drop_duplicates()
 
         # 添加进度条
         for _, row in tqdm(unique_locations.iterrows(), total=len(unique_locations), desc="处理区划和地点"):
+            # main_item = row['主项名称']
+            business_item = row['业务办理项名称']
             district = row['区划名称']
             location = row['办理地点']
             schedule = row['办理时间']
@@ -124,11 +136,18 @@ class Neo4jImporter:
 
             # 创建区划节点
             session.run("""
-                MERGE (d:District {name: $district})
-            """, district=district)
+                MERGE (d:District {name: $district,business_item:$business_item})
+            """, district=district, business_item=business_item)
+
+            session.run("""
+                MATCH (b:BusinessItem {name: $business_item}) 
+                MATCH (d:District {name: $district,business_item: $business_item})
+                MERGE (b)-[:LOCATED_IN]->(d)
+            """, business_item=business_item, district=district)
 
             # 创建地点节点（带属性）
             session.run("""
+                
                 MERGE (l:Location {address: $location})
                 SET l.schedule = $schedule,
                     l.phone = $phone,
@@ -140,21 +159,22 @@ class Neo4jImporter:
 
             # 建立区划与地点的关系
             session.run("""
-                MATCH (d:District {name: $district})
+                MATCH (d:District {name: $district,business_item:$business_item})
                 MATCH (l:Location {address: $location})
                 MERGE (d)-[:HAS_LOCATION]->(l)
-            """, district=district, location=location)
+            """, district=district, location=location,  business_item=business_item)
 
     def _link_business_items_to_districts(self, session, df: pd.DataFrame):
         """建立业务项与区划的关系"""
         # 添加进度条
         for _, row in tqdm(df.iterrows(), total=len(df), desc="建立业务项与区划关系"):
+            # main_item = row['主项名称']
             business_item = row['业务办理项名称']
             district = row['区划名称']
 
             session.run("""
-                MATCH (b:BusinessItem {name: $business_item})
-                MATCH (d:District {name: $district})
+                MATCH (b:BusinessItem {name: $business_item}) 
+                MATCH (d:District {name: $district,business_item: $business_item})
                 MERGE (b)-[:LOCATED_IN]->(d)
             """, business_item=business_item, district=district)
 
@@ -175,9 +195,9 @@ if __name__ == "__main__":
     try:
         # 清空数据库（可选）
         # importer.clear_database()
-        importer.clear_database()
+        importer.clear_all_database()
         # 导入数据
-        # importer.import_data("source/import/需要修复.xlsx")
+        # importer.import_data("source/import/excel_main88.xlsx")
         importer.import_data("source/import/清洗后全市数据.xlsx")
     except Exception as e:
         print(f"导入过程中出错: {e}")

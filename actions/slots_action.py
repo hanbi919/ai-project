@@ -324,7 +324,10 @@ class AskForDistrictSlotAction(Action):
                     districts = [record["district"] for record in result]
                     logger.debug(
                         f"Found {len(districts)} districts for {business_item}")
-
+                    if len(districts) == 1:
+                        if tracker.active_loop:
+                            form_name = tracker.active_loop.get("name")
+                        return [SlotSet("district", districts[0]), FollowupAction(form_name)]
                     if districts:
                         options = "\n".join(
                             [f"{i+1}. {item}" for i, item in enumerate(districts)])
