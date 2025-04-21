@@ -94,16 +94,24 @@ class AskForMainItemSlotAction(Action):
                         f"Found {len(main_items)} main items in database")
 
                     if main_items:
+
+
                         # 创建按钮列表
-                        buttons = [
-                            {
-                                "title": item,
-                                "payload": f"/inform_main_item{{\"main_item\":\"{item}\"}}"
-                            }
-                            for item in main_items
+                        # buttons = [
+                        #     {
+                        #         "title": item,
+                        #         "payload": f"/inform_main_item{{\"main_item\":\"{item}\"}}"
+                        #     }
+                        #     for item in main_items
+                        # ]
+                        numbered_items = [
+                            f"{idx + 1}. {item}"
+                            for idx, item in enumerate(sorted(main_items))  # 按字母排序
                         ]
 
-                        message = "请选择您要查询的主项名称："
+                        # 将列表转换为换行分隔的字符串
+                        items_list = "\n".join(numbered_items)
+                        message = f"请选择您要查询的主项名称：\n {items_list}"
                         logger.debug(
                             f"Prepared message with {len(main_items)} options")
                     else:
@@ -111,7 +119,8 @@ class AskForMainItemSlotAction(Action):
                         logger.warning("No main items found in database")
 
                     # 发送带按钮的回复
-                    dispatcher.utter_message(text=message, buttons=buttons)
+                    dispatcher.utter_message(text=message)
+                    # dispatcher.utter_message(text=message, buttons=buttons)
 
         except Exception as e:
             logger.error(f"查询主项时出错：{str(e)}")

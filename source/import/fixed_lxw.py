@@ -43,11 +43,11 @@ class Neo4jImporter:
         with self.driver.session() as session:
             # 导入主项和业务项
             print("\n正在导入主项和业务项...")
-            # self._import_main_and_business_items(session, df)
+            self._import_main_and_business_items(session, df)
 
             # 导入区划和地点信息
             print("\n正在导入区划和地点信息...")
-            # self._import_districts_and_locations(session, df)
+            self._import_districts_and_locations(session, df)
             
             # # # 建立业务项与区划的关系
             # print("\n正在建立业务项与区划的关系...")
@@ -92,6 +92,8 @@ class Neo4jImporter:
 
     def _import_scenarios_and_materials(self, session, df: pd.DataFrame):
         """导入情形和材料及其关系"""
+        df = df[['业务办理项名称', '情形', '材料名称']].drop_duplicates()
+
         for _, row in tqdm(df.iterrows(), total=len(df), desc="处理情形和材料"):
             business_item = row['业务办理项名称']
             scenario = row.get('情形', "无情形")  # 可能为空
@@ -127,6 +129,7 @@ class Neo4jImporter:
             # main_item = row['主项名称']
             business_item = row['业务办理项名称']
             district = row['区划名称']
+            # level = row['上级区划名称']
             location = row['办理地点']
             schedule = row['办理时间']
             phone = row['咨询方式']
@@ -137,7 +140,7 @@ class Neo4jImporter:
             # 创建区划节点
             session.run("""
                 MERGE (d:District {name: $district,business_item:$business_item})
-            """, district=district, business_item=business_item)
+            """, district=district, business_item=business_item )
 
             session.run("""
                 MATCH (b:BusinessItem {name: $business_item}) 
@@ -194,7 +197,7 @@ if __name__ == "__main__":
 
     try:
         # 清空数据库（可选）
-        # importer.clear_database()
+        importer.clear_database()
         # importer.clear_all_database()
         # 导入数据
         importer.import_data("source/import/excel_main88.xlsx")

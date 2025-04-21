@@ -156,6 +156,6 @@ forms:
     required_slots:
       - main_item
       - business_item
-      - level
+      # - level
       - district
       - detail_type

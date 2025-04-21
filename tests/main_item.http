@@ -53,3 +53,13 @@ curl -X POST http://localhost:5005/webhooks/rest/webhook \
   -H "Content-Type: application/json" \
   -H "Accept: application/json; charset=utf-8" \
   -d '{"sender": "test_user", "message": "hi"}'
+
+### 
+POST http://116.141.0.116:5005/webhooks/rest/webhook
+Content-Type: application/json; charset=utf-8
+Accept: application/json; charset=utf-8
+
+{
+  "sender": "user_id",
+  "message": "hi"
+}
