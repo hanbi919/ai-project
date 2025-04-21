@@ -182,23 +182,32 @@ class AskForBusinessItemSlotAction(Action):
                             form_name=tracker.active_loop.get("name") 
                         return [SlotSet("business_item", business_items[0]), FollowupAction(form_name)]
                     if business_items:
-                        buttons = [
-                            {
-                                "title":  item,
-                                # "title": f"{idx + 1}. {item}",
-                                "payload": f"/inform_business_item{{\"business_item\":\"{item}\"}}"
-                            }
-                            for item in business_items
-                            # for idx, item in enumerate(business_items)
+                        # buttons = [
+                        #     {
+                        #         "title":  item,
+                        #         # "title": f"{idx + 1}. {item}",
+                        #         "payload": f"/inform_business_item{{\"business_item\":\"{item}\"}}"
+                        #     }
+                        #     for item in business_items
+                        #     # for idx, item in enumerate(business_items)
+                        # ]
+                        numbered_items = [
+                            f"{idx + 1}. {item}"
+                            # 按字母排序
+                            for idx, item in enumerate(sorted(business_items))
                         ]
-                        message = f"请选择'{main_item}'下的业务办理项："
+
+                        # 将列表转换为换行分隔的字符串
+                        items_list = "\n".join(numbered_items)
+                        message = f"请选择'{main_item}'下的业务办理项: \n{items_list}"
                     else:
                         message = f"'{main_item}'下没有可用的业务办理项"
                         logger.warning(
                             f"No business items found for {main_item}")
 
                     # 发送带按钮的回复
-                    dispatcher.utter_message(text=message, buttons=buttons)
+                    dispatcher.utter_message(text=message)
+                    # dispatcher.utter_message(text=message, buttons=buttons)
 
         except Exception as e:
             logger.error(f"查询业务办理项时出错：{str(e)}")

@@ -44,10 +44,10 @@ Accept: application/json; charset=utf-8
 
 ###
 curl -X POST \
-  http://localhost:5080/webhooks/rest/webhook \
+  http://116.141.0.116:5005/webhooks/rest/webhook \
   -H "Content-Type: application/json; charset=utf-8" \
   -H "Accept: application/json; charset=utf-8" \
-  -d '{"sender": "test_user","text": "hi"}'
+  -d '{"sender": "test_user","text": "残疾人证办理"}'
 
 curl -X POST http://localhost:5005/webhooks/rest/webhook \
   -H "Content-Type: application/json" \
@@ -61,5 +61,5 @@ Accept: application/json; charset=utf-8
 
 {
   "sender": "user_id",
-  "message": "hi"
+  "message": "残疾人证办理"
 }
