@@ -200,7 +200,7 @@ if __name__ == "__main__":
         importer.clear_database()
         # importer.clear_all_database()
         # 导入数据
-        importer.import_data("source/import/excel_main88.xlsx")
+        importer.import_data("source/import/excel_main0422.xlsx")
         # importer.import_data("source/import/清洗后全市数据.xlsx")
     except Exception as e:
         print(f"导入过程中出错: {e}")
