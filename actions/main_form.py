@@ -1,4 +1,4 @@
-from typing import Text, List, Dict, Any,Union
+from typing import Text, List, Dict, Any, Union
 from rasa_sdk import Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.forms import FormValidationAction
@@ -33,7 +33,7 @@ class MainServiceForm(FormValidationAction):
             return ["main_item", "scenario"]
 
         return ["main_item", "business_item", "scenario"]
-    
+
     # def slot_mappings(self) ->  Dict[Text, Union[Dict, List[Dict]]]:
     #     return {
     #         "main_item": [
@@ -66,7 +66,7 @@ class MainServiceForm(FormValidationAction):
     ) -> Dict[Text, Any]:
         # 发现重置了主项，就更新办理子项
         if tracker.get_slot("main_item") != value:
-            return {"main_item": value, "business_item": None}
+            return {"main_item": value, "business_item": None, "scenario": None}
         # return {"main_item": value.strip()}
 
     async def validate_business_item(
@@ -76,6 +76,8 @@ class MainServiceForm(FormValidationAction):
         tracker: Tracker,
         domain: Dict[Text, Any],
     ) -> Dict[Text, Any]:
+        if tracker.get_slot("business_item") != value:
+            return {"business_item": value, "scenario": None}
         return {"business_item": value.strip()}
 
     async def validate_scenario(
@@ -87,12 +89,13 @@ class MainServiceForm(FormValidationAction):
     ) -> Dict[Text, Any]:
         """验证用户输入的数字并映射到实际值"""
         # 定义数字选项映射
+        pass
 
-        options = tracker.get_slot("scenarios_options") or {}
-        # 检查输入是否为有效数字
-        if value.strip() in options:
-            selected_value = options[value.strip()]
-            return {"scenario": selected_value}  # 存储映射后的值
-        else:
-            dispatcher.utter_message("请输入有效的数字（如1、2、3）！")
-            return {"scenario": None}  # 验证失败
+        # options = tracker.get_slot("scenarios_options") or {}
+        # # 检查输入是否为有效数字
+        # if value.strip() in options:
+        #     selected_value = options[value.strip()]
+        #     return {"scenario": selected_value}  # 存储映射后的值
+        # else:
+        #     dispatcher.utter_message("请输入有效的数字（如1、2、3）！")
+        #     return {"scenario": None}  # 验证失败

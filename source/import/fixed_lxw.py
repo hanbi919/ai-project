@@ -48,12 +48,10 @@ class Neo4jImporter:
             # 导入区划和地点信息
             print("\n正在导入区划和地点信息...")
             self._import_districts_and_locations(session, df)
-            
+
             # # # 建立业务项与区划的关系
             # print("\n正在建立业务项与区划的关系...")
             # self._link_business_items_to_districts(session, df)
-
-            
 
             # 导入情形和材料
             print("\n正在导入情形和材料...")
@@ -78,45 +76,51 @@ class Neo4jImporter:
             """, main_item=main_item)
 
             # 创建或更新业务项节点
+            # session.run("""
+            #     MERGE (b:BusinessItem {name: $business_item,main_item:$main_item})
+            #     SET b.name = $business_item,
+            #             b.main_item=$main_item
+            # """, business_item=business_item, main_item=main_item)
+            # 创建或更新业务项节点 - 只根据name合并，然后设置属性
             session.run("""
-                MERGE (b:BusinessItem {name: $business_item})
-                SET b.name = $business_item
-            """, business_item=business_item)
+                MERGE (b:BusinessItem {name: $business_item,main_item:$main_item})
+            """, business_item=business_item, main_item=main_item)
 
             # 建立关系
             session.run("""
                 MATCH (m:MainItem {name: $main_item})
-                MATCH (b:BusinessItem {name: $business_item})
+                MATCH (b:BusinessItem {name: $business_item,main_item:$main_item})
                 MERGE (m)-[:HAS_BUSINESS_ITEM]->(b)
             """, main_item=main_item, business_item=business_item)
 
     def _import_scenarios_and_materials(self, session, df: pd.DataFrame):
         """导入情形和材料及其关系"""
-        df = df[['业务办理项名称', '情形', '材料名称']].drop_duplicates()
+        df = df[['主项名称','业务办理项名称', '情形', '材料名称']].drop_duplicates()
 
         for _, row in tqdm(df.iterrows(), total=len(df), desc="处理情形和材料"):
+            main_item = row['主项名称']
             business_item = row['业务办理项名称']
             scenario = row.get('情形', "无情形")  # 可能为空
             materials = row.get('材料名称', "无需材料")  # 可能为空
 
             # 创建情形节点并关联到业务项
             session.run("""
-                MATCH (b:BusinessItem {name: $business_item})
-                MERGE (s:Scenario {name: $scenario,business_item:$business_item})
+                MATCH (b:BusinessItem {name: $business_item, main_item:$main_item})
+                MERGE (s:Scenario {name: $scenario,business_item:$business_item,main_item:$main_item})
                 MERGE (b)-[:HAS_SCENARIO]->(s)
-            """, business_item=business_item, scenario=scenario)
+            """, business_item=business_item, scenario=scenario, main_item=main_item)
 
             # 创建材料节点
             session.run("""
-                MERGE (m:Material {name: $material, scenario:$scenario})
-            """, material=materials, scenario=scenario)
+                MERGE (m:Material {name: $material, scenario:$scenario, main_item:$main_item,business_item:$business_item})
+            """, material=materials, business_item=business_item, scenario=scenario, main_item=main_item)
 
             # 关联到情形节点
             session.run("""
-                MATCH (s:Scenario {name: $scenario,business_item: $business_item})
-                MATCH (m:Material {name: $material, scenario: $scenario})
+                MATCH (s:Scenario {name: $scenario,business_item: $business_item,main_item:$main_item})
+                MATCH (m:Material {name: $material, scenario: $scenario, main_item:$main_item,business_item:$business_item})
                 MERGE (s)-[:REQUIRES]->(m)
-            """, scenario=scenario, material=materials, business_item=business_item)
+            """, material=materials, business_item=business_item, scenario=scenario, main_item=main_item)
 
     def _import_districts_and_locations(self, session, df: pd.DataFrame):
         """导入区划和地点信息"""
@@ -126,7 +130,7 @@ class Neo4jImporter:
 
         # 添加进度条
         for _, row in tqdm(unique_locations.iterrows(), total=len(unique_locations), desc="处理区划和地点"):
-            # main_item = row['主项名称']
+            main_item = row['主项名称']
             business_item = row['业务办理项名称']
             district = row['区划名称']
             # level = row['上级区划名称']
@@ -139,14 +143,14 @@ class Neo4jImporter:
 
             # 创建区划节点
             session.run("""
-                MERGE (d:District {name: $district,business_item:$business_item})
-            """, district=district, business_item=business_item )
+                MERGE (d:District {name: $district,business_item:$business_item, main_item:$main_item})
+            """, district=district, business_item=business_item, main_item=main_item)
 
             session.run("""
-                MATCH (b:BusinessItem {name: $business_item}) 
-                MATCH (d:District {name: $district,business_item: $business_item})
+                MATCH (b:BusinessItem {name: $business_item, main_item:$main_item}) 
+                MATCH (d:District {name: $district,business_item: $business_item, main_item:$main_item})
                 MERGE (b)-[:LOCATED_IN]->(d)
-            """, business_item=business_item, district=district)
+            """, business_item=business_item, district=district, main_item=main_item)
 
             # 创建地点节点（带属性）
             session.run("""
@@ -162,24 +166,24 @@ class Neo4jImporter:
 
             # 建立区划与地点的关系
             session.run("""
-                MATCH (d:District {name: $district,business_item:$business_item})
+                MATCH (d:District {name: $district,business_item:$business_item, main_item:$main_item})
                 MATCH (l:Location {address: $location})
                 MERGE (d)-[:HAS_LOCATION]->(l)
-            """, district=district, location=location,  business_item=business_item)
+            """, district=district, location=location,  business_item=business_item, main_item=main_item)
 
-    def _link_business_items_to_districts(self, session, df: pd.DataFrame):
-        """建立业务项与区划的关系"""
-        # 添加进度条
-        for _, row in tqdm(df.iterrows(), total=len(df), desc="建立业务项与区划关系"):
-            # main_item = row['主项名称']
-            business_item = row['业务办理项名称']
-            district = row['区划名称']
+    # def _link_business_items_to_districts(self, session, df: pd.DataFrame):
+    #     """建立业务项与区划的关系"""
+    #     # 添加进度条
+    #     for _, row in tqdm(df.iterrows(), total=len(df), desc="建立业务项与区划关系"):
+    #         # main_item = row['主项名称']
+    #         business_item = row['业务办理项名称']
+    #         district = row['区划名称']
 
-            session.run("""
-                MATCH (b:BusinessItem {name: $business_item}) 
-                MATCH (d:District {name: $district,business_item: $business_item})
-                MERGE (b)-[:LOCATED_IN]->(d)
-            """, business_item=business_item, district=district)
+    #         session.run("""
+    #             MATCH (b:BusinessItem {name: $business_item})
+    #             MATCH (d:District {name: $district,business_item: $business_item})
+    #             MERGE (b)-[:LOCATED_IN]->(d)
+    #         """, business_item=business_item, district=district)
 
     def _split_materials(self, materials_str: str) -> List[str]:
         """分割材料字符串"""
@@ -197,8 +201,8 @@ if __name__ == "__main__":
 
     try:
         # 清空数据库（可选）
-        importer.clear_database()
-        # importer.clear_all_database()
+        # importer.clear_database()
+        importer.clear_all_database()
         # 导入数据
         importer.import_data("source/import/excel_main0422.xlsx")
         # importer.import_data("source/import/清洗后全市数据.xlsx")

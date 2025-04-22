@@ -112,8 +112,8 @@ class QueryMaterialsAction(Action):
         with driver.session() as session:
             result = session.run("""
                 MATCH (:MainItem {name: $main_item})-[:HAS_BUSINESS_ITEM]->
-                      (:BusinessItem {name: $business_item})-[:HAS_SCENARIO]->
-                      (s:Scenario {name: $scenario})-[:REQUIRES]->(m:Material)
+                      (:BusinessItem {name: $business_item,main_item:$main_item})-[:HAS_SCENARIO]->
+                      (s:Scenario {name: $scenario,business_item:$business_item,main_item:$main_item})-[:REQUIRES]->(m:Material)
                 RETURN m.name AS material
                 ORDER BY m.name
             """, main_item=main_item, business_item=business_item, scenario=scenario)

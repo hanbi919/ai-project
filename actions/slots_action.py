@@ -320,7 +320,7 @@ class AskForDistrictSlotAction(Action):
         # 获取相关slot值
         main_item = tracker.get_slot("main_item")
         business_item = tracker.get_slot("business_item")
-        level = tracker.get_slot("level")
+        # level = tracker.get_slot("level")
 
         if not business_item:
             dispatcher.utter_message(text="请先选择业务办理项")
@@ -333,10 +333,10 @@ class AskForDistrictSlotAction(Action):
                     # 查询指定业务办理项对应的区划
                     result = session.run("""
                         MATCH (:MainItem {name: $main_item})-[:HAS_BUSINESS_ITEM]->
-                          (b:BusinessItem {name: $business_item})-[:LOCATED_IN]->(s:District {level:$level})
+                          (b:BusinessItem {name: $business_item})-[:LOCATED_IN]->(s:District)
                         RETURN s.name AS district
                         ORDER BY s.name
-                    """, main_item=main_item, business_item=business_item,level=level)
+                    """, main_item=main_item, business_item=business_item)
 
                     # 提取结果并格式化选项
                     districts = [record["district"] for record in result]
