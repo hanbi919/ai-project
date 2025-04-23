@@ -4,6 +4,7 @@ from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
 from neo4j import GraphDatabase
 import logging
+from .const import HIGENT
 
 # 配置日志格式（带文件名和行号）
 logging.basicConfig(
@@ -58,7 +59,11 @@ class QueryServiceDetailsAction(Action):
                 MATCH (:MainItem {name: $main_item})-[:HAS_BUSINESS_ITEM]->
                       (b:BusinessItem {name: $business_item})-[:LOCATED_IN]->
                       (d:District {name: $district})-[:HAS_LOCATION]->(l:Location)
-                RETURN d.name AS district, l.address AS location, 
+                WITH d,l, split(l.address, '\n') AS lines
+                    UNWIND range(0, size(lines)-1) AS index
+                WITH d,l, lines[index] AS line, index
+                    WHERE line CONTAINS ':district'
+                RETURN d.name AS district, line AS location, 
                        l.schedule AS schedule, l.phone AS phone,
                        l.fee AS fee, l.deadline AS deadline,l.condition AS condition
                 LIMIT 1
@@ -86,7 +91,6 @@ class QueryServiceDetailsAction(Action):
         if detail_type not in ["全部信息", "办理时间", "咨询方式", "是否收费", "承诺办结时限", "办理地点", "受理条件"]:
             detail_type = "全部信息"
         # 处理不同信息类型
-        from const import HIGENT
         if detail_type == "{HIGENT}全部信息":
             details += f"- 办理时间：{record['schedule']}\n"
             details += f"- 咨询方式：{record['phone']}\n"

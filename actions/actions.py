@@ -121,7 +121,7 @@ class QueryMaterialsAction(Action):
             materials = [record["material"] for record in result]
 
         driver.close()
-        from const import HIGENT 
+        from .const import HIGENT 
         if materials:
             if materials[0] == "无需材料":
                 dispatcher.utter_message(text=f"{HIGENT}办理这个业务，您不需要准备材料。")

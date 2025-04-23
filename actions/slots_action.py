@@ -4,7 +4,7 @@ from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet, FollowupAction
 from neo4j import GraphDatabase
 import logging
-from const import HIGENT
+from .const import HIGENT
 # 配置日志格式（带文件名和行号）
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s [%(filename)s:%(lineno)d]',
@@ -351,7 +351,7 @@ class AskForDistrictSlotAction(Action):
                         # options = "\n".join(
                         #     [f"{i+1}. {item}" for i, item in enumerate(districts)])
                         # message = f"请选择'{business_item}'服务的区划：\n{options}"
-                        message = "{HIGENT}请说出您的地理位置，例如：朝阳区重庆街道，双阳区鹿乡镇"
+                        message = f"{HIGENT}请说出您的地理位置，例如：朝阳区重庆街道，双阳区鹿乡镇"
                     else:
                         message = f"{HIGENT}'{business_item}'没有查询到指定的服务区划"
                         logger.warning(
