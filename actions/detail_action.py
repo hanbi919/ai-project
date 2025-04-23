@@ -75,6 +75,14 @@ class QueryServiceDetailsAction(Action):
         details = ""
         district = record["district"]
         location = record["location"]
+        if '\n' in location:
+            lines = location.split('\n')  # 按换行符分割
+            numbered_lines = []  # 初始化一个空列表来存储带序号的行
+            for idx, line in enumerate(lines, start=1):  # 从1开始编号
+                numbered_lines.append(f"{idx}. {line}")  # 添加到列表中
+            location_result = '\n'.join(numbered_lines)  # 用换行符连接所有行
+        else:
+            location_result = location  # 重新拼接成字符串
         if detail_type not in ["全部信息", "办理时间", "咨询方式", "是否收费", "承诺办结时限", "办理地点", "受理条件"]:
             detail_type = "全部信息"
         # 处理不同信息类型
@@ -84,20 +92,20 @@ class QueryServiceDetailsAction(Action):
             details += f"- 是否收费：{record['fee']}\n"
             details += f"- 承诺办结时限：{record['deadline']}个工作日\n"
             details += f"- 受理条件：{record['condition']}\n"
-            details += f"- 办理地点：{location}"
+            details += f"- 办理地点：{location_result} \n"
         else:
             if detail_type == "办理时间":
-                details += f"- 办理时间：{record['schedule']}\n- 办理地点：{location}"
+                details += f"- 办理时间：\n{record['schedule']}\n- 办理地点：\n{location_result}"
             elif detail_type == "咨询方式":
-                details += f"- 咨询方式：{record['phone']}\n- 办理地点：{location}"
+                details += f"- 咨询方式：\n{record['phone']}\n- 办理地点：\n{location_result}"
             elif detail_type == "是否收费":
-                details += f"- 是否收费：{record['fee']}\n- 办理地点：{location}"
+                details += f"- 是否收费：\n{record['fee']}\n- 办理地点：\n{location_result}"
             elif detail_type == "受理条件":
-                details += f"- 受理条件{record['condition']}\n- 办理地点：{location}"
+                details += f"- 受理条件：\n{record['condition']}\n- 办理地点：\n{location_result}"
             elif detail_type == "承诺办结时限":
-                details += f"- 承诺办结时限：{record['deadline']}个工作日\n- 办理地点：{location}"
+                details += f"- 承诺办结时限：\n{record['deadline']}个工作日\n- 办理地点：\n{location_result}"
             elif detail_type == "办理地点":
-                details += f"- 办理地点：{location}"
+                details += f"- 办理地点：\n{location_result}"
 
         if details:
             header = f"【{business_item}】业务信息（{district}）"
