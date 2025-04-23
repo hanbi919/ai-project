@@ -9,15 +9,15 @@ intent_scenario_name = "all_scenario"
 """
     生成nlu的"区划'的训练数据
     """
-df = pd.read_excel("source/import/excel_main0422.xlsx")
+df = pd.read_excel("source/import/excel_main0423.xlsx")
 # df = pd.read_excel("source/nlu/不重复区划数据.xlsx")
  # 替换为你的文件名
 print(df.columns.tolist())  # 查看所有列名
 # 指定要处理的列名，例如 "模块名称"
 column_list = ["区划名称"]
-entity_dict = {"区划名称": "district",
+entity_dict = {"区划名称": "area",
                }
-intent_dict = {"区划名称": "all_district_intent",
+intent_dict = {"区划名称": "all_area_intent",
                }
 for column in column_list:
     data = []

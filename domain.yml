@@ -29,6 +29,7 @@ actions:
   - action_ask_scenario
   - action_ask_level
   - action_ask_district
+  - action_ask_area
   - action_query_service_details
   - validate_main_item_form
   - action_restart
@@ -46,6 +47,7 @@ entities:
   - district 
   - level # 层级
   - metion
+  - area # 街道
 
 slots:
   # 主项
@@ -100,7 +102,13 @@ slots:
     mappings:
     - type: from_entity
       entity: level
-
+  # 区划名称
+  area:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: area
   metion:
     type: text
     influence_conversation: true
@@ -134,6 +142,8 @@ responses:
     - text: "请选择业务办理项名称：\n{options}"
   utter_ask_scenario:
     - text: "请选择情形：\n{options}"
+  utter_ask_area:
+    - text: "请说出您的地理位置，例如：朝阳区重庆街道，双阳区鹿乡镇"
   utter_show_materials:
     - text: "您需要准备以下材料：\n{materials}"
   utter_no_materials_found:
@@ -157,5 +167,6 @@ forms:
       - main_item
       - business_item
       # - level
-      - district
+      # - district
+      - area
       - detail_type

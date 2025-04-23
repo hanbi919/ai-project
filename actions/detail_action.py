@@ -25,13 +25,15 @@ class QueryServiceDetailsAction(Action):
         main_item = tracker.get_slot("main_item")
         business_item = tracker.get_slot("business_item")
         detail_type = tracker.get_slot("detail_type")
-        district = tracker.get_slot("district")
+        district = tracker.get_slot("area")
+        # district = tracker.get_slot("district")
         # 获取所有需要记录的slot值
         slots_to_log = {
             "main_item": tracker.get_slot("main_item"),
             "business_item": tracker.get_slot("business_item"),
             "detail_type": tracker.get_slot("detail_type"),
-            "district": tracker.get_slot("district")
+            "district": tracker.get_slot("area")
+            # "district": tracker.get_slot("district")
         }
 
         # 使用不同日志级别记录信息
@@ -77,25 +79,25 @@ class QueryServiceDetailsAction(Action):
             detail_type = "全部信息"
         # 处理不同信息类型
         if detail_type == "全部信息":
-            details += f"⏰ 办理时间：{record['schedule']}\n"
-            details += f"📞 咨询方式：{record['phone']}\n"
-            details += f"💰 是否收费：{record['fee']}\n"
-            details += f"⏳ 承诺办结时限：{record['deadline']}个工作日\n"
-            details += f"✅ 受理条件：{record['condition']}\n"
-            details += f"📍 办理地点：{location}"
+            details += f"- 办理时间：{record['schedule']}\n"
+            details += f"- 咨询方式：{record['phone']}\n"
+            details += f"- 是否收费：{record['fee']}\n"
+            details += f"- 承诺办结时限：{record['deadline']}个工作日\n"
+            details += f"- 受理条件：{record['condition']}\n"
+            details += f"- 办理地点：{location}"
         else:
             if detail_type == "办理时间":
-                details += f"⏰ 办理时间：{record['schedule']}\n📍 办理地点：{location}"
+                details += f"- 办理时间：{record['schedule']}\n- 办理地点：{location}"
             elif detail_type == "咨询方式":
-                details += f"📞 咨询方式：{record['phone']}\n📍 办理地点：{location}"
+                details += f"- 咨询方式：{record['phone']}\n- 办理地点：{location}"
             elif detail_type == "是否收费":
-                details += f"💰 是否收费：{record['fee']}\n📍 办理地点：{location}"
+                details += f"- 是否收费：{record['fee']}\n- 办理地点：{location}"
             elif detail_type == "受理条件":
-                details += f"✅ 受理条件{record['condition']}\n📍 办理地点：{location}"
+                details += f"- 受理条件{record['condition']}\n- 办理地点：{location}"
             elif detail_type == "承诺办结时限":
-                details += f"⏳ 承诺办结时限：{record['deadline']}个工作日\n📍 办理地点：{location}"
+                details += f"- 承诺办结时限：{record['deadline']}个工作日\n- 办理地点：{location}"
             elif detail_type == "办理地点":
-                details += f"📍 办理地点：{location}"
+                details += f"- 办理地点：{location}"
 
         if details:
             header = f"【{business_item}】业务信息（{district}）"

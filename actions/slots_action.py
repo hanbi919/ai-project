@@ -299,7 +299,8 @@ class AskForDistrictSlotAction(Action):
 
     def name(self) -> Text:
         """返回动作名称"""
-        return "action_ask_district"
+        return "action_ask_area"
+        # return "action_ask_district"
 
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
@@ -345,13 +346,14 @@ class AskForDistrictSlotAction(Action):
                     if len(districts) == 1:
                         if tracker.active_loop:
                             form_name = tracker.active_loop.get("name")
-                        return [SlotSet("district", districts[0]), FollowupAction(form_name)]
+                        return [SlotSet("area", districts[0]), FollowupAction(form_name)]
                     if districts:
-                        options = "\n".join(
-                            [f"{i+1}. {item}" for i, item in enumerate(districts)])
-                        message = f"请选择'{business_item}'服务的区划：\n{options}"
+                        # options = "\n".join(
+                        #     [f"{i+1}. {item}" for i, item in enumerate(districts)])
+                        # message = f"请选择'{business_item}'服务的区划：\n{options}"
+                        message = "请说出您的地理位置，例如：朝阳区重庆街道，双阳区鹿乡镇"
                     else:
-                        message = f"'{business_item}'没有指定服务区划"
+                        message = f"'{business_item}'没有查询到指定的服务区划"
                         logger.warning(
                             f"No districts found for {business_item}")
 

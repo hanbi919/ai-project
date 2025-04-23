@@ -16,7 +16,7 @@ Accept: application/json; charset=utf-8
 
 ###
 curl -X POST \
-  http://localhost:5080/model/parse \
+  http://localhost:5005/model/parse \
   -H "Content-Type: application/json; charset=utf-8" \
   -H "Accept: application/json; charset=utf-8" \
   -d '{"text": "hi"}'
@@ -24,7 +24,6 @@ curl -X POST \
 POST http://localhost:5005/webhooks/rest/webhook
 Content-Type: application/json; charset=utf-8
 Accept: application/json; charset=utf-8
-Accept-Charset: utf-8
 
 {
   "sender": "user_id",

@@ -1,5 +1,0 @@
-version: "3.1"
-nlu:
-- intent: all_district_intent
-  examples: |
-    - [二道区](district)
