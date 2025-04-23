@@ -121,15 +121,16 @@ class QueryMaterialsAction(Action):
             materials = [record["material"] for record in result]
 
         driver.close()
-
+        from const import HIGENT 
         if materials:
             if materials[0] == "无需材料":
-                dispatcher.utter_message(text=f"办理这个业务，您不需要准备材料。")
+                dispatcher.utter_message(text=f"{HIGENT}办理这个业务，您不需要准备材料。")
             else:
                 materials_list = "\n- " + "\n- ".join(materials)
-                dispatcher.utter_message(text=f"您需要准备以下材料：{materials_list}")
+                dispatcher.utter_message(
+                    text=f"{HIGENT}您需要准备以下材料：{materials_list}")
         else:
-            dispatcher.utter_message(text="未找到对应的材料信息，请确认您的选择是否正确。")
+            dispatcher.utter_message(text="{HIGENT}未找到对应的材料信息，请确认您的选择是否正确。")
 
         return [SlotSet("scenario", None),]
 

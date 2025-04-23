@@ -146,7 +146,7 @@ rasa example project
 
 2. 修改207行，使用最新的数据文件
 
-3. 执行 python source/import/fixed_lxw
+3. 执行 python source/import/fixed_lxw.py
 
 #### 生成新的nlu训练数据
 
@@ -161,3 +161,32 @@ rasa example project
 #### 重新训练数据
 
 rasa train 
+
+### 服务器端的更新
+
+1. 登陆后进入 
+
+```
+# 更新数据
+cd project/ai-project
+git pull
+
+# 更新neo4j
+python source/import/fixed_lxw.py
+
+# 重新训练 
+
+tmux new -s train
+rasa train
+ctrl+B D
+
+# 重启 rasa api
+tmux a -t rasa-api
+
+# 重启 rasa action
+tmux a -t rasa-action
+
+```
+
+
+

@@ -86,7 +86,8 @@ class QueryServiceDetailsAction(Action):
         if detail_type not in ["全部信息", "办理时间", "咨询方式", "是否收费", "承诺办结时限", "办理地点", "受理条件"]:
             detail_type = "全部信息"
         # 处理不同信息类型
-        if detail_type == "全部信息":
+        from const import HIGENT
+        if detail_type == "{HIGENT}全部信息":
             details += f"- 办理时间：{record['schedule']}\n"
             details += f"- 咨询方式：{record['phone']}\n"
             details += f"- 是否收费：{record['fee']}\n"
@@ -95,25 +96,26 @@ class QueryServiceDetailsAction(Action):
             details += f"- 办理地点：{location_result} \n"
         else:
             if detail_type == "办理时间":
-                details += f"- 办理时间：\n{record['schedule']}\n- 办理地点：\n{location_result}"
+                details += f"{HIGENT}- 办理时间：\n{record['schedule']}\n- 办理地点：\n{location_result}"
             elif detail_type == "咨询方式":
-                details += f"- 咨询方式：\n{record['phone']}\n- 办理地点：\n{location_result}"
+                details += f"{HIGENT}- 咨询方式：\n{record['phone']}\n- 办理地点：\n{location_result}"
             elif detail_type == "是否收费":
-                details += f"- 是否收费：\n{record['fee']}\n- 办理地点：\n{location_result}"
+                details += f"{HIGENT}- 是否收费：\n{record['fee']}\n- 办理地点：\n{location_result}"
             elif detail_type == "受理条件":
-                details += f"- 受理条件：\n{record['condition']}\n- 办理地点：\n{location_result}"
+                details += f"{HIGENT}- 受理条件：\n{record['condition']}\n- 办理地点：\n{location_result}"
             elif detail_type == "承诺办结时限":
-                details += f"- 承诺办结时限：\n{record['deadline']}个工作日\n- 办理地点：\n{location_result}"
+                details += f"{HIGENT}- 承诺办结时限：\n{record['deadline']}个工作日\n- 办理地点：\n{location_result}"
             elif detail_type == "办理地点":
-                details += f"- 办理地点：\n{location_result}"
+                details += f"{HIGENT}- 办理地点：\n{location_result}"
 
         if details:
             header = f"【{business_item}】业务信息（{district}）"
             # 如果查询的是单个信息类型，不显示header
             if detail_type != "全部信息":
                 header = ""
-            dispatcher.utter_message(text=f"{header}\n{details}".strip())
+            dispatcher.utter_message(
+                text=f"{HIGENT}{header}\n{details}".strip())
         else:
-            dispatcher.utter_message(text="未找到对应的详细业务信息")
+            dispatcher.utter_message(text=f"{HIGENT}未找到对应的详细业务信息")
 
         return []

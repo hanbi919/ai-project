@@ -4,7 +4,7 @@ from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet, FollowupAction
 from neo4j import GraphDatabase
 import logging
-
+from const import HIGENT
 # 配置日志格式（带文件名和行号）
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s [%(filename)s:%(lineno)d]',
@@ -111,11 +111,11 @@ class AskForMainItemSlotAction(Action):
 
                         # 将列表转换为换行分隔的字符串
                         items_list = "\n".join(numbered_items)
-                        message = f"请选择您要查询的主项名称：\n {items_list}"
+                        message = f"{HIGENT}请选择您要查询的主项名称：\n {items_list}"
                         logger.debug(
                             f"Prepared message with {len(main_items)} options")
                     else:
-                        message = "当前没有可用的主项服务"
+                        message = "{HIGENT}当前没有可用的主项服务"
                         logger.warning("No main items found in database")
 
                     # 发送带按钮的回复
@@ -124,7 +124,7 @@ class AskForMainItemSlotAction(Action):
 
         except Exception as e:
             logger.error(f"查询主项时出错：{str(e)}")
-            dispatcher.utter_message(text="查询主项服务时发生错误，请稍后再试")
+            dispatcher.utter_message(text=f"{HIGENT}查询主项服务时发生错误，请稍后再试")
 
         return []
 
@@ -199,9 +199,9 @@ class AskForBusinessItemSlotAction(Action):
 
                         # 将列表转换为换行分隔的字符串
                         items_list = "\n".join(numbered_items)
-                        message = f"请选择'{main_item}'下的业务办理项: \n{items_list}"
+                        message = f"{HIGENT}请选择'{main_item}'下的业务办理项: \n{items_list}"
                     else:
-                        message = f"'{main_item}'下没有可用的业务办理项"
+                        message = f"{HIGENT}'{main_item}'下没有可用的业务办理项"
                         logger.warning(
                             f"No business items found for {main_item}")
 
@@ -211,7 +211,7 @@ class AskForBusinessItemSlotAction(Action):
 
         except Exception as e:
             logger.error(f"查询业务办理项时出错：{str(e)}")
-            dispatcher.utter_message(text="查询业务办理项时发生错误，请稍后再试")
+            dispatcher.utter_message(text=f"{HIGENT}查询业务办理项时发生错误，请稍后再试")
 
         return []
 
@@ -277,11 +277,11 @@ class AskForScenarioSlotAction(Action):
                             SlotSet("current_options", scenarios_dict)]
                         options = "\n".join(
                             [f"{i+1}. {item}" for i, item in enumerate(scenarios)])
-                        message = f"请选择'{business_item}'下的情形：\n{options}"
+                        message = f"{HIGENT}请选择'{business_item}'下的情形：\n{options}"
                         dispatcher.utter_message(text=message)
                         return slot_event
                     else:
-                        message = f"'{business_item}'下没有可用的情形"
+                        message = f"{HIGENT}'{business_item}'下没有可用的情形"
                         logger.warning(
                             f"No scenarios found for {business_item}")
                         dispatcher.utter_message(text=message)
@@ -289,7 +289,7 @@ class AskForScenarioSlotAction(Action):
 
         except Exception as e:
             logger.error(f"查询情形时出错：{str(e)}")
-            dispatcher.utter_message(text="查询情形时发生错误，请稍后再试")
+            dispatcher.utter_message(text=f"{HIGENT}查询情形时发生错误，请稍后再试")
 
         return []
 
@@ -351,9 +351,9 @@ class AskForDistrictSlotAction(Action):
                         # options = "\n".join(
                         #     [f"{i+1}. {item}" for i, item in enumerate(districts)])
                         # message = f"请选择'{business_item}'服务的区划：\n{options}"
-                        message = "请说出您的地理位置，例如：朝阳区重庆街道，双阳区鹿乡镇"
+                        message = "{HIGENT}请说出您的地理位置，例如：朝阳区重庆街道，双阳区鹿乡镇"
                     else:
-                        message = f"'{business_item}'没有查询到指定的服务区划"
+                        message = f"{HIGENT}'{business_item}'没有查询到指定的服务区划"
                         logger.warning(
                             f"No districts found for {business_item}")
 
@@ -361,7 +361,7 @@ class AskForDistrictSlotAction(Action):
 
         except Exception as e:
             logger.error(f"查询区划时出错：{str(e)}")
-            dispatcher.utter_message(text="查询服务区划时发生错误，请稍后再试")
+            dispatcher.utter_message(text=f"{HIGENT}查询服务区划时发生错误，请稍后再试")
 
         return []
     
@@ -422,9 +422,9 @@ class AskForLevelSlotAction(Action):
                     if levels:
                         options = "\n".join(
                             [f"{i+1}. {item}" for i, item in enumerate(levels)])
-                        message = f"请选择'{business_item}'服务的层级：\n{options}"
+                        message = f"{HIGENT}请选择'{business_item}'服务的层级：\n{options}"
                     else:
-                        message = f"'{business_item}'没有指定服务层级"
+                        message = f"{HIGENT}'{business_item}'没有指定服务层级"
                         logger.warning(
                             f"No levels found for {business_item}")
 
@@ -432,6 +432,6 @@ class AskForLevelSlotAction(Action):
 
         except Exception as e:
             logger.error(f"查询层级时出错：{str(e)}")
-            dispatcher.utter_message(text="查询服务层级时发生错误，请稍后再试")
+            dispatcher.utter_message(text=f"{HIGENT}查询服务层级时发生错误，请稍后再试")
 
         return []
