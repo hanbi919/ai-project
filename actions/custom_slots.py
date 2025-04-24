@@ -6,8 +6,19 @@ from typing import Any, Text, Dict, Optional
 class SocialInsuranceSlot(Slot):
     """自定义社保信息校验 Slot"""
 
-    def __init__(self, name, **kwargs):
-        super().__init__(name, **kwargs)  # 必须调用父类初始化
+    def feature_dimensionality(self) -> int:
+        return 1
+
+    def _as_feature(self) -> list:
+        return [1.0 if self.value else 0.0]
+
+    @classmethod
+    def type_name(cls) -> str:
+        return "social_insurance"
+
+    def __init__(self, name, auto_fill=True, **kwargs):
+        super().__init__(name, **kwargs)
+        self.auto_fill = auto_fill  # 必须调用父类初始化
 
     def validate(
         self,

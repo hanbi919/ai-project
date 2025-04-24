@@ -13,5 +13,5 @@ class QueryAreaAction(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        main_item = tracker.get_intent_of_latest_message("text")
-        return [SlotSet("area",main_item)]
+        area = tracker.latest_message.get("text")
+        return [SlotSet("area",area)]
