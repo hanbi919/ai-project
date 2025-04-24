@@ -4,16 +4,7 @@ nlu:
 
 - intent: inform_main_item
   examples: |
-    - 能办身份证、户口本这些证件业务！
-    - 能交水电费、燃气费这些生活费用！
-    - 能办社保、医保这些看病养老的手续！
-    - 能查公积金、办贷款这些钱的事儿！
-    - 能给车上牌、补驾照这些车管业务！
-    - 能办结婚证、离婚证这些婚姻登记！
-    - 能开各种证明，比如居住证、无犯罪证明！
-    - 能办营业执照，做小买卖开店都用得上！
-    - 能领老年证、残疾证这些特殊证件！
-    - 能咨询所有政府部门的办事流程！
+    - 能咨询所有政府部门的办事流程
     - 我可以办理哪些业务
     - 我想办事
     - 你可以办业务吗
@@ -61,31 +52,31 @@ nlu:
     - 开始办理
     - 需要什么材料
     - 需要带啥材料
-    - 我在[双阳区](district)，我想问一下[办理残疾人证](main_item:残疾人证办理)需要什么材料
+    - 我在[双阳区](area)，我想问一下[办理残疾人证](main_item:残疾人证办理)需要什么材料
 
 - intent: ask_service_details
   examples: |
-    - 我在[南关](district)，我想问一下[残疾人证](main_item:残疾人证办理)在[哪里](detail_type:办理地点)办
-    - 我在[朝阳](district)，我想问一下[新办](business_item:残疾人证新办)[残疾人证](main_item:残疾人证办理)在[哪里](detail_type:办理地点)办
-    - 我在[朝阳区](district)，打算[新办](business_item:残疾人证新办)[残疾人证](main_item:残疾人证办理)，[几点](detail_type:办理时间)可以去
+    - 我在[南关](area)，我想问一下[残疾人证](main_item:残疾人证办理)在[哪里](detail_type:办理地点)办
+    - 我在[朝阳](area)，我想问一下[新办](business_item:残疾人证新办)[残疾人证](main_item:残疾人证办理)在[哪里](detail_type:办理地点)办
+    - 我在[朝阳区](area)，打算[新办](business_item:残疾人证新办)[残疾人证](main_item:残疾人证办理)，[几点](detail_type:办理时间)可以去
 
 - intent: inform_district # 
   examples: |
-    - 我在[南关区](district)
-    - 我在[南关](district)        
-    - [南关区](district)在哪里办理业务    
-    - [南关街道](district)怎么走？ 
-    - [二道区](district)
-    - [双阳区](district)
-    - [宽城区](district)
-    - [朝阳区](district)
-    - [绿园区](district)
-    - [二道](district)
-    - [双阳](district)
-    - [宽城](district)
-    - [朝阳](district)
-    - [绿园](district)
-    - [南关](district)
+    - 我在[南关区](area)
+    - 我在[南关](area)        
+    - [南关区](area)在哪里办理业务    
+    - [南关街道](area)怎么走？ 
+    - [二道区](area)
+    - [双阳区](area)
+    - [宽城区](area)
+    - [朝阳区](area)
+    - [绿园区](area)
+    - [二道](area)
+    - [双阳](area)
+    - [宽城](area)
+    - [朝阳](area)
+    - [绿园](area)
+    - [南关](area)
  
 - intent: inform_detail_type
   examples: |
@@ -98,6 +89,7 @@ nlu:
     - [受理条件](detail_type)
     - 办这个证[要钱](detail_type:是否收费)吗？
     - [多久](detail_type:承诺办结时限)能拿到
+    - [多久](detail_type:承诺办结时限)办完
     - [电话多少](detail_type:咨询方式)
     - [几点](detail_type:办理时间)开始上班啊
     - [电话](detail_type:咨询方式)
@@ -177,18 +169,18 @@ nlu:
 - intent: ask_processing_location
   examples: |
     - 需要去[哪里](detail_type:办理地点)办理
-    - 这个业务要[到哪](detail_type:办理地点)办
+    - 这个业务要到[哪办](detail_type:办理地点)
     - [什么地方](detail_type:办理地点)可以办理
     - 请问[哪个地点](detail_type:办理地点)能办
     - 应该去[哪个部门](detail_type:办理地点)办理
     - 办理这个要去[哪里](detail_type:办理地点)
     - [哪个窗口](detail_type:办理地点)可以办这个
     - 需要[到什么机构](detail_type:办理地点)办理
-    - [具体去哪](detail_type:办理地点)能办这个
+    - [具体去哪能](detail_type:办理地点)办这个
     - 这个手续[在哪儿](detail_type:办理地点)办
     - 应该[前往何处](detail_type:办理地点)办理
     - [哪个办事处](detail_type:办理地点)能处理
-    - 需要[到什么地点](detail_type:办理地点)办手续
+    - 需要[到什么地点办](detail_type:办理地点)手续
     - 这个要去[哪个办公室](detail_type:办理地点)办
     - [什么场所](detail_type:办理地点)可以办理
     - 应该[到哪个中心](detail_type:办理地点)办理
@@ -202,7 +194,7 @@ nlu:
     - 这个业务[什么时候](detail_type:办理时间)能办
     - [几点](detail_type:办理时间)开始办理
     - 办理需要[多长时间](detail_type:办理时间)
-    - [多久](detail_type:办理时间)可以办完
+    - [多久](detail_type:承诺办结时限)可以办完
     - [截止时间](detail_type:办理时间)是什么时候
     - [最晚](detail_type:办理时间)几点能办
     - [工作日](detail_type:办理时间)才能办理吗

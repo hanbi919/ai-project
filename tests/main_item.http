@@ -10,6 +10,7 @@ Content-Type: application/json; charset=utf-8
 Accept: application/json; charset=utf-8
 
 {
+  "sender": "1234", 
   "text": "农安县"
 }
 
@@ -64,7 +65,7 @@ Accept: application/json; charset=utf-8
 }
 
 
-###
+### 例子，用于启动详细的流程
 POST http://localhost:5005/webhooks/rest/webhook
 Content-Type: application/json; charset=utf-8
 Accept: application/json; charset=utf-8

@@ -97,7 +97,7 @@ class QueryServiceDetailsAction(Action):
         driver.close()
 
         if not record:
-            dispatcher.utter_message(text="数据库未找到对应的业务信息")
+            dispatcher.utter_message(text=f"{HIGENT}数据库未找到对应的业务信息")
             return []
 
         details = ""
@@ -146,12 +146,12 @@ class QueryServiceDetailsAction(Action):
                 details += f"- 办理地点：\n{location_result}"
 
         if details:
-            header = f"【{business_item}】业务信息（{district}）"
+            # header = f"【{business_item}】业务信息（{district}）"
             # 如果查询的是单个信息类型，不显示header
             if detail_type != "全部信息":
                 header = ""
             dispatcher.utter_message(
-                text=f"{HIGENT}{header}\n{details}".strip())
+                text=f"{HIGENT}\n{details}".strip())
         else:
             dispatcher.utter_message(text=f"{HIGENT}未找到对应的详细业务信息")
 

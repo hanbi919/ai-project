@@ -106,13 +106,20 @@ slots:
       entity: level
   # 区划名称
   area:
-    type: actions.custom_slots.SocialInsuranceSlot
+    type: text
     influence_conversation: true
     mappings:
-      - type: custom
-        action: action_area  # 关键：声明验证action
-        intent: all_area_intent
-    auto_fill: true  # 必须启用
+    - type: from_entity
+      entity: area
+    - type: from_text
+      intent: all_area_intent
+    # type: actions.custom_slots.SocialInsuranceSlot
+    # influence_conversation: true
+    # mappings:
+    #   - type: custom
+    #     action: action_area  # 关键：声明验证action
+    #     intent: all_area_intent
+    # auto_fill: true  # 必须启用
         # custom_class: 
     # initial_value: null
     # auto_fill: true  # 自动触发验证
