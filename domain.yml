@@ -36,7 +36,9 @@ actions:
   - action_restart_session
   - action_debug_entities
   - validate_disability_service_form
+  - validate_detail_service_form
   - action_ordinal_mention
+  - action_area
   # - utter_restart
 
 entities:
@@ -107,8 +109,15 @@ slots:
     type: text
     influence_conversation: true
     mappings:
-    - type: from_entity
-      entity: area
+      - type: from_entity
+        entity: area
+    # - type: custom
+      # class: actions.custom_slots.SocialInsuranceSlot 
+        # custom_class: 
+    # initial_value: null
+    # auto_fill: true  # 自动触发验证
+    # - type: from_text
+      # entity: area
   metion:
     type: text
     influence_conversation: true

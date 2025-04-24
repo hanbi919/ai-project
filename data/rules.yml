@@ -138,6 +138,15 @@ rules:
       - action: service_details_form
       - active_loop: service_details_form
 
+  - rule: Activate detail area form validate
+    condition:
+    - active_loop: service_details_form
+    - slot_was_set:
+      - requested_slot: area
+    steps:
+      - action: action_area
+      - action: service_details_form
+
   - rule: Activate detail form
     steps:
       - intent: inform_district

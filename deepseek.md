@@ -80,3 +80,7 @@
 
 其中：区划名称是已经有的数据，需要根据主项名称与业务办理项名称，找到对应的区划名称，才可以建立关系
 请根据上面的设计思想，帮我根据文件，生成一个python脚本，可以把文件的内容，写入到neo4j数据库里
+
+### 生成cypher脚本
+
+我在neo4j里面有一个节点location，另外一个节点address，location-》has_address-address。我想模糊查询address，location和address是一对多的关系。我如何通过对address模糊查询，获得多条数据，同时我也希望可以让location的属性也同时返回结果，如何实现

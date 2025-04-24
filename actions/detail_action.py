@@ -19,6 +19,32 @@ class QueryServiceDetailsAction(Action):
     def name(self) -> Text:
         return "action_query_service_details"
 
+    def format_results(self, records):
+        """格式化查询结果"""
+        formatted = []
+        for record in records:
+            location = record["location"]
+            addresses = record["matched_addresses"]
+
+            location_info = {
+                "id": location.id,
+                "name": location.get("name", ""),
+                "phone": location.get("phone", "无"),
+                "schedule": location.get("schedule", "无"),
+                "address_count": record["match_count"],
+                "addresses": []
+            }
+
+            for addr in addresses:
+                location_info["addresses"].append({
+                    "id": addr.id,
+                    "address": addr.get("name", ""),
+                    "created": addr.get("created_at", "")
+                })
+
+            formatted.append(location_info)
+        return formatted
+
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
@@ -58,12 +84,9 @@ class QueryServiceDetailsAction(Action):
             result = session.run("""
                 MATCH (:MainItem {name: $main_item})-[:HAS_BUSINESS_ITEM]->
                       (b:BusinessItem {name: $business_item})-[:LOCATED_IN]->
-                      (d:District {name: $district})-[:HAS_LOCATION]->(l:Location)
-                WITH d,l, split(l.address, '\n') AS lines
-                    UNWIND range(0, size(lines)-1) AS index
-                WITH d,l, lines[index] AS line, index
-                    WHERE line CONTAINS ':district'
-                RETURN d.name AS district, line AS location, 
+                      (d:District )-[:HAS_LOCATION]->(l:Location)-[:HAS_ADDRESS]->(addr:Address)
+                WHERE  addr.name CONTAINS $district
+                RETURN collect(addr) AS location, d AS district,
                        l.schedule AS schedule, l.phone AS phone,
                        l.fee AS fee, l.deadline AS deadline,l.condition AS condition
                 LIMIT 1
@@ -79,19 +102,29 @@ class QueryServiceDetailsAction(Action):
 
         details = ""
         district = record["district"]
-        location = record["location"]
-        if '\n' in location:
-            lines = location.split('\n')  # 按换行符分割
-            numbered_lines = []  # 初始化一个空列表来存储带序号的行
-            for idx, line in enumerate(lines, start=1):  # 从1开始编号
-                numbered_lines.append(f"{idx}. {line}")  # 添加到列表中
-            location_result = '\n'.join(numbered_lines)  # 用换行符连接所有行
-        else:
-            location_result = location  # 重新拼接成字符串
+        locations = record["location"]
+        location_list = []
+        import re
+        for location in locations:
+            loc = location.get("name", "") 
+            cleaned_text = re.sub(r"^\(|\)$|'|,$", "", loc)
+            location_list.append(cleaned_text)
+        numbered_lines = []  # 初始化一个空列表来存储带序号的行
+        for idx, line in enumerate(location_list, start=1):  # 从1开始编号
+            numbered_lines.append(f"{idx}. {line}")  # 添加到列表中
+        location_result = '\n'.join(numbered_lines)
+        # if '\n' in location:
+        #     lines = location.split('\n')  # 按换行符分割
+        #     numbered_lines = []  # 初始化一个空列表来存储带序号的行
+        #     for idx, line in enumerate(lines, start=1):  # 从1开始编号
+        #         numbered_lines.append(f"{idx}. {line}")  # 添加到列表中
+        #     location_result = '\n'.join(numbered_lines)  # 用换行符连接所有行
+        # else:
+        #     location_result = location  # 重新拼接成字符串
         if detail_type not in ["全部信息", "办理时间", "咨询方式", "是否收费", "承诺办结时限", "办理地点", "受理条件"]:
             detail_type = "全部信息"
         # 处理不同信息类型
-        if detail_type == "{HIGENT}全部信息":
+        if detail_type == "全部信息":
             details += f"- 办理时间：{record['schedule']}\n"
             details += f"- 咨询方式：{record['phone']}\n"
             details += f"- 是否收费：{record['fee']}\n"
@@ -100,17 +133,17 @@ class QueryServiceDetailsAction(Action):
             details += f"- 办理地点：{location_result} \n"
         else:
             if detail_type == "办理时间":
-                details += f"{HIGENT}- 办理时间：\n{record['schedule']}\n- 办理地点：\n{location_result}"
+                details += f"- 办理时间：\n{record['schedule']}\n- 办理地点：\n{location_result}"
             elif detail_type == "咨询方式":
-                details += f"{HIGENT}- 咨询方式：\n{record['phone']}\n- 办理地点：\n{location_result}"
+                details += f"- 咨询方式：\n{record['phone']}\n- 办理地点：\n{location_result}"
             elif detail_type == "是否收费":
-                details += f"{HIGENT}- 是否收费：\n{record['fee']}\n- 办理地点：\n{location_result}"
+                details += f"- 是否收费：\n{record['fee']}\n- 办理地点：\n{location_result}"
             elif detail_type == "受理条件":
-                details += f"{HIGENT}- 受理条件：\n{record['condition']}\n- 办理地点：\n{location_result}"
+                details += f"- 受理条件：\n{record['condition']}\n- 办理地点：\n{location_result}"
             elif detail_type == "承诺办结时限":
-                details += f"{HIGENT}- 承诺办结时限：\n{record['deadline']}个工作日\n- 办理地点：\n{location_result}"
+                details += f"- 承诺办结时限：\n{record['deadline']}个工作日\n- 办理地点：\n{location_result}"
             elif detail_type == "办理地点":
-                details += f"{HIGENT}- 办理地点：\n{location_result}"
+                details += f"- 办理地点：\n{location_result}"
 
         if details:
             header = f"【{business_item}】业务信息（{district}）"
