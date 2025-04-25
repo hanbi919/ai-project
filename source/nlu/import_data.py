@@ -12,7 +12,7 @@ intent_business_name = "all_business_item "
 intent_scenario_name = "all_scenario"
 
 # df = pd.read_excel("source/nlu/清洗后全市数据.xlsx")  # 替换为你的文件名
-df = pd.read_excel("source/import/excel_main0423.xlsx")  # 替换为你的文件名
+df = pd.read_excel("source/import/excel_main0425.xlsx")  # 替换为你的文件名
 print("Excel列名:", df.columns.tolist())  # 查看所有列名
 
 # 指定要处理的列名

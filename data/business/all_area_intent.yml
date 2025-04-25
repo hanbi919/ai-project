@@ -3,9 +3,9 @@ nlu:
 - intent: all_area_intent
   examples: |
     - [长春市](area)
-    - [双阳区](area)
-    - [九台区](area)
     - [公主岭市](area)
     - [榆树市](area)
     - [德惠市](area)
     - [农安县](area)
+    - [双阳区](area)
+    - [九台区](area)
