@@ -38,7 +38,7 @@ nlu:
     - [残疾人证](main_item:残疾人证办理)[新办](business_item:残疾人证新办)
     - 我的[残疾证](main_item:残疾人证办理)[丢了](business_item:残疾人证挂失补办)，咋补办啊？
     - 补办要带啥东西
-    - 我在[南关](district)，我想了解[残疾证](main_item:残疾人证办理)的事情
+    - 我在[南关](area)，我想了解[残疾证](main_item:残疾人证办理)的事情
     - 带啥东西
     - 带啥材料
     - 要带啥东西
@@ -180,12 +180,12 @@ nlu:
     - 这个手续[在哪儿](detail_type:办理地点)办
     - 应该[前往何处](detail_type:办理地点)办理
     - [哪个办事处](detail_type:办理地点)能处理
-    - 需要[到什么地点办](detail_type:办理地点)手续
+    - 需要到[什么地点办](detail_type:办理地点)手续
     - 这个要去[哪个办公室](detail_type:办理地点)办
     - [什么场所](detail_type:办理地点)可以办理
     - 应该[到哪个中心](detail_type:办理地点)办理
     - [具体位置](detail_type:办理地点)是哪里办理
-    - 需要[到什么服务点](detail_type:办理地点)办
+    - 需要到什么[服务点](detail_type:办理地点)办
     - [哪个服务大厅](detail_type:办理地点)能办
     - 这个业务[办理地点](detail_type:办理地点)在哪
 
@@ -303,50 +303,50 @@ nlu:
     - 请给[最完整的指南](detail_type:全部信息)  
 
 
-- intent: query_district
+- intent: query_area
   examples: |
-    - 我要去[南关](district)
-    - [南关区](district)的政府在哪？
-    - [南关街道](district)附近有医院吗？
-    - 我在[朝阳](district)
-    - [朝阳区](district)的商场在哪里？
-    - [朝阳街道](district)怎么走？
-    - 到[二道](district)怎么坐车？
-    - [二道区](district)的派出所
-    - 住在[二道街](district)
-    - [双阳](district)有什么好玩的？
-    - [双阳区](district)的景区
-    - 去[双阳街道](district)
-    - [宽城](district)的火车站
-    - [宽城区](district)有哪些学校？
-    - 在[宽城街道](district)吃饭
-    - [绿园](district)的公园
-    - [绿园区](district)的地铁站
-    - 到[绿园街道](district)
-    - [南关](district)的银行
-    - [朝阳](district)的医院
-    - [二道](district)的超市
-    - [双阳](district)的酒店
-    - [宽城](district)的学校
-    - [绿园](district)的餐厅
-    - 我在[南关区](district)工作
-    - [朝阳区](district)的房价
-    - [二道区](district)的交通
-    - [双阳区](district)的天气
-    - [宽城区](district)的医院
-    - [绿园区](district)的商场
-    - 怎么去[南关街道](district)
-    - [朝阳街道](district)的派出所
-    - [二道街道](district)的邮局
-    - [双阳街道](district)的公园
-    - [宽城街道](district)的银行
-    - [绿园街道](district)的学校
-    - 请问[南关](district)怎么走？
-    - [朝阳](district)附近有地铁吗？
-    - [二道](district)的快递点
-    - [双阳](district)的旅游景点
-    - [宽城](district)的购物中心
-    - [绿园](district)的公交站
+    - 我要去[南关](area)
+    - [南关区](area)的政府在哪？
+    - [南关街道](area)附近有医院吗？
+    - 我在[朝阳](area)
+    - [朝阳区](area)的商场在哪里？
+    - [朝阳街道](area)怎么走？
+    - 到[二道](area)怎么坐车？
+    - [二道区](area)的派出所
+    - 住在[二道街](area)
+    - [双阳](area)有什么好玩的？
+    - [双阳区](area)的景区
+    - 去[双阳街道](area)
+    - [宽城](area)的火车站
+    - [宽城区](area)有哪些学校？
+    - 在[宽城街道](area)吃饭
+    - [绿园](area)的公园
+    - [绿园区](area)的地铁站
+    - 到[绿园街道](area)
+    - [南关](area)的银行
+    - [朝阳](area)的医院
+    - [二道](area)的超市
+    - [双阳](area)的酒店
+    - [宽城](area)的学校
+    - [绿园](area)的餐厅
+    - 我在[南关区](area)工作
+    - [朝阳区](area)的房价
+    - [二道区](area)的交通
+    - [双阳区](area)的天气
+    - [宽城区](area)的医院
+    - [绿园区](area)的商场
+    - 怎么去[南关街道](area)
+    - [朝阳街道](area)的派出所
+    - [二道街道](area)的邮局
+    - [双阳街道](area)的公园
+    - [宽城街道](area)的银行
+    - [绿园街道](area)的学校
+    - 请问[南关](area)怎么走？
+    - [朝阳](area)附近有地铁吗？
+    - [二道](area)的快递点
+    - [双阳](area)的旅游景点
+    - [宽城](area)的购物中心
+    - [绿园](area)的公交站
 
 - intent: select_option
   examples: |

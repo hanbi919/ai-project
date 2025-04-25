@@ -89,6 +89,7 @@ class QueryServiceDetailsAction(Action):
                 RETURN collect(addr) AS location, d AS district,
                        l.schedule AS schedule, l.phone AS phone,
                        l.fee AS fee, l.deadline AS deadline,l.condition AS condition
+                ORDER BY size(location) DESC
                 LIMIT 1
             """, main_item=main_item, business_item=business_item, district=district)
 
