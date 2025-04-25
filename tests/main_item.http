@@ -28,7 +28,7 @@ Accept: application/json; charset=utf-8
 
 {
   "sender": "user_id",
-  "message": "你好，我想办个残疾证，该咋办啊"
+  "message": "变更工伤登记"
 }
 
 
