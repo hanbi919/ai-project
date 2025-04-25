@@ -4,6 +4,7 @@ from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
 from neo4j import GraphDatabase
 import logging
+from .const import HIGENT
 
 # 配置日志格式（带文件名和行号）
 logging.basicConfig(
@@ -121,7 +122,6 @@ class QueryMaterialsAction(Action):
             materials = [record["material"] for record in result]
 
         driver.close()
-        from .const import HIGENT 
         if materials:
             if materials[0] == "无需材料":
                 dispatcher.utter_message(text=f"{HIGENT}办理这个业务，您不需要准备材料。")
@@ -130,7 +130,7 @@ class QueryMaterialsAction(Action):
                 dispatcher.utter_message(
                     text=f"{HIGENT}您需要准备以下材料：{materials_list}")
         else:
-            dispatcher.utter_message(text="{HIGENT}未找到对应的材料信息，请确认您的选择是否正确。")
+            dispatcher.utter_message(text=f"{HIGENT}未找到对应的材料信息，请确认您的选择是否正确。")
 
         return [SlotSet("scenario", None),]
 
@@ -149,7 +149,7 @@ class OrdinalAction(Action):
 
         # 2. 获取用户输入的数字
         value = tracker.latest_message.get("text", "").strip()
-    
+
         options = tracker.get_slot("current_options") or {}
         # 检查输入是否是数字且在 options 的范围内
         if value.isdigit():

@@ -66,8 +66,9 @@ class MainServiceForm(FormValidationAction):
         domain: Dict[Text, Any],
     ) -> Dict[Text, Any]:
         # 发现重置了主项，就更新办理子项
-        if tracker.get_slot("main_item") != value:
-            return {"main_item": value, "business_item": None, "scenario": None}
+        main_item = tracker.get_slot("main_item")
+        # if main_item != value:
+        return {"main_item": value, "business_item": None, "scenario": None}
         # return {"main_item": value.strip()}
 
     async def validate_business_item(
@@ -77,9 +78,10 @@ class MainServiceForm(FormValidationAction):
         tracker: Tracker,
         domain: Dict[Text, Any],
     ) -> Dict[Text, Any]:
-        if tracker.get_slot("business_item") != value:
-            return {"business_item": value, "scenario": None}
-        return {"business_item": value.strip()}
+        # if tracker.get_slot("business_item") != value:
+        #     return {"business_item": value, "scenario": None}
+        business_item = tracker.get_slot("business_item")
+        return {"business_item": value.strip(), "scenario": None}
 
     async def validate_scenario(
         self,
@@ -90,7 +92,8 @@ class MainServiceForm(FormValidationAction):
     ) -> Dict[Text, Any]:
         """验证用户输入的数字并映射到实际值"""
         # 定义数字选项映射
-        pass
+        # pass
+        return {"scenario": value.strip()}
 
         # options = tracker.get_slot("scenarios_options") or {}
         # # 检查输入是否为有效数字
