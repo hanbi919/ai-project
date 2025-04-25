@@ -148,13 +148,15 @@ rasa example project
 
 3. 执行 python source/import/fixed_lxw.py
 
+4. 执行 python source/import/rebuild_address.py
+
 #### 生成新的nlu训练数据
 
 1. 修改 nlu/import_district.py 12行
 
 2. 修改 nlu/import_data.py 12行
 
-3. 分别运行 ： python nlu/import_district.py  和 python nlu/import_data.py
+3. 分别运行 ： python source/nlu/import_district.py  和 python source/nlu/import_data.py
 
 4. 文件生成在：data/business 目录
 
