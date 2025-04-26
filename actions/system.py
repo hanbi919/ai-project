@@ -84,3 +84,19 @@ class ActionRestartSession(Action):
 
         # 返回Restarted事件来重置对话
         return [Restarted()]
+    
+
+class ActionRestarted(Action):
+    def name(self):
+        return 'action_restarted'
+
+    def run(self, dispatcher, tracker, domain):
+        return [Restarted()]
+
+
+class ActionSlotReset(Action):
+    def name(self):
+        return 'action_slot_reset'
+
+    def run(self, dispatcher, tracker, domain):
+        return [AllSlotsReset()]

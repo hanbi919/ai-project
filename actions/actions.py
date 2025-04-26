@@ -135,6 +135,16 @@ class QueryMaterialsAction(Action):
         return [SlotSet("scenario", None),]
 
 
+class ClearSlotAction(Action):
+    def name(self) -> Text:
+        return "action_reset_main_item"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        main_item = tracker.get_slot("main_item")
+        return [SlotSet("business_item", None), SlotSet("scenario", None),]
+
 class OrdinalAction(Action):
     def name(self) -> Text:
         return "action_ordinal_mention"

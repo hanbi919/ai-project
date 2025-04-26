@@ -4,7 +4,7 @@ from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.forms import FormValidationAction
 import logging
 from .const import HIGENT
-
+from rasa_sdk.events import SlotSet, AllSlotsReset
 # 配置日志格式（带文件名和行号）
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s [%(filename)s:%(lineno)d]',
@@ -20,7 +20,8 @@ class MainServiceForm(FormValidationAction):
     def name(self) -> Text:
         return "validate_disability_service_form"  # 表单的唯一标识
 
-    # @staticmethod
+    # def required_slots(tracker: Tracker) -> List[Text]:
+    #     return ["main_item", "business_item", "scenario"]
     async def required_slots(
         self,
         domain_slots: List[Text],  # 来自domain.yml的必需槽位
@@ -29,29 +30,29 @@ class MainServiceForm(FormValidationAction):
         domain: Dict[Text, Any],
     ) -> List[Text]:
         # 在这里根据条件返回需要的槽位列表
-        value = tracker.get_slot("business_item")
-        if value:
-            return ["main_item", "scenario"]
+        # value = tracker.get_slot("business_item")
+        # if value:
+        #     return ["main_item", "scenario"]
 
         return ["main_item", "business_item", "scenario"]
 
-    # def slot_mappings(self) ->  Dict[Text, Union[Dict, List[Dict]]]:
-    #     return {
-    #         "main_item": [
-    #             self.from_entity(entity="main_item"),
-    #             self.from_text()  # 捕获用户原始输入（数字或文本）
-    #         ],
-    #         "business_item": [
-    #             self.from_entity(entity="business_item"),
-    #             self.from_text()  # 捕获用户原始输入（数字或文本）
-    #         ],
-    #         "scenario": [
-    #             # self.from_entity(entity="scenario"),
-    #             self.from_intent(intent="select_option",
-    #                              entity="scenario"),
-    #             self.from_text()  # 捕获用户原始输入（数字或文本）
-    #         ]
-    #     }
+    def slot_mappings(self) ->  Dict[Text, Union[Dict, List[Dict]]]:
+        return {
+            "main_item": [
+                # self.from_entity(entity="main_item"),
+                self.from_text()  # 捕获用户原始输入（数字或文本）
+            ],
+            # "business_item": [
+            #     self.from_entity(entity="business_item"),
+            #     self.from_text()  # 捕获用户原始输入（数字或文本）
+            # ],
+            # "scenario": [
+            #     # self.from_entity(entity="scenario"),
+            #     self.from_intent(intent="select_option",
+            #                      entity="scenario"),
+            #     self.from_text()  # 捕获用户原始输入（数字或文本）
+            # ]
+        }
 
     def submit(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict]:
         # 表单提交后的逻辑（可选）
@@ -65,11 +66,18 @@ class MainServiceForm(FormValidationAction):
         tracker: Tracker,
         domain: Dict[Text, Any],
     ) -> Dict[Text, Any]:
-        # 发现重置了主项，就更新办理子项
-        main_item = tracker.get_slot("main_item")
-        # if main_item != value:
-        return {"main_item": value, "business_item": None, "scenario": None}
-        # return {"main_item": value.strip()}
+        """当 main_item 被修改时，清空 business_item 和 name"""
+        current_main_item = tracker.get_slot("main_item")
+        old_value = tracker.slots.get("main_item")  # 获取未被实体更新的原始值
+        # 只有当值真正改变时才重置（避免初始化时的误清空）
+        if current_main_item != value:
+            return {
+                "main_item": value,       # 更新当前值
+                "business_item": None,    # 清空子项目
+                "scenario": None              # 清空名称
+            }
+        return {"main_item": value}  # 值未改变时仅更新当前 slot
+        
 
     async def validate_business_item(
         self,
@@ -78,10 +86,15 @@ class MainServiceForm(FormValidationAction):
         tracker: Tracker,
         domain: Dict[Text, Any],
     ) -> Dict[Text, Any]:
-        # if tracker.get_slot("business_item") != value:
-        #     return {"business_item": value, "scenario": None}
-        business_item = tracker.get_slot("business_item")
-        return {"business_item": value.strip(), "scenario": None}
+        """当 business_item 被修改时，清空 name"""
+        current_business_item = tracker.get_slot("business_item")
+
+        if current_business_item != value:
+            return {
+                "business_item": value,  # 更新当前值
+                "scenario": None             # 清空名称
+            }
+        return {"business_item": value}
 
     async def validate_scenario(
         self,
@@ -94,12 +107,4 @@ class MainServiceForm(FormValidationAction):
         # 定义数字选项映射
         # pass
         return {"scenario": value.strip()}
-
-        # options = tracker.get_slot("scenarios_options") or {}
-        # # 检查输入是否为有效数字
-        # if value.strip() in options:
-        #     selected_value = options[value.strip()]
-        #     return {"scenario": selected_value}  # 存储映射后的值
-        # else:
-        #     dispatcher.utter_message("请输入有效的数字（如1、2、3）！")
-        #     return {"scenario": None}  # 验证失败
+         
