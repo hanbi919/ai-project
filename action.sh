@@ -1,1 +1,1 @@
-rasa run  actions --debug  
+SANIC_WORKERS=5 rasa run  actions --debug  

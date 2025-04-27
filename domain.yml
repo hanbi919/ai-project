@@ -35,7 +35,7 @@ actions:
   - action_restart
   - action_restart_session
   - action_debug_entities
-  # - validate_disability_service_form
+  - validate_disability_service_form
   - validate_detail_service_form
   - action_ordinal_mention
   - action_area

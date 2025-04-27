@@ -1,1 +1,1 @@
-rasa run --enable-api --cors "*" --debug  --auth-token "LjjLOxlZtImfEukYfHcTs0zlIL9PmJzt"
+SANIC_WORKERS=5 rasa run --enable-api --cors "*" --debug  --auth-token "LjjLOxlZtImfEukYfHcTs0zlIL9PmJzt"
