@@ -84,7 +84,7 @@ class QueryServiceDetailsAction(Action):
             result = session.run("""
                 MATCH (:MainItem {name: $main_item})-[:HAS_BUSINESS_ITEM]->
                       (b:BusinessItem {name: $business_item})-[:LOCATED_IN]->
-                      (d:District )-[:HAS_LOCATION]->(l:Location)-[:HAS_ADDRESS]->(addr:Address)
+                      (d:District {main_item:$main_item,business_item:$business_item})-[:HAS_LOCATION]->(l:Location)-[:HAS_ADDRESS]->(addr:Address)
                 WHERE  addr.name CONTAINS $district
                 RETURN collect(addr) AS location, d AS district,
                        l.schedule AS schedule, l.phone AS phone,

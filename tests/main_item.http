@@ -74,3 +74,14 @@ Accept: application/json; charset=utf-8
   "sender": "12345",
   "message": "/ask_service_details{\"main_item\":\"辅助器具异地配置申请\"}"
 }
+
+
+###
+POST http://localhost:5678/webhook/7f394fbb-f6b4-4179-b372-337e0a0feb6a/chat
+Content-Type: application/json; charset=utf-8
+Accept: application/json; charset=utf-8
+
+{
+  "sender": "user_id",
+  "message": "/ask_disability_service{\"main_item\": \"就业信息服务\",\"business_item\": \"就业政策法规咨询\",}"
+}
