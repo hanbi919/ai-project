@@ -1,6 +1,6 @@
 version: "3.1"
 nlu:
-  - lookup: district
+  - lookup: area
     examples: |
       - 南关区
       - 二道区
