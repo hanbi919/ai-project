@@ -163,9 +163,11 @@ class Neo4jImporter:
             # 建立区划与地点的关系
             session.run("""
                 MATCH (d:District {name: $district,business_item:$business_item, main_item:$main_item})
-                MATCH (l:Location {address: $location})
+                MATCH (l:Location {address: $location,schedule:$schedule,
+                        phone:$phone,fee:$fee,deadline:$deadline,condition:$condition})
                 MERGE (d)-[:HAS_LOCATION]->(l)
-            """, district=district, location=location,  business_item=business_item, main_item=main_item)
+            """, district=district, location=location,  business_item=business_item, main_item=main_item, schedule=schedule, phone=phone,
+                        fee=fee, deadline=deadline, condition=condition)
 
     # def _link_business_items_to_districts(self, session, df: pd.DataFrame):
     #     """建立业务项与区划的关系"""

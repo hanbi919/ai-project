@@ -11,7 +11,7 @@ Accept: application/json; charset=utf-8
 
 {
   "sender": "1234", 
-  "text": "农安县"
+  "text": "联系方式"
 }
 
 
