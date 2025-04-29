@@ -155,12 +155,8 @@ class Neo4jImporter:
             # 创建地点节点（带属性）
             session.run("""
                 
-                MERGE (l:Location {address: $location})
-                SET l.schedule = $schedule,
-                    l.phone = $phone,
-                    l.fee = $fee,
-                    l.deadline = $deadline,
-                    l.condition = $condition
+                MERGE (l:Location {address: $location,schedule:$schedule,
+                        phone:$phone,fee:$fee,deadline:$deadline,condition:$condition})
             """, location=location, schedule=schedule, phone=phone,
                         fee=fee, deadline=deadline, condition=condition)
 
