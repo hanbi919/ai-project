@@ -1,1621 +1,722 @@
 version: "3.1"
 nlu:
 - intent: all_business_item_intent
-  examples:
-  - text: |
-      [无](business_item)
-  - text: |
-      [抵押权首次登记（国有建设用地使用权抵押登记）](business_item)
-  - text: |
-      [抵押权首次登记（建设用地使用权及在建建筑物所有权抵押转国有建设用地使用权及房屋所有权抵押登记）](business_item)
-  - text: |
-      [抵押权首次登记（建设用地使用权及在建建筑物所有权抵押登记）](business_item)
-  - text: |
-      [抵押权首次登记（国有建设用地使用权及房屋所有权抵押登记）](business_item)
-  - text: |
-      [抵押权首次登记（预购商品房抵押预告登记转国有建设用地使用权及房屋所有权抵押登记）](business_item)
-  - text: |
-      [抵押权变更登记办理项](business_item)
-  - text: |
-      [抵押权注销登记办理项](business_item)
-  - text: |
-      [抵押权注销登记（国有建设用地使用权及房屋所有权抵押权注销登记）](business_item)
-  - text: |
-      [抵押权注销登记（在建建筑物抵押权注销登记）](business_item)
-  - text: |
-      [抵押权注销登记（国有建设用地使用权抵押权注销登记）](business_item)
-  - text: |
-      [抵押权注销登记（无还本续贷）](business_item)
-  - text: |
-      [抵押权注销登记（抵押权注销和转移登记（针对房主死亡需办理继承的或离婚析产））](business_item)
-  - text: |
-      [抵押权注销登记（抵押权注销及变更登记）](business_item)
-  - text: |
-      [抵押权注销登记（抵押权注销和补换证登记（针对持房屋所有权证办的抵押））](business_item)
-  - text: |
-      [地役权首次登记](business_item)
-  - text: |
-      [地役权变更登记](business_item)
-  - text: |
-      [地役权转移登记](business_item)
-  - text: |
-      [地役权注销登记](business_item)
-  - text: |
-      [查封登记办理项](business_item)
-  - text: |
-      [国有建设用地使用权（宗地查封）](business_item)
-  - text: |
-      [国有建设用地使用权及房屋所有权（房屋预查封）](business_item)
-  - text: |
-      [国有建设用地使用权及房屋所有权（房屋查封）](business_item)
-  - text: |
-      [国有建设用地使用权及房屋所有权（房屋查封（房地一体））](business_item)
-  - text: |
-      [国有建设用地使用权（宗地预查封）](business_item)
-  - text: |
-      [国有建设用地使用权（宗地解封）](business_item)
-  - text: |
-      [国有建设用地使用权及房屋所有权（房屋解封（房地一体））](business_item)
-  - text: |
-      [国有建设用地使用权（宗地预查封解封）](business_item)
-  - text: |
-      [国有建设用地使用权及房屋所有权（房屋解封）](business_item)
-  - text: |
-      [国有建设用地使用权及房屋所有权（房屋预查封解封）](business_item)
-  - text: |
-      [国有建设用地使用权（宗地续封）](business_item)
-  - text: |
-      [国有建设用地使用权及房屋所有权（房屋预查封续封）](business_item)
-  - text: |
-      [国有建设用地使用权及房屋所有权（房屋续封）](business_item)
-  - text: |
-      [国有建设用地使用权变更登记办理项](business_item)
-  - text: |
-      [国有建设用地使用权变更登记(权利期限变化)](business_item)
-  - text: |
-      [国有建设用地使用权变更登记-其它（法律、行政法规规定的其他情形）](business_item)
-  - text: |
-      [国有建设用地使用权变更登记（土地坐落、用途、面积等状况发生变化)](business_item)
-  - text: |
-      [国有建设用地使用权变更登记（同一权利人分割、合并、界址变化)](business_item)
-  - text: |
-      [国有建设用地使用权变更登记（权利人姓名、身份证明类型/身份证明号码发生变化)](business_item)
-  - text: |
-      [国有建设用地使用权及房屋所有权首次登记（个人建造房屋）](business_item)
-  - text: |
-      [国有建设用地使用权及房屋所有权首次登记（无籍房）](business_item)
-  - text: |
-      [国有建设用地使用权及房屋所有权首次登记（新建商品房、经济适用房、保障性住房等）](business_item)
-  - text: |
-      [国有建设用地使用权及房屋所有权异议登记办理项](business_item)
-  - text: |
-      [国有建设用地使用权及房屋所有权异议登记注销](business_item)
-  - text: |
-      [国有建设用地使用权及房屋所有权注销登记（权利人放弃权利）](business_item)
-  - text: |
-      [国有建设用地使用权及房屋所有权注销登记（依法没收、征收、收回）](business_item)
-  - text: |
-      [国有建设用地使用权及房屋所有权注销登记（不动产灭失）](business_item)
-  - text: |
-      [国有建设用地使用权及房屋所有权注销登记（因人民法院、仲裁委员会生效法律文书致使权利消灭）](business_item)
-  - text: |
-      [国有建设用地使用权及房屋所有权注销登记（其他）](business_item)
-  - text: |
-      [国有建设用地使用权及房屋所有权注销登记（依有权机关嘱托注销登记）](business_item)
-  - text: |
-      [国有建设用地使用权及房屋所有权转移登记（夫妻婚内析产）](business_item)
-  - text: |
-      [国有建设用地使用权及房屋所有权转移登记（司法协执导致权属发生转移)](business_item)
-  - text: |
-      [国有建设用地使用权及房屋所有权转移登记（夫妻离婚析产）](business_item)
-  - text: |
-      [国有建设用地使用权及房屋所有权转移登记（公证继承、受遗赠或因生效法律文书取得继承权)](business_item)
-  - text: |
-      [国有建设用地使用权及房屋所有权转移登记（分割、合并导致权属发生转移)](business_item)
-  - text: |
-      [国有建设用地使用权及房屋所有权转移登记（房改购房)](business_item)
-  - text: |
-      [国有建设用地使用权及房屋所有权转移登记（房屋拆迁、征收产权调换)](business_item)
-  - text: |
-      [国有建设用地使用权及房屋所有权转移登记（赠与)](business_item)
-  - text: |
-      [国有建设用地使用权及房屋所有权转移登记（作价出资、入股)](business_item)
-  - text: |
-      [国有建设用地使用权及房屋所有权转移登记（非公证继承、受遗赠)](business_item)
-  - text: |
-      [国有建设用地使用权及房屋所有权转移登记（购买商品房、经济适用房、保障性住房等)](business_item)
-  - text: |
-      [国有建设用地使用权及房屋所有权转移登记（国有建设用地使用权及房屋所有权转移/抵押权登记（按揭贷款购买有首次登记的商品房或二手房））](business_item)
-  - text: |
-      [国有建设用地使用权首次登记办理项](business_item)
-  - text: |
-      [国有建设用地使用权首次登记-出让（招标、拍卖、挂牌）](business_item)
-  - text: |
-      [国有建设用地使用权首次登记（划拨）](business_item)
-  - text: |
-      [国有建设用地使用权首次登记（划拨转出让）](business_item)
-  - text: |
-      [国有建设用地使用权注销登记办理项](business_item)
-  - text: |
-      [国有建设用地使用权注销登记（其他情形）](business_item)
-  - text: |
-      [国有建设用地使用权注销登记（因人民法院、仲裁委员会生效法律文书致使权利消灭）](business_item)
-  - text: |
-      [国有建设用地使用权注销登记（权利人放弃权利）](business_item)
-  - text: |
-      [国有建设用地使用权注销登记（依法没收、收回）](business_item)
-  - text: |
-      [国有建设用地使用权注销登记（土地灭失）](business_item)
-  - text: |
-      [国有建设用地使用权注销登记（依有权机关嘱托注销登记）](business_item)
-  - text: |
-      [国有建设用地使用权转移登记办理项](business_item)
-  - text: |
-      [国有建设用地使用权转移登记（法人与其他组织合并、分立、兼并等原因发生转移）](business_item)
-  - text: |
-      [国有建设用地使用权转移登记（转让、互换、赠与）](business_item)
-  - text: |
-      [国有建设用地使用权转移登记（分割、合并导致权属发生转移）](business_item)
-  - text: |
-      [国有建设用地使用权转移登记-其他（法律、行政法律规定的其他情形）](business_item)
-  - text: |
-      [国有建设用地使用权转移登记（司法协执导致权属发生变化）](business_item)
-  - text: |
-      [国有农用地的使用权首次登记](business_item)
-  - text: |
-      [国有农用地的使用权注销登记](business_item)
-  - text: |
-      [国有农用地的使用权转移登记](business_item)
-  - text: |
-      [国有农用地的使用权变更登记](business_item)
-  - text: |
-      [其它登记（不动产权证书-国有建设用地使用权）](business_item)
-  - text: |
-      [其他登记（不动产权证明-国有建设用地使用权）](business_item)
-  - text: |
-      [其他登记（不动产权证书-国有建设用地使用权及房屋所有权）](business_item)
-  - text: |
-      [其它登记（不动产权证明-国有建设用地使用权及房屋所有权）](business_item)
-  - text: |
-      [依申请更正登记](business_item)
-  - text: |
-      [依嘱托更正登记](business_item)
-  - text: |
-      [异议登记办理项](business_item)
-  - text: |
-      [预告登记设立（不动产转移预告登记）](business_item)
-  - text: |
-      [预告登记设立（预购商品房预告及预购商品房抵押权预告）](business_item)
-  - text: |
-      [预告登记的变更办理项](business_item)
-  - text: |
-      [预告登记变更（预购商品房抵押预告变更登记）](business_item)
-  - text: |
-      [预告登记的注销办理项](business_item)
-  - text: |
-      [预告登记注销（预购商品房抵押权预告注销登记）](business_item)
-  - text: |
-      [预告登记注销（预购商品房预告注销登记）](business_item)
-  - text: |
-      [抵押权转移登记（国有建设用地使用权及房屋所有权转移及抵押权转移登记）](business_item)
-  - text: |
-      [国有建设用地使用权及房屋所有权转移登记（法人或其他组织合并、分立、重组、清算)](business_item)
-  - text: |
-      [国有建设用地使用权及房屋所有权转移登记（房地一体）](business_item)
-  - text: |
-      [国有建设用地使用权及房屋所有权转移登记（存量房买卖)](business_item)
-  - text: |
-      [国有建设用地使用权及房屋所有权变更登记（其它法律、行政法律规定的其他情形）](business_item)
-  - text: |
-      [国有建设用地使用权及房屋所有权变更登记（房屋面积、界址变化)](business_item)
-  - text: |
-      [国有建设用地使用权及房屋所有权变更登记（权利人姓名、身份证明类型/身份证明号码发生变化)](business_item)
-  - text: |
-      [国有建设用地使用权及房屋所有权变更登记（同一权利人分割、合并房屋)](business_item)
-  - text: |
-      [国有建设用地使用权及房屋所有权变更登记（不动产坐落、名称变化)](business_item)
-  - text: |
-      [国有建设用地使用权及房屋所有权变更登记（土地权利性质、权利期限变更、房屋规划用途变更)](business_item)
-  - text: |
-      [国有建设用地使用权及房屋所有权变更登记（共有方式/情况）发生变化)](business_item)
-  - text: |
-      [国有建设用地使用权及房屋所有权变更登记（房屋用途变化)](business_item)
-  - text: |
-      [安全监督备案](business_item)
-  - text: |
-      [直接发包的工程](business_item)
-  - text: |
-      [依法招标发包的工程](business_item)
-  - text: |
-      [政府采购的工程](business_item)
-  - text: |
-      [依法不需要组织专家评审](business_item)
-  - text: |
-      [依法需要组织专家评审](business_item)
-  - text: |
-      [二级建造师执业资格认定初审](business_item)
-  - text: |
-      [政府投资信息化项目建议书的审批（非申请中央预算内资金）](business_item)
-  - text: |
-      [政府投资信息化项目初步设计的审批（非申请中央预算内资金）](business_item)
-  - text: |
-      [燃气燃烧器具安装维修企业资质审批](business_item)
-  - text: |
-      [县级民办非企业单位成立登记](business_item)
-  - text: |
-      [县级民办非企业单位宗旨和业务范围变更登记](business_item)
-  - text: |
-      [县级民办非企业单位开办资金变更登记](business_item)
-  - text: |
-      [县级民办非企业单位法定代表人或负责人变更登记](business_item)
-  - text: |
-      [县级民办非企业单位业务主管单位变更登记](business_item)
-  - text: |
-      [县级民办非企业单位住所变更登记](business_item)
-  - text: |
-      [县级民办非企业单位名称变更登记](business_item)
-  - text: |
-      [县级民办非企业单位注销登记](business_item)
-  - text: |
-      [民办非企业单位印章式样备案](business_item)
-  - text: |
-      [民办非企业单位银行账号备案](business_item)
-  - text: |
-      [低保家庭应届高考生](business_item)
-  - text: |
-      [孤儿应届高考生](business_item)
-  - text: |
-      [低保家庭应届中考生](business_item)
-  - text: |
-      [孤儿应届中考生](business_item)
-  - text: |
-      [结婚登记](business_item)
-  - text: |
-      [军人结婚登记](business_item)
-  - text: |
-      [再婚登记](business_item)
-  - text: |
-      [军人离婚登记](business_item)
-  - text: |
-      [离婚登记](business_item)
-  - text: |
-      [市级社会团体成立登记](business_item)
-  - text: |
-      [市级社会团体业务主管单位变更登记](business_item)
-  - text: |
-      [市级社会团体活动资金变更登记](business_item)
-  - text: |
-      [市级社会团体名称变更登记](business_item)
-  - text: |
-      [市级社会团体法定代表人变更登记](business_item)
-  - text: |
-      [市级社会团体宗旨、业务范围、活动地域变更登记](business_item)
-  - text: |
-      [市级社会团体住所变更登记](business_item)
-  - text: |
-      [市级社会团体注销登记](business_item)
-  - text: |
-      [成品油零售经营批准证书变更（遗失补证）](business_item)
-  - text: |
-      [成品油零售经营批准证书变更（经营单位投资主体未变化）](business_item)
-  - text: |
-      [乡村医生执业注册（再注册）办理项](business_item)
-  - text: |
-      [乡村医生执业注册（补发）](business_item)
-  - text: |
-      [公共场所卫生许可证补发](business_item)
-  - text: |
-      [公共场所卫生许可证新办](business_item)
-  - text: |
-      [《中华人民共和国医师执业证书》补发](business_item)
-  - text: |
-      [首次注册](business_item)
-  - text: |
-      [变更执业地点](business_item)
-  - text: |
-      [变更执业范围](business_item)
-  - text: |
-      [备案](business_item)
-  - text: |
-      [取消备案](business_item)
-  - text: |
-      [补发](business_item)
-  - text: |
-      [新办](business_item)
-  - text: |
-      [营利性变非营利性](business_item)
-  - text: |
-      [增设诊疗科目](business_item)
-  - text: |
-      [变更机构名称](business_item)
-  - text: |
-      [变更所有制形式](business_item)
-  - text: |
-      [非营利性变营利性](business_item)
-  - text: |
-      [变更法定代表人或主要负责人](business_item)
-  - text: |
-      [医疗技术临床应用备案](business_item)
-  - text: |
-      [增设床位（牙椅）](business_item)
-  - text: |
-      [变更执业地址](business_item)
-  - text: |
-      [减少诊疗科目（床位、牙椅、执业地址）](business_item)
-  - text: |
-      [校验](business_item)
-  - text: |
-      [延续](business_item)
-  - text: |
-      [注册有效期届满未延续注册](business_item)
-  - text: |
-      [护士死亡或者丧失民事行为能力](business_item)
-  - text: |
-      [受吊销《护士执业证书》处罚](business_item)
-  - text: |
-      [新办（包含乙类大型医用设备）](business_item)
-  - text: |
-      [新办（不包含乙类大型医用设备）](business_item)
-  - text: |
-      [母婴保健技术考核合格证书（补发）](business_item)
-  - text: |
-      [母婴保健服务人员资格认定](business_item)
-  - text: |
-      [麻醉药品和第一类精神药品购用印鉴卡（补发）](business_item)
-  - text: |
-      [麻醉药品和第一类精神药品购用印鉴卡（申办）](business_item)
-  - text: |
-      [麻醉药品和第一类精神药品购用印鉴卡（换证）](business_item)
-  - text: |
-      [法定夫妻](business_item)
-  - text: |
-      [达到法定婚龄决定不再结婚并无子女的妇女](business_item)
-  - text: |
-      [食品生产许可变更（变更食品类别、类别名称、品种明细）（生产条件发生变化）（需要现场）](business_item)
-  - text: |
-      [食品生产许可变更（生产工艺未发生变化）（不需要现场）](business_item)
-  - text: |
-      [食品生产许可变更（生产地址变更）（需要现场）](business_item)
-  - text: |
-      [食品生产许可延续（生产条件未发生变化）（不需要现场）](business_item)
-  - text: |
-      [食品生产许可延续（生产条件发生变化）（需要现场）](business_item)
-  - text: |
-      [食品（含保健食品）经营许可新办（不需要现场）](business_item)
-  - text: |
-      [食品（含保健食品）经营许可新办（需要现场）](business_item)
-  - text: |
-      [食品（含保健食品）经营许可变更（不需现场核查）](business_item)
-  - text: |
-      [食品（含保健食品）经营许可变更（需现场核查）](business_item)
-  - text: |
-      [食品（含保健食品）经营许可延续（经营条件发生变化）](business_item)
-  - text: |
-      [食品（含保健食品）经营许可延续（经营条件未变化）](business_item)
-  - text: |
-      [食品添加剂生产许可变更（生产地址变更）（需要现场）](business_item)
-  - text: |
-      [食品添加剂生产许可变更（生产条件未发生变化）（不需要现场）](business_item)
-  - text: |
-      [食品添加剂生产许可变更（许可项目变更）（生产条件发生变化）（需要现场）](business_item)
-  - text: |
-      [食品添加剂生产许可延续（生产条件发生变化）（需要现场）](business_item)
-  - text: |
-      [食品添加剂生产许可延续（生产条件未发生变化）（不需要现场）](business_item)
-  - text: |
-      [食品小作坊变更登记（不需要现场）（未改变生产工艺、条件）](business_item)
-  - text: |
-      [食品小作坊变更登记（需要现场）（改变生产工艺、条件）](business_item)
-  - text: |
-      [食品小作坊延续登记（生产条件发生变化）（需核查）](business_item)
-  - text: |
-      [食品小作坊延续登记（生产条件未发生变化）（不需现场）](business_item)
-  - text: |
-      [小餐饮店变更登记（不需现场核查）](business_item)
-  - text: |
-      [小餐饮店变更登记（需现场核查）](business_item)
-  - text: |
-      [小餐饮店延续登记（不需现场核查）](business_item)
-  - text: |
-      [小餐饮店延续登记（需要现场核查）](business_item)
-  - text: |
-      [小食杂店变更登记（不需现场核查）](business_item)
-  - text: |
-      [小食杂店变更登记（需现场核查）](business_item)
-  - text: |
-      [小食杂店延续登记（不需现场核查）](business_item)
-  - text: |
-      [小食杂店延续登记（需要现场核查）](business_item)
-  - text: |
-      [第一类医疗器械产品注册备案核准变更（备案人名称、代理人、备注）](business_item)
-  - text: |
-      [第一类医疗器械产品注册备案核准变更（备案人注册地址、生产地址、代理人注册地址）](business_item)
-  - text: |
-      [第一类医疗器械产品注册备案核准变更（产品名称、型号/规格、产品描述、预期用途）](business_item)
-  - text: |
-      [第一类医疗器械生产企业备案核准变更（备注）](business_item)
-  - text: |
-      [第一类医疗器械生产企业备案核准变更（企业负责人）](business_item)
-  - text: |
-      [第一类医疗器械生产企业备案核准变更（企业名称、法人代表）](business_item)
-  - text: |
-      [第一类医疗器械生产企业备案核准变更（生产产品列表、生产范围、生产产品）](business_item)
-  - text: |
-      [第一类医疗器械生产企业备案核准变更（生产场所、生产地址）](business_item)
-  - text: |
-      [第一类医疗器械生产企业备案核准变更（住所）](business_item)
-  - text: |
-      [第二类医疗器械经营备案核准变更（法定代表人）](business_item)
-  - text: |
-      [第二类医疗器械经营备案核准变更（经营范围）](business_item)
-  - text: |
-      [第二类医疗器械经营备案核准变更（企业负责人）](business_item)
-  - text: |
-      [第二类医疗器械经营备案核准变更（企业名称）](business_item)
-  - text: |
-      [第二类医疗器械经营备案核准变更（住所、经营场所、库房地址）](business_item)
-  - text: |
-      [第三类医疗器械经营许可变更（不需进行现场核查）（变更法定代表人 ）](business_item)
-  - text: |
-      [第三类医疗器械经营许可变更（不需进行现场核查）（变更企业负责人 ）](business_item)
-  - text: |
-      [第三类医疗器械经营许可变更（不需进行现场核查）（变更企业名称）](business_item)
-  - text: |
-      [第三类医疗器械经营许可变更（不需进行现场核查）（变更住所 （不改变经营住所的实际地址）、经营场所（不改变经营场所的实际地址）、库房地址（不改变库房的实际地址） ）](business_item)
-  - text: |
-      [第三类医疗器械经营许可变更（不需进行现场核查）（增加经营范围（除6822、6840、6846）、减经营范围 ）](business_item)
-  - text: |
-      [第三类医疗器械经营许可变更（需进行现场核查）（库房地址（改变库房的实际地址）、注册地址）](business_item)
-  - text: |
-      [第三类医疗器械经营许可变更（需进行现场核查）（增加经营范围（增加6822、6840、 6846））](business_item)
-  - text: |
-      [药品零售企业许可变更（不需进行现场核查）（变更经营范围（增加范围：有生物制品（除疫苗）增加生化药品）、减少经营范围）](business_item)
-  - text: |
-      [药品零售企业许可变更（不需进行现场核查）（变更企业法人）](business_item)
-  - text: |
-      [药品零售企业许可变更（不需进行现场核查）（变更企业负责人）](business_item)
-  - text: |
-      [药品零售企业许可变更（不需进行现场核查）（变更企业名称）](business_item)
-  - text: |
-      [药品零售企业许可变更（不需进行现场核查）（变更企业质量负责人）](business_item)
-  - text: |
-      [药品零售企业许可变更（不需进行现场核查）（变更企业注册地址（不改变注册地址的实际地址）、企业仓库地址（不改变仓库地址的实际地址））](business_item)
-  - text: |
-      [药品零售企业许可变更（不需进行现场核查）（减企业仓库地址、仓库面积（留存仓库面积符合许可要求））](business_item)
-  - text: |
-      [药品零售企业许可变更（需进行现场核查）（变更仓库地址、注册地址）](business_item)
-  - text: |
-      [药品零售企业许可变更（需进行现场核查）（变更经营范围）](business_item)
-  - text: |
-      [对经营乙类非处方药的药品零售企业从业人员资格认定](business_item)
-  - text: |
-      [科研和教学用毒性药品购买审批](business_item)
-  - text: |
-      [麻醉药品和精神药品邮寄证明核发](business_item)
-  - text: |
-      [特种设备使用登记达到设计使用年限继续使用的变更](business_item)
-  - text: |
-      [特种设备使用登记单位变更按（单位）办理](business_item)
-  - text: |
-      [特种设备使用登记单位变更按台（套）办理](business_item)
-  - text: |
-      [特种设备使用登记单位更名变更按（单位）办理](business_item)
-  - text: |
-      [特种设备使用登记更名变更按台（套）办理](business_item)
-  - text: |
-      [特种设备使用登记改造变更](business_item)
-  - text: |
-      [特种设备使用登记跨登记机关行政区域移装变更](business_item)
-  - text: |
-      [特种设备使用登记在登记机关行政区域内移装变更](business_item)
-  - text: |
-      [特种设备使用登记按（单位）办理](business_item)
-  - text: |
-      [特种设备使用登记按台（套）办理](business_item)
-  - text: |
-      [公司设立登记](business_item)
-  - text: |
-      [合伙企业设立登记](business_item)
-  - text: |
-      [分公司设立登记](business_item)
-  - text: |
-      [公司变更登记](business_item)
-  - text: |
-      [合伙企业变更登记](business_item)
-  - text: |
-      [分公司变更登记](business_item)
-  - text: |
-      [撤销变更登记](business_item)
-  - text: |
-      [非公司企业法人注销登记](business_item)
-  - text: |
-      [非公司企业法人分支机构注销登记](business_item)
-  - text: |
-      [公司注销登记](business_item)
-  - text: |
-      [合伙企业注销登记](business_item)
-  - text: |
-      [分公司注销登记](business_item)
-  - text: |
-      [农民专业合作社（联合社）分支机构设立登记](business_item)
-  - text: |
-      [农民专业合作社（联合社）设立登记](business_item)
-  - text: |
-      [农民专业合作社（联合社）变更登记](business_item)
-  - text: |
-      [农民专业合作社（联合社）分支机构变更登记](business_item)
-  - text: |
-      [农民专业合作社（联合社）分支机构注销登记](business_item)
-  - text: |
-      [农民专业合作社（联合社）注销登记](business_item)
-  - text: |
-      [农民专业合作社（联合社）备案登记](business_item)
-  - text: |
-      [非公司企业法人备案登记](business_item)
-  - text: |
-      [非公司企业法人分支机构备案](business_item)
-  - text: |
-      [个人独资分支机构备案登记](business_item)
-  - text: |
-      [个人独资企业备案登记](business_item)
-  - text: |
-      [合伙企业备案登记](business_item)
-  - text: |
-      [合伙企业分支机构备案登记](business_item)
-  - text: |
-      [公司备案登记](business_item)
-  - text: |
-      [承担国家法定计量检定机构任务（专项计量授权）](business_item)
-  - text: |
-      [承担国家法定计量检定机构任务授权（扩项）](business_item)
-  - text: |
-      [承担国家法定计量检定机构任务授权变更审批](business_item)
-  - text: |
-      [营业执照正、副本全部遗失](business_item)
-  - text: |
-      [未在国家企业信用信息公示系统公示营业执照作废声明](business_item)
-  - text: |
-      [营业执照正、副本未全部遗失](business_item)
-  - text: |
-      [从事对温度、湿度等有特殊要求的食品贮存业务的非食品生产经营者备案](business_item)
-  - text: |
-      [国家出资设立的律师事务所](business_item)
-  - text: |
-      [设立个人律师事务所](business_item)
-  - text: |
-      [设立律师事务所分所](business_item)
-  - text: |
-      [设立普通合伙律师事务所](business_item)
-  - text: |
-      [设立特殊的普通合伙律师事务所](business_item)
-  - text: |
-      [变更合伙人协议](business_item)
-  - text: |
-      [变更章程](business_item)
-  - text: |
-      [变更组织形式](business_item)
-  - text: |
-      [律师事务所变更负责人](business_item)
-  - text: |
-      [律师事务所变更名称](business_item)
-  - text: |
-      [律师事务所执业许可证注销](business_item)
-  - text: |
-      [基层法律服务所变更法定代表人](business_item)
-  - text: |
-      [基层法律服务所变更合伙人](business_item)
-  - text: |
-      [基层法律服务所变更住所（地址）](business_item)
-  - text: |
-      [基层法律服务所更换补发执业证](business_item)
-  - text: |
-      [公证机构变更办公场所](business_item)
-  - text: |
-      [公证机构变更负责人](business_item)
-  - text: |
-      [公证机构变更名称](business_item)
-  - text: |
-      [司法鉴定机构及其分支机构法定代表人（负责人）变更](business_item)
-  - text: |
-      [司法鉴定机构及其分支机构名称变更](business_item)
-  - text: |
-      [司法鉴定机构及其分支机构增加（减少）业务范围](business_item)
-  - text: |
-      [司法鉴定机构及其分支机构住所变更](business_item)
-  - text: |
-      [司法鉴定机构及其分支机构资金数额变更](business_item)
-  - text: |
-      [司法鉴定人执业机构变更](business_item)
-  - text: |
-      [司法鉴定人执业类别变更](business_item)
-  - text: |
-      [基层法律服务工作者变更执业机构](business_item)
-  - text: |
-      [基层法律服务工作者更换补发执业证](business_item)
-  - text: |
-      [申请兼职律师](business_item)
-  - text: |
-      [申请专职律师](business_item)
-  - text: |
-      [兼职律师变更为专职律师](business_item)
-  - text: |
-      [律师执业证变更](business_item)
-  - text: |
-      [“律师年度考核备案”专用章盖满的换发](business_item)
-  - text: |
-      [律师执业证补发办理项](business_item)
-  - text: |
-      [对授予A类法律职业资格证书的换发](business_item)
-  - text: |
-      [对在法律援助工作中作出突出贡献的组织和个人进行表彰奖励](business_item)
-  - text: |
-      [法律援助律师工作证颁发](business_item)
-  - text: |
-      [公司律师工作证颁发](business_item)
-  - text: |
-      [公职律师工作证颁发](business_item)
-  - text: |
-      [对律师事务所、律师进行表彰奖励](business_item)
-  - text: |
-      [对人民调解委员会和调解员进行表彰奖励](business_item)
-  - text: |
-      [人民调解员因从事工作致伤致残、牺牲的救助、抚恤](business_item)
-  - text: |
-      [辐射安全许可证注销（含非密封放射性物质或放射源）](business_item)
-  - text: |
-      [对建设项目环境影响后评价报告的备案](business_item)
-  - text: |
-      [防治污染设施拆除或闲置审批](business_item)
-  - text: |
-      [放射性同位素转让审批](business_item)
-  - text: |
-      [放射源异地使用备案](business_item)
-  - text: |
-      [固体废物跨省转移审批](business_item)
-  - text: |
-      [核发《环保用微生物菌剂样品入境通知单》](business_item)
-  - text: |
-      [核技术利用建设项目环境影响评价报告表](business_item)
-  - text: |
-      [建设项目环境影响备案](business_item)
-  - text: |
-      [建设项目环境影响评价审批（非辐射）](business_item)
-  - text: |
-      [江河、湖泊新建、改建或者扩大排污口审核](business_item)
-  - text: |
-      [在野外进行放射性同位素示踪试验审批](business_item)
-  - text: |
-      [贮存危险废物超过一年的批准](business_item)
-  - text: |
-      [从事清真食品生产、经营的企业和个人取得有关证照后的备案和清真标识领取](business_item)
-  - text: |
-      [归侨、华侨子女、归侨子女考生身份确认](business_item)
-  - text: |
-      [华侨回国定居审批](business_item)
-  - text: |
-      [华侨身份证明办理项](business_item)
-  - text: |
-      [退休归侨生活补贴身份认定](business_item)
-  - text: |
-      [单位内部设立印刷厂登记](business_item)
-  - text: |
-      [电影放映单位变更审批](business_item)
-  - text: |
-      [电影放映单位设立审批](business_item)
-  - text: |
-      [电影流动放映活动备案登记](business_item)
-  - text: |
-      [设立电子出版物发行单位的审批（零售）](business_item)
-  - text: |
-      [设立通过互联网等信息网络从事出版物零售业务或其他单位申请通过互联网等信息网络从事出版物零售业务备案](business_item)
-  - text: |
-      [设立中外合资、合作和外商独资出版物发行企业的审核（零售）](business_item)
-  - text: |
-      [音像制品零售业务许可变更](business_item)
-  - text: |
-      [音像制品零售业务许可设立](business_item)
-  - text: |
-      [音像制作单位设立、变更名称，业务范围，或者兼并其他音像制作单位或者因合并、分立而设立新的音像制作单位的审批](business_item)
-  - text: |
-      [出版物零售单位和个体工商户延续审批](business_item)
-  - text: |
-      [出版物零售单位和个体工商户变更审批](business_item)
-  - text: |
-      [出版物零售单位和个体工商户设立审批](business_item)
-  - text: |
-      [从事包装装潢印刷品和其他印刷品经营活动企业的设立审批](business_item)
-  - text: |
-      [从事包装装潢印刷品和其他印刷品经营活动企业的变更审批](business_item)
-  - text: |
-      [从事出版物、包装装潢印刷品和其他印刷品印刷经营活动企业的变更审批](business_item)
-  - text: |
-      [单项体育运动协会登记前审查（变更法人）](business_item)
-  - text: |
-      [单项体育运动协会登记前审查（变更名称）](business_item)
-  - text: |
-      [单项体育运动协会登记前审查（变更章程）](business_item)
-  - text: |
-      [单项体育运动协会登记前审查（变更住所）](business_item)
-  - text: |
-      [单项体育运动协会登记前审查（成立登记）](business_item)
-  - text: |
-      [单项体育运动协会登记前审查（年检）](business_item)
-  - text: |
-      [单项体育运动协会登记前审查（注销登记）](business_item)
-  - text: |
-      [出境游领队备案](business_item)
-  - text: |
-      [导游变更旅游局申请](business_item)
-  - text: |
-      [导游变更手机号](business_item)
-  - text: |
-      [导游变更所在机构申请](business_item)
-  - text: |
-      [导游证磨损影响使用换发](business_item)
-  - text: |
-      [导游证丢失补发办理项](business_item)
-  - text: |
-      [导游证申请办理项](business_item)
-  - text: |
-      [导游证注销办理项](business_item)
-  - text: |
-      [电视剧制作许可证（乙种）变更审批](business_item)
-  - text: |
-      [电视剧制作许可证（乙种）延续审批](business_item)
-  - text: |
-      [电视剧制作许可证（乙种）注销审批](business_item)
-  - text: |
-      [对非物质文化遗产代表性传承人进行评审认定](business_item)
-  - text: |
-      [对非物质文化遗产代表性传承人组织推荐](business_item)
-  - text: |
-      [对非物质文化遗产代表性项目进行评审认定](business_item)
-  - text: |
-      [对非物质文化遗产代表性项目组织推荐](business_item)
-  - text: |
-      [对非物质文化遗产项目保护单位进行评审认定](business_item)
-  - text: |
-      [对非物质文化遗产项目保护单位组织推荐](business_item)
-  - text: |
-      [歌舞娱乐场所设立审批](business_item)
-  - text: |
-      [游艺娱乐场所设立审批](business_item)
-  - text: |
-      [外资歌舞娱乐场所设立审批](business_item)
-  - text: |
-      [外资游艺娱乐场所设立审批](business_item)
-  - text: |
-      [歌舞娱乐场所变更法定代表人、主要负责人、投资人员](business_item)
-  - text: |
-      [歌舞娱乐场所变更名称、注册资本](business_item)
-  - text: |
-      [游艺娱乐场所变更法定代表人、主要负责人、投资人员](business_item)
-  - text: |
-      [游艺娱乐场所变更名称、注册资本](business_item)
-  - text: |
-      [游艺娱乐场所变更游戏游艺设备](business_item)
-  - text: |
-      [外资歌舞娱乐场所变更法定代表人、主要负责人、投资人员](business_item)
-  - text: |
-      [外资歌舞娱乐场所变更名称、注册资本](business_item)
-  - text: |
-      [外资游艺娱乐场所变更法定代表人、主要负责人、投资人员](business_item)
-  - text: |
-      [外资游艺娱乐场所变更名称、注册资本](business_item)
-  - text: |
-      [外资游艺娱乐场所变更游戏游艺设备](business_item)
-  - text: |
-      [歌舞娱乐场所补证](business_item)
-  - text: |
-      [游艺娱乐场所补证](business_item)
-  - text: |
-      [外资歌舞娱乐场所补证](business_item)
-  - text: |
-      [外资游艺娱乐场所补证](business_item)
-  - text: |
-      [歌舞娱乐场所改建、扩建或者变更场地](business_item)
-  - text: |
-      [游艺娱乐场所改建、扩建或变更场地](business_item)
-  - text: |
-      [外资游艺娱乐场所改建、扩建或变更场地](business_item)
-  - text: |
-      [外资歌舞娱乐场所改建、扩建或者变更场地](business_item)
-  - text: |
-      [歌舞娱乐场所延续](business_item)
-  - text: |
-      [游艺娱乐场所延续](business_item)
-  - text: |
-      [外资歌舞娱乐场所延续](business_item)
-  - text: |
-      [外资游艺娱乐场所延续](business_item)
-  - text: |
-      [歌舞娱乐场所注销](business_item)
-  - text: |
-      [游艺娱乐场所注销](business_item)
-  - text: |
-      [外资歌舞娱乐场所注销](business_item)
-  - text: |
-      [外资游艺娱乐场所注销](business_item)
-  - text: |
-      [演出场所经营单位设立备案](business_item)
-  - text: |
-      [港、澳地区投资的演出场所经营单位设立审批](business_item)
-  - text: |
-      [台湾地区投资的演出场所经营单位设立审批](business_item)
-  - text: |
-      [港、澳地区投资的演出场所经营单位变更](business_item)
-  - text: |
-      [台湾地区投资的演出场所经营单位变更](business_item)
-  - text: |
-      [演出场所经营单位变更办理项](business_item)
-  - text: |
-      [港、澳地区投资的演出场所经营单位补证](business_item)
-  - text: |
-      [台湾地区投资的演出场所经营单位补证](business_item)
-  - text: |
-      [演出场所经营单位补证办理项](business_item)
-  - text: |
-      [港、澳地区投资的演出场所经营单位注销](business_item)
-  - text: |
-      [台湾地区投资的演出场所经营单位注销](business_item)
-  - text: |
-      [演出场所经营单位注销办理项](business_item)
-  - text: |
-      [内地的文艺表演团体、个人参加的营业性演出举办审批](business_item)
-  - text: |
-      [台湾地区的文艺表演团体、个人参加的营业性演出举办审批](business_item)
-  - text: |
-      [文艺表演团体设立审批](business_item)
-  - text: |
-      [香港、澳门特别行政区的文艺表演团体、个人参加的营业性演出举办审批](business_item)
-  - text: |
-      [内地的文艺表演团体、个人参加的营业性演出变更场地](business_item)
-  - text: |
-      [内地的文艺表演团体、个人参加的营业性演出变更节目](business_item)
-  - text: |
-      [内地的文艺表演团体、个人参加的营业性演出变更时间](business_item)
-  - text: |
-      [内地的文艺表演团体、个人参加的营业性演出变更演员](business_item)
-  - text: |
-      [台湾地区的文艺表演团体、个人参加的营业性演出变更场地](business_item)
-  - text: |
-      [台湾地区的文艺表演团体、个人参加的营业性演出变更节目](business_item)
-  - text: |
-      [台湾地区的文艺表演团体、个人参加的营业性演出变更时间](business_item)
-  - text: |
-      [台湾地区的文艺表演团体、个人参加的营业性演出变更演员](business_item)
-  - text: |
-      [文艺表演团体变更名称、住所、法定代表人或者主要负责人](business_item)
-  - text: |
-      [文艺表演团体变更演员](business_item)
-  - text: |
-      [香港、澳门特别行政区的文艺表演团体、个人参加的营业性变更节目](business_item)
-  - text: |
-      [香港、澳门特别行政区的文艺表演团体、个人参加的营业性演出变更场地](business_item)
-  - text: |
-      [香港、澳门特别行政区的文艺表演团体、个人参加的营业性演出变更时间](business_item)
-  - text: |
-      [香港、澳门特别行政区的文艺表演团体、个人参加的营业性演出变更演员](business_item)
-  - text: |
-      [内地的文艺表演团体、个人参加的营业性演出增加演出地备案](business_item)
-  - text: |
-      [台湾地区的文艺表演团体、个人参加的营业性演出增加演出地备案](business_item)
-  - text: |
-      [香港、澳门特别行政区的文艺表演团体、个人参加的营业性演出增加演出地备案](business_item)
-  - text: |
-      [互联网上网服务营业场所变更机器台数](business_item)
-  - text: |
-      [互联网上网服务营业场所变更经营地址筹建审批](business_item)
-  - text: |
-      [互联网上网服务营业场所变更经营地址最终审核](business_item)
-  - text: |
-      [互联网上网服务营业场所变更名称、法定代表人、主要负责人](business_item)
-  - text: |
-      [旅行社分社设立备案](business_item)
-  - text: |
-      [旅行社服务网点设立备案](business_item)
-  - text: |
-      [旅行社设立许可审批](business_item)
-  - text: |
-      [旅行社分社变更备案](business_item)
-  - text: |
-      [旅行社服务网点变更备案](business_item)
-  - text: |
-      [旅行社业务经营许可证事项变更](business_item)
-  - text: |
-      [旅行社分社备案证明换发补发](business_item)
-  - text: |
-      [旅行社服务网点备案证明换发补发](business_item)
-  - text: |
-      [旅行社经营许可证换发补发](business_item)
-  - text: |
-      [旅行社分社注销备案](business_item)
-  - text: |
-      [旅行社服务网点注销备案](business_item)
-  - text: |
-      [注销境内、入境旅游业务资质](business_item)
-  - text: |
-      [注销旅行社业务经营许可证（主体注销）](business_item)
-  - text: |
-      [广播电视节目制作经营单位补证审批](business_item)
-  - text: |
-      [广播电视节目制作经营单位地址变更审批](business_item)
-  - text: |
-      [广播电视节目制作经营单位法人变更审批](business_item)
-  - text: |
-      [广播电视节目制作经营单位名称变更审批](business_item)
-  - text: |
-      [广播电视节目制作经营单位设立初审](business_item)
-  - text: |
-      [广播电视节目制作经营单位设立审批（对私营企业）](business_item)
-  - text: |
-      [广播电视节目制作经营单位延续审批](business_item)
-  - text: |
-      [广播电视节目制作经营单位注销审批](business_item)
-  - text: |
-      [跨省经营广播电视节目传送（无线）业务初审](business_item)
-  - text: |
-      [省级行政区域内经营广播电视节目传送（无线）业务初审](business_item)
-  - text: |
-      [省级行政区域内经营广播电视节目传送（有线）业务初审](business_item)
-  - text: |
-      [市级行政区域内经营广播电视节目传送（无线）业务初审](business_item)
-  - text: |
-      [跨省经营广播电视节目传送（无线）业务审核](business_item)
-  - text: |
-      [跨省经营广播电视节目传送（有线）业务审核](business_item)
-  - text: |
-      [省级行政区域内经营广播电视节目传送（无线）业务审核](business_item)
-  - text: |
-      [省级行政区域内经营广播电视节目传送（有线）业务审核](business_item)
-  - text: |
-      [市级行政区域内经营广播电视节目传送（无线）业务审批](business_item)
-  - text: |
-      [县级行政区域内经营广播电视节目传送（无线）业务审批](business_item)
-  - text: |
-      [由宾馆饭店以外的机构申请《广播电视视频点播业务许可证（乙种）》的](business_item)
-  - text: |
-      [广播电视专用频段频率使用许可证（甲类）初审](business_item)
-  - text: |
-      [广播电视专用频段频率使用许可证（乙类）初审](business_item)
-  - text: |
-      [广播电视专用频段频率使用许可证（甲类）审核](business_item)
-  - text: |
-      [广播电视专用频段频率使用许可证（乙类）审核](business_item)
-  - text: |
-      [县级广播电台、电视台变更节目套数、设置范围初审](business_item)
-  - text: |
-      [县级广播电台、电视台变更节目套数、设置范围审核](business_item)
-  - text: |
-      [县级广播电台、电视台变更台名初审](business_item)
-  - text: |
-      [县级广播电台、电视台变更台名审核](business_item)
-  - text: |
-      [设置卫星电视广播地面接收设施初审](business_item)
-  - text: |
-      [设置卫星电视广播地面接收设施审核](business_item)
-  - text: |
-      [卫星电视广播地面接收设施安装许可初审](business_item)
-  - text: |
-      [卫星电视广播地面接收设施安装许可审核](business_item)
-  - text: |
-      [撤减分公司支取分公司旅游服务质量保证金](business_item)
-  - text: |
-      [旅游业务变更支取分公司旅游服务质量保证金](business_item)
-  - text: |
-      [旅游业务变更支取设立社旅游服务质量保证金](business_item)
-  - text: |
-      [依法降低旅游服务质量保证金数额50%支取设立社旅游服务质量保证金](business_item)
-  - text: |
-      [破产清算支取分公司旅游服务质量保证金](business_item)
-  - text: |
-      [破产清算支取设立社旅游服务质量保证金](business_item)
-  - text: |
-      [解散清算（或注销旅行社）支取设立社旅游服务质量保证金](business_item)
-  - text: |
-      [旅行社缴纳质量保证金证明文件备案](business_item)
-  - text: |
-      [旅行社申请垫付团队旅游者紧急救助费用支取旅游服务质量保证金](business_item)
-  - text: |
-      [其他情况支取旅游服务质量保证金](business_item)
-  - text: |
-      [对公共文化体育设施的名称、地址、服务项目等内容备案](business_item)
-  - text: |
-      [竞技体育后备人才输送与培养](business_item)
-  - text: |
-      [体育场、馆免费开放](business_item)
-  - text: |
-      [体育类民办非企业单位申请登记审查](business_item)
-  - text: |
-      [组织开展丰富多彩的群众体育活动 ，指导基层开展体育活动](business_item)
-  - text: |
-      [举办健身气功活动审批](business_item)
-  - text: |
-      [全民健身设施拆迁或者改变用途批准](business_item)
-  - text: |
-      [设立健身气功活动站点审批](business_item)
-  - text: |
-      [省级文物保护单位原址保护措施审批](business_item)
-  - text: |
-      [市级文物保护单位原址保护措施审批](business_item)
-  - text: |
-      [县级文物保护单位原址保护措施审批](business_item)
-  - text: |
-      [非国有不可移动文物修缮资金给付](business_item)
-  - text: |
-      [市级文物保护单位修缮审批](business_item)
-  - text: |
-      [县级文物保护单位及未核定为文物保护单位的不可移动文物修缮审批](business_item)
-  - text: |
-      [全国重点文物保护单位、省级及以下文物保护单位（含省级水下文物保护单位、水下文物保护区）的认定](business_item)
-  - text: |
-      [核定为文物保护单位的属于国家所有的纪念建筑物或者古建筑改变用途审批](business_item)
-  - text: |
-      [博物馆处理不够入藏标准、无保存价值的文物或标本审批](business_item)
-  - text: |
-      [有争议文物的裁定、特定文物的认定及文物级别的确认](business_item)
-  - text: |
-      [非国有文物收藏单位和其他单位借用国有文物收藏单位馆藏二级以下文物审批](business_item)
-  - text: |
-      [初级中学教师资格认定](business_item)
-  - text: |
-      [高级中学教师资格认定](business_item)
-  - text: |
-      [小学教师资格认定](business_item)
-  - text: |
-      [幼儿园教师资格认定](business_item)
-  - text: |
-      [中等职业学校教师资格认定](business_item)
-  - text: |
-      [中等职业学校实习指导教师资格认定](business_item)
-  - text: |
-      [民办学校的设立审批](business_item)
-  - text: |
-      [民办学校的设立审批（非学历教育）](business_item)
-  - text: |
-      [民办学校的分立审批](business_item)
-  - text: |
-      [民办学校的分立审批（非学历教育）](business_item)
-  - text: |
-      [民办学校的办学层次变更](business_item)
-  - text: |
-      [民办学校的办学类别变更](business_item)
-  - text: |
-      [民办学校的举办者变更审批](business_item)
-  - text: |
-      [民办学校的举办者变更审批（非学历教育）](business_item)
-  - text: |
-      [民办学校的学校名称变更审批](business_item)
-  - text: |
-      [民办学校的学校名称变更审批（非学历教育）](business_item)
-  - text: |
-      [民办学校的合并审批](business_item)
-  - text: |
-      [民办学校的合并审批（非学历教育）](business_item)
-  - text: |
-      [民办学校的终止审批](business_item)
-  - text: |
-      [民办学校的终止审批（非学历教育）](business_item)
-  - text: |
-      [返乡农民工](business_item)
-  - text: |
-      [高校毕业生](business_item)
-  - text: |
-      [退役军人](business_item)
-  - text: |
-      [大龄失业人员](business_item)
-  - text: |
-      [失地农民](business_item)
-  - text: |
-      [下岗失业人员](business_item)
-  - text: |
-      [残疾人员](business_item)
-  - text: |
-      [零就业家庭人员](business_item)
-  - text: |
-      [就业困难高校毕业生](business_item)
-  - text: |
-      [个体私营企业主就业登记](business_item)
-  - text: |
-      [单位就业人员就业登记](business_item)
-  - text: |
-      [灵活就业人员就业登记](business_item)
-  - text: |
-      [因工作环境存在有毒有害物质造成中毒伤害，并经安监部门确认的](business_item)
-  - text: |
-      [在工作时间和工作岗位，突发疾病死亡或者48小时之内经抢救无效死亡的](business_item)
-  - text: |
-      [在工作时间和工作场所内，因工作原因受到事故伤害的](business_item)
-  - text: |
-      [在用人单位食堂就餐造成食物中毒伤害，并经食品药品监督部门确认得](business_item)
-  - text: |
-      [受用人单位指派前往疫区工资或者公出，并经县级以上医疗机构诊断感染疫病的](business_item)
-  - text: |
-      [患职业病的](business_item)
-  - text: |
-      [职工原在军队服役，因战、因公负伤致残，已取得革命伤残军人证，到用人单位旧伤复发的](business_item)
-  - text: |
-      [工作试讲前后在工作场所内，从事与工作有关的预备性或者收尾性工作受到事故伤害的](business_item)
-  - text: |
-      [在工作时间和工作场所内，因履行工作职责受到暴力等意外伤害的](business_item)
-  - text: |
-      [在上下班途中，受到非本人主要责任的交通事故或者城市轨道交通、客运轮渡、火车事故伤害的](business_item)
-  - text: |
-      [在抢险救灾等维护国家利益、公共利益活动中受到伤害的](business_item)
-  - text: |
-      [法律、行政法规规定应当认定为工伤的其他情形](business_item)
-  - text: |
-      [因工外出期间，由于工作原因受到伤害或者发生事故下落不明的](business_item)
-  - text: |
-      [参加用人单位组织或者受单位指派参加体育比赛、文艺表演受到伤害的](business_item)
-  - text: |
-      [人力资源服务机构变更住所审批](business_item)
-  - text: |
-      [人力资源服务机构变更法定代表人审批](business_item)
-  - text: |
-      [劳务派遣单位变更住所审批](business_item)
-  - text: |
-      [劳务派遣单位变更法定代表人审批](business_item)
-  - text: |
-      [持卡人出国（境）定居或工作](business_item)
-  - text: |
-      [持卡人死亡](business_item)
-  - text: |
-      [18岁以上人员申领](business_item)
-  - text: |
-      [父母代18岁以下未成年子女申领](business_item)
-  - text: |
-      [在长春市工作的A、B、C类人才且在本市无住房](business_item)
-  - text: |
-      [在长春市工作的机关、事业单位人员](business_item)
-  - text: |
-      [在长春市自主创业人员](business_item)
-  - text: |
-      [在长春市灵活就业人员](business_item)
-  - text: |
-      [省直缴存职工](business_item)
-  - text: |
-      [非省直缴存职工](business_item)
-  - text: |
-      [非省直缴存职工变更住房公积金贷款联系方式](business_item)
-  - text: |
-      [非省直缴存职工撤出共同借款人](business_item)
-  - text: |
-      [省直缴存职工变更住房公积金贷款联系方式](business_item)
-  - text: |
-      [省直缴存职工变更住房公积金还款账号](business_item)
-  - text: |
-      [非省直缴存职工添加共同还款人](business_item)
-  - text: |
-      [省直缴存职工撤出共同借款人](business_item)
-  - text: |
-      [非省直缴存职工变更住房公积金还款账号](business_item)
-  - text: |
-      [现金提前部分还款（1）](business_item)
-  - text: |
-      [公积金账户余额提前还款（1）](business_item)
-  - text: |
-      [现金结清住房公积金贷款（1）](business_item)
-  - text: |
-      [存量房本息提取（1）](business_item)
-  - text: |
-      [新建商品房本息提取（1）](business_item)
-  - text: |
-      [本地公积金偿还贷款本息的提取](business_item)
-  - text: |
-      [非本地公积金偿还贷款本息的提取](business_item)
-  - text: |
-      [购买公有住房提取住房公积金（1）](business_item)
-  - text: |
-      [购买新建商品住房未取得产权证的提取（1）](business_item)
-  - text: |
-      [购买自住住房已取得产权证的提取（1）](business_item)
-  - text: |
-      [租住公共租赁住房（1）](business_item)
-  - text: |
-      [租住商品房（1）](business_item)
-  - text: |
-      [建造自住住房提取住房公积金办理项](business_item)
-  - text: |
-      [比例低于7%高于5%（1）](business_item)
-  - text: |
-      [城镇职工基本养老保险关系转移接续申请](business_item)
-  - text: |
-      [城乡居民基本养老保险关系转移接续申请](business_item)
-  - text: |
-      [军地养老保险关系转移接续申请](business_item)
-  - text: |
-      [机关事业单位养老保险关系转移接续申请](business_item)
-  - text: |
-      [机关事业单位基本养老保险与城镇企业职工基本养老保险互转申请](business_item)
-  - text: |
-      [城镇职工基本养老保险与城乡居民基本养老保险制度衔接申请](business_item)
-  - text: |
-      [参保人员已享受企业职工基本养老保险等其他社会养老保障待遇](business_item)
-  - text: |
-      [参保人员死亡情形](business_item)
-  - text: |
-      [单位（项目）基本信息变更](business_item)
-  - text: |
-      [个人基本信息变更](business_item)
-  - text: |
-      [养老保险待遇发放账户维护申请](business_item)
-  - text: |
-      [失业保险待遇发放账户维护申请](business_item)
-  - text: |
-      [工伤保险待遇发放账户维护申请](business_item)
-  - text: |
-      [单位参保证明查询打印](business_item)
-  - text: |
-      [个人权益记录查询打印](business_item)
-  - text: |
-      [职工养老保险待遇申领办理项](business_item)
-  - text: |
-      [机关事业单位职工养老保险待遇申领](business_item)
-  - text: |
-      [职工参保登记](business_item)
-  - text: |
-      [单位参保登记](business_item)
-  - text: |
-      [单位参保信息变更登记](business_item)
-  - text: |
-      [单位参保状态变更](business_item)
-  - text: |
-      [职工参保状态变更](business_item)
-  - text: |
-      [职工参保信息变更登记](business_item)
-  - text: |
-      [城乡居民参保信息变更登记](business_item)
-  - text: |
-      [城乡居民参保状态变更](business_item)
-  - text: |
-      [异地安置退休人员备案](business_item)
-  - text: |
-      [异地转诊人员备案](business_item)
-  - text: |
-      [异地长期居住人员备案](business_item)
-  - text: |
-      [出具参保证明](business_item)
-  - text: |
-      [参保人员个人账户一次性支取](business_item)
-  - text: |
-      [护理补贴支付](business_item)
-  - text: |
-      [生育津贴支付](business_item)
-  - text: |
-      [围产补贴支付](business_item)
-  - text: |
-      [基本医疗保险参保人员享受门诊慢特病病种待遇认定办理项](business_item)
-  - text: |
-      [基本医疗保险参保人员特药待遇认定](business_item)
-  - text: |
-      [住院费用报销](business_item)
-  - text: |
-      [门诊费用报销](business_item)
-  - text: |
-      [转移接续手续办理](business_item)
-  - text: |
-      [委托他人代为申请的](business_item)
-  - text: |
-      [普通人申请](business_item)
-  - text: |
-      [未满16周岁人员](business_item)
-  - text: |
-      [未满16周岁人员委托他人陪同申请的](business_item)
-  - text: |
-      [未满16周岁人员监护人委托他人陪同申请的](business_item)
-  - text: |
-      [大陆居民与台湾居民在大陆所生子女申请赴台定居，在大陆未办理户籍登记的](business_item)
-  - text: |
-      [军人、登记备案的国家工作人员](business_item)
-  - text: |
-      [登记备案的国家工作人员、军人](business_item)
-  - text: |
-      [永居子女类](business_item)
-  - text: |
-      [夫妻团聚类](business_item)
-  - text: |
-      [申请补发前往港澳通行证](business_item)
-  - text: |
-      [前往港澳通行证换发](business_item)
-  - text: |
-      [子女照顾父母类](business_item)
-  - text: |
-      [子女投靠父母类](business_item)
-  - text: |
-      [父母投靠子女类](business_item)
-  - text: |
-      [往来港澳通行证补发](business_item)
-  - text: |
-      [往来港澳通行证换发](business_item)
-  - text: |
-      [往来港澳个人旅游签注签发](business_item)
-  - text: |
-      [往来港澳商务签注签发](business_item)
-  - text: |
-      [C字签证](business_item)
-  - text: |
-      [F字签证](business_item)
-  - text: |
-      [M字签证](business_item)
-  - text: |
-      [Q2字签证](business_item)
-  - text: |
-      [R字签证](business_item)
-  - text: |
-      [S2字签证](business_item)
-  - text: |
-      [机动车驾驶人联系电话、联系地址等信息发生变化，以及持有大型客车、牵引车、城市公交车、中型客车、大型货](business_item)
-  - text: |
-      [机动车驾驶证有效期满、超过规定年龄](business_item)
-  - text: |
-      [驾驶证遗失、降低准驾车型、信息发生变化、驾驶证损毁换证、转入换证、因身体条件变化降低准驾车型换证](business_item)
-  - text: |
-      [境外人员申领临时机动车驾驶许可](business_item)
-  - text: |
-      [持有的境外机动车驾驶证未超过有效期](business_item)
-  - text: |
-      [持有的境外机动车驾驶证超过有效期或内地居民在取得境外机动车驾驶证时在核发国家或者地区连续居停留不足三](business_item)
-  - text: |
-      [住所迁出、迁入车辆管理所管辖区域](business_item)
-  - text: |
-      [变更备案](business_item)
-  - text: |
-      [变更车身颜色、更换发动机、更换车身或车架、改变机动车使用性质、因质量问题更换整车的](business_item)
-  - text: |
-      [申请校车标牌](business_item)
-  - text: |
-      [补、换领校车标牌](business_item)
-  - text: |
-      [已达到国家强制报废标准的机动车、被依法撤销、依法收缴并强制报废的](business_item)
-  - text: |
-      [机动车灭失、机动车因故不在我国境内使用、因质量问题退车](business_item)
-  - text: |
-      [校车](business_item)
-  - text: |
-      [六年内免于安全技术检验车辆申领机动车检验合格标志](business_item)
-  - text: |
-      [申请检验合格标志](business_item)
-  - text: |
-      [补换领机动车检验合格标志](business_item)
-  - text: |
-      [临时入境行驶车号牌](business_item)
-  - text: |
-      [未销售机动车申领临时行驶车号牌](business_item)
-  - text: |
-      [超限（特型）机动车办领临时行驶车号牌](business_item)
-  - text: |
-      [进行科研定型试验的机动车申领临时行驶车号牌](business_item)
-  - text: |
-      [持有的军队、武装警察部队机动车驾驶证未超过有效期](business_item)
-  - text: |
-      [涉税专业服务协议要素信息报送](business_item)
-  - text: |
-      [纳税信用补评](business_item)
-  - text: |
-      [一照一码户信息变更](business_item)
-  - text: |
-      [涉税专业服务专项报告报送](business_item)
-  - text: |
-      [代开增值税普通发票](business_item)
-  - text: |
-      [停业登记](business_item)
-  - text: |
-      [注销税务登记（适用于“一照一码”“两证整合”以外的纳税人）](business_item)
-  - text: |
-      [注销扣缴税款登记](business_item)
-  - text: |
-      [增值税一般纳税人登记](business_item)
-  - text: |
-      [货物运输业小规模纳税人异地代开增值税专用发票备案办理项](business_item)
-  - text: |
-      [内河货物运输纳税人](business_item)
-  - text: |
-      [道路货物运输纳税人](business_item)
-  - text: |
-      [印制有本单位名称发票](business_item)
-  - text: |
-      [申请退税商店备案](business_item)
-  - text: |
-      [办理变更出口退（免）税备案](business_item)
-  - text: |
-      [生产企业委托代办退税备案](business_item)
-  - text: |
-      [从事国际航空运输的增值税零税率应税服务提供者](business_item)
-  - text: |
-      [以水路运输方式提供内地往返香港、澳门交通运输服务](business_item)
-  - text: |
-      [办理撤回出口退（免）税备案时属于合并、分立、改制重组的](business_item)
-  - text: |
-      [以航空运输方式提供港澳台运输服务](business_item)
-  - text: |
-      [出口企业或其他单位（未办理备案登记的发生委托出口业务的生产企业和横琴、平潭区内水电气企业除外）](business_item)
-  - text: |
-      [已办理对外贸易经营者备案登记且从事出口货物劳务的对外贸易经营者](business_item)
-  - text: |
-      [以水路运输方式提供大陆往返台湾交通运输服务](business_item)
-  - text: |
-      [采用程租、期租和湿租方式租赁交通运输工具用于国际运输服务和港澳台运输服务](business_item)
-  - text: |
-      [从事国际水路运输的增值税零税率应税服务提供者](business_item)
-  - text: |
-      [办理撤回出口退（免）税备案](business_item)
-  - text: |
-      [境外旅客购物离境退（免）税代理机构办理出口退税备案](business_item)
-  - text: |
-      [横琴、平潭之外的外商投资企业](business_item)
-  - text: |
-      [从事航天运输的增值税零税率应税服务提供者](business_item)
-  - text: |
-      [经营融资租赁业务出口货物](business_item)
-  - text: |
-      [以铁路运输方式提供内地往返香港的交通运输服务](business_item)
-  - text: |
-      [从事国际铁路运输的增值税零税率应税服务提供者](business_item)
-  - text: |
-      [外贸综合服务企业首次办理代办退税备案](business_item)
-  - text: |
-      [未办理备案登记发生委托出口业务的生产企业](business_item)
-  - text: |
-      [出口退（免）税分类管理评定申请](business_item)
-  - text: |
-      [涉税专业服务机构（人员）基本信息报送](business_item)
-  - text: |
-      [涉税专业服务年度报告报送](business_item)
-  - text: |
-      [跨区域涉税事项报验](business_item)
-  - text: |
-      [纳税信用复评](business_item)
-  - text: |
-      [代开增值税专用发票](business_item)
-  - text: |
-      [边贸代理出口备案](business_item)
-  - text: |
-      [集团公司总部首次办理集团公司成员企业备案](business_item)
-  - text: |
-      [免税品经营企业销售货物退税备案](business_item)
-  - text: |
-      [集团公司总部办理集团公司成员企业备案变更](business_item)
-  - text: |
-      [开具税收完税证明](business_item)
-  - text: |
-      [发票票种核定](business_item)
-  - text: |
-      [纳税人书面申请查询](business_item)
-  - text: |
-      [纳税人书面申请查询，授权他人委托查询时还应报送](business_item)
-  - text: |
-      [纳税人对查询结果有异议，向税务机关申请核实](business_item)
-  - text: |
-      [纳税人自行查询时需要提供纳税人有效的身份认证和识别](business_item)
-  - text: |
-      [按照有关规定不使用网络办税或不具备网络条件的特定纳税人](business_item)
-  - text: |
-      [因金税盘、税控盘、报税盘等损坏而导致无法报送电子数据的纳税人](business_item)
-  - text: |
-      [纳税人向扣缴义务人提供有关信息并依法要求办理专项附加扣除](business_item)
-  - text: |
-      [首次向自然人纳税人支付所得的扣缴义务人](business_item)
-  - text: |
-      [发生个人股东变动或者个人股东所持股权变动的被投资单位](business_item)
-  - text: |
-      [天使投资个人情况报告](business_item)
-  - text: |
-      [合伙创投企业情况报告](business_item)
-  - text: |
-      [综合税源信息报告](business_item)
-  - text: |
-      [解除相关人员关联关系](business_item)
-  - text: |
-      [红字增值税专用发票开具申请](business_item)
-  - text: |
-      [选择按小规模纳税人纳税的情况说明](business_item)
-  - text: |
-      [开具个人所得税纳税记录](business_item)
-  - text: |
-      [上市公司初次办理股权激励备案](business_item)
-  - text: |
-      [实施股权激励，个人选择在不超过 12 个月期限内缴税的上市公司](business_item)
-  - text: |
-      [个人以技术成果投资入股境内公司并选择递延纳税的被投资公司](business_item)
-  - text: |
-      [实施符合条件的股权激励，个人选择递延纳税的非上市公司](business_item)
-  - text: |
-      [建立年金计划以及年金方案、受托人、托管人发生变化的的企事业单位](business_item)
-  - text: |
-      [个人因非上市公司实施股权激励或以技术成果投资入股取得的股票（权）， 递延期间扣缴义务人](business_item)
-  - text: |
-      [清税注销](business_item)
-  - text: |
-      [增值税税控系统专用设备注销发行办理项](business_item)
-  - text: |
-      [财务会计报告报送](business_item)
-  - text: |
-      [领用税控收款机发票](business_item)
-  - text: |
-      [领用增值税专用发票、机动车销售统一发票、增值税普通发票和增值税电子普通发票](business_item)
-  - text: |
-      [同期资料报告](business_item)
-  - text: |
-      [以非货币性资产投资选择分期纳税的纳税人：未完成自然人信息采集](business_item)
-  - text: |
-      [办理股权奖励分期纳税的企业](business_item)
-  - text: |
-      [以非货币性资产投资选择分期纳税的纳税人](business_item)
-  - text: |
-      [办理转增股本分期纳税的企业](business_item)
-  - text: |
-      [存款账户账号报告](business_item)
-  - text: |
-      [经税务机关认定为税收资料调查数据采集，需每年定期报送企业集团及其 成员单位税收调查数据的企业](business_item)
-  - text: |
-      [报送成品油消费税涉税信息的企业](business_item)
-  - text: |
-      [经税务机关认定为重点税源企
-      业数据采集，需每年定期报送企业集团及其 成员单位税收调查数据的企业](business_item)
-  - text: |
-      [经税务机关认定为企业集团需每年定期报送企业集团及其成员单位税收调查数据的企业](business_item)
-  - text: |
-      [税务证件损毁](business_item)
-  - text: |
-      [税务证件增补发办理项](business_item)
-  - text: |
-      [人民法院、人民检察院、公安机关和审计机关向税务机关提出查询申请](business_item)
-  - text: |
-      [抵押权人、质权人申请查询纳税人欠税有关情况](business_item)
-  - text: |
-      [抵押权人、质权人申请查询纳税人欠税有关情况，授权其他人员代为查询](business_item)
-  - text: |
-      [非居民企业间接转让财产事项报告办理项](business_item)
-  - text: |
-      [省税务机关要求](business_item)
-  - text: |
-      [主管税务机关要求](business_item)
-  - text: |
-      [财务会计制度及核算软件备案报告](business_item)
-  - text: |
-      [在国家规定的重点软件领域内，汇算清缴年度软件产品开发销售（营业）收入不低于5000万元](business_item)
-  - text: |
-      [在国家规定的重点集成电路设计领域内，汇算清缴年度集成电路设计销售（营业）收入不低于2000万元](business_item)
-  - text: |
-      [享受集成电路生产企业企业所得税优惠的纳税人](business_item)
-  - text: |
-      [享受集成电路设计企业所得税优惠的纳税人](business_item)
-  - text: |
-      [转开印花税票销售凭证](business_item)
-  - text: |
-      [银税三方（委托）划缴协议](business_item)
-  - text: |
-      [申报错误更正](business_item)
-  - text: |
-      [需上传发票电子开具信息、下载开具发票电子解锁文件](business_item)
-  - text: |
-      [代开发票作废办理项](business_item)
-  - text: |
-      [以合伙企业的中国居民合伙人提出申请](business_item)
-  - text: |
-      [缔约对方税务主管当局对《税收居民证明》样式有特殊要求](business_item)
-  - text: |
-      [申请人为个人且在中国境内无住所，而一个纳税年度内在中国境内居住累计满183天](business_item)
-  - text: |
-      [境内、外分支机构通过其总机构提出申请](business_item)
-  - text: |
-      [申请人为个人且在中国境内有住所](business_item)
-  - text: |
-      [行政执法部门鉴定发票的](business_item)
-  - text: |
-      [纳税信用复核](business_item)
-  - text: |
-      [开具无欠税证明](business_item)
-  - text: |
-      [单位参保缴费信息关联](business_item)
-  - text: |
-      [单位参保缴费信息关联变更](business_item)
-  - text: |
-      [单位参保缴费信息关联注销](business_item)
-  - text: |
-      [建筑业工伤保险参保缴费信息关联](business_item)
-  - text: |
-      [建筑业工伤保险参保缴费信息关联变更](business_item)
-  - text: |
-      [一般增值税退税初审](business_item)
+  examples: |
+    - [省直缴存职工](business_item)
+    - [非省直缴存职工](business_item)
+    - [现金提前部分还款（1）](business_item)
+    - [公积金账户余额提前还款（1）](business_item)
+    - [现金结清住房公积金贷款（1）](business_item)
+    - [比例低于7%高于5%（1）](business_item)
+    - [无](business_item)
+    - [城镇职工基本养老保险关系转移接续申请](business_item)
+    - [城乡居民基本养老保险关系转移接续申请](business_item)
+    - [军地养老保险关系转移接续申请](business_item)
+    - [机关事业单位养老保险关系转移接续申请](business_item)
+    - [机关事业单位基本养老保险与城镇企业职工基本养老保险互转申请](business_item)
+    - [城镇职工基本养老保险与城乡居民基本养老保险制度衔接申请](business_item)
+    - [参保人员已享受企业职工基本养老保险等其他社会养老保障待遇](business_item)
+    - [参保人员死亡情形](business_item)
+    - [职工参保登记（社会保险）](business_item)
+    - [城乡居民养老保险参保登记](business_item)
+    - [单位（项目）基本信息变更](business_item)
+    - [个人基本信息变更](business_item)
+    - [养老保险待遇发放账户维护申请](business_item)
+    - [失业保险待遇发放账户维护申请](business_item)
+    - [工伤保险待遇发放账户维护申请](business_item)
+    - [单位参保证明查询打印](business_item)
+    - [个人权益记录查询打印](business_item)
+    - [职工养老保险待遇申领办理项](business_item)
+    - [机关事业单位职工养老保险待遇申领](business_item)
+    - [职工参保登记](business_item)
+    - [单位参保登记](business_item)
+    - [单位参保信息变更登记](business_item)
+    - [单位参保状态变更](business_item)
+    - [职工参保状态变更](business_item)
+    - [职工参保信息变更登记](business_item)
+    - [城乡居民参保信息变更登记](business_item)
+    - [城乡居民参保状态变更](business_item)
+    - [异地安置退休人员备案](business_item)
+    - [异地转诊人员备案](business_item)
+    - [异地长期居住人员备案](business_item)
+    - [出具参保证明](business_item)
+    - [参保人员个人账户一次性支取](business_item)
+    - [护理补贴支付](business_item)
+    - [生育津贴支付](business_item)
+    - [围产补贴支付](business_item)
+    - [基本医疗保险参保人员享受门诊慢特病病种待遇认定办理项](business_item)
+    - [基本医疗保险参保人员特药待遇认定](business_item)
+    - [住院费用报销](business_item)
+    - [门诊费用报销](business_item)
+    - [转移接续手续办理](business_item)
+    - [委托他人代为申请的](business_item)
+    - [普通人申请](business_item)
+    - [未满16周岁人员](business_item)
+    - [未满16周岁人员委托他人陪同申请的](business_item)
+    - [未满16周岁人员监护人委托他人陪同申请的](business_item)
+    - [大陆居民与台湾居民在大陆所生子女申请赴台定居，在大陆未办理户籍登记的](business_item)
+    - [赴台团队旅游签注签发](business_item)
+    - [赴台个人旅游签注签发](business_item)
+    - [C字签证](business_item)
+    - [F字签证](business_item)
+    - [M字签证](business_item)
+    - [Q2字签证](business_item)
+    - [R字签证](business_item)
+    - [S2字签证](business_item)
+    - [机动车驾驶人联系电话、联系地址等信息发生变化，以及持有大型客车、牵引车、城市公交车、中型客车、大型货](business_item)
+    - [机动车驾驶证有效期满、超过规定年龄](business_item)
+    - [驾驶证遗失、降低准驾车型、信息发生变化、驾驶证损毁换证、转入换证、因身体条件变化降低准驾车型换证](business_item)
+    - [境外人员申领临时机动车驾驶许可](business_item)
+    - [持有的境外机动车驾驶证未超过有效期](business_item)
+    - [持有的境外机动车驾驶证超过有效期或内地居民在取得境外机动车驾驶证时在核发国家或者地区连续居停留不足三](business_item)
+    - [住所迁出、迁入车辆管理所管辖区域](business_item)
+    - [变更备案](business_item)
+    - [变更车身颜色、更换发动机、更换车身或车架、改变机动车使用性质、因质量问题更换整车的](business_item)
+    - [申请校车标牌](business_item)
+    - [补、换领校车标牌](business_item)
+    - [已达到国家强制报废标准的机动车、被依法撤销、依法收缴并强制报废的](business_item)
+    - [机动车灭失、机动车因故不在我国境内使用、因质量问题退车](business_item)
+    - [校车](business_item)
+    - [六年内免于安全技术检验车辆申领机动车检验合格标志](business_item)
+    - [申请检验合格标志](business_item)
+    - [补换领机动车检验合格标志](business_item)
+    - [临时入境行驶车号牌](business_item)
+    - [未销售机动车申领临时行驶车号牌](business_item)
+    - [超限（特型）机动车办领临时行驶车号牌](business_item)
+    - [进行科研定型试验的机动车申领临时行驶车号牌](business_item)
+    - [持有的军队、武装警察部队机动车驾驶证未超过有效期](business_item)
+    - [持有的军队、武装警察部队机动车驾驶证超过](business_item)
+    - [抵押权首次登记（国有建设用地使用权抵押登记）](business_item)
+    - [抵押权首次登记（建设用地使用权及在建建筑物所有权抵押转国有建设用地使用权及房屋所有权抵押登记）](business_item)
+    - [抵押权首次登记（建设用地使用权及在建建筑物所有权抵押登记）](business_item)
+    - [抵押权首次登记（国有建设用地使用权及房屋所有权抵押登记）](business_item)
+    - [抵押权首次登记（预购商品房抵押预告登记转国有建设用地使用权及房屋所有权抵押登记）](business_item)
+    - [抵押权变更登记办理项](business_item)
+    - [抵押权注销登记办理项](business_item)
+    - [抵押权注销登记（国有建设用地使用权及房屋所有权抵押权注销登记）](business_item)
+    - [抵押权注销登记（在建建筑物抵押权注销登记）](business_item)
+    - [抵押权注销登记（国有建设用地使用权抵押权注销登记）](business_item)
+    - [抵押权注销登记（无还本续贷）](business_item)
+    - [抵押权注销登记（抵押权注销和转移登记（针对房主死亡需办理继承的或离婚析产））](business_item)
+    - [抵押权注销登记（抵押权注销及变更登记）](business_item)
+    - [抵押权注销登记（抵押权注销和补换证登记（针对持房屋所有权证办的抵押））](business_item)
+    - [地役权首次登记](business_item)
+    - [地役权变更登记](business_item)
+    - [地役权转移登记](business_item)
+    - [地役权注销登记](business_item)
+    - [查封登记办理项](business_item)
+    - [国有建设用地使用权（宗地查封）](business_item)
+    - [国有建设用地使用权及房屋所有权（房屋预查封）](business_item)
+    - [国有建设用地使用权及房屋所有权（房屋查封）](business_item)
+    - [国有建设用地使用权及房屋所有权（房屋查封（房地一体））](business_item)
+    - [国有建设用地使用权（宗地预查封）](business_item)
+    - [国有建设用地使用权（宗地解封）](business_item)
+    - [国有建设用地使用权及房屋所有权（房屋解封（房地一体））](business_item)
+    - [国有建设用地使用权（宗地预查封解封）](business_item)
+    - [国有建设用地使用权及房屋所有权（房屋解封）](business_item)
+    - [国有建设用地使用权及房屋所有权（房屋预查封解封）](business_item)
+    - [国有建设用地使用权（宗地续封）](business_item)
+    - [国有建设用地使用权及房屋所有权（房屋预查封续封）](business_item)
+    - [国有建设用地使用权及房屋所有权（房屋续封）](business_item)
+    - [国有建设用地使用权变更登记办理项](business_item)
+    - [国有建设用地使用权变更登记(权利期限变化)](business_item)
+    - [国有建设用地使用权变更登记-其它（法律、行政法规规定的其他情形）](business_item)
+    - [国有建设用地使用权变更登记（土地坐落、用途、面积等状况发生变化)](business_item)
+    - [国有建设用地使用权变更登记（同一权利人分割、合并、界址变化)](business_item)
+    - [国有建设用地使用权变更登记（权利人姓名、身份证明类型/身份证明号码发生变化)](business_item)
+    - [国有建设用地使用权及房屋所有权首次登记（个人建造房屋）](business_item)
+    - [国有建设用地使用权及房屋所有权首次登记（无籍房）](business_item)
+    - [国有建设用地使用权及房屋所有权首次登记（新建商品房、经济适用房、保障性住房等）](business_item)
+    - [国有建设用地使用权及房屋所有权异议登记办理项](business_item)
+    - [国有建设用地使用权及房屋所有权异议登记注销](business_item)
+    - [国有建设用地使用权及房屋所有权注销登记（权利人放弃权利）](business_item)
+    - [国有建设用地使用权及房屋所有权注销登记（依法没收、征收、收回）](business_item)
+    - [国有建设用地使用权及房屋所有权注销登记（不动产灭失）](business_item)
+    - [国有建设用地使用权及房屋所有权注销登记（因人民法院、仲裁委员会生效法律文书致使权利消灭）](business_item)
+    - [国有建设用地使用权及房屋所有权注销登记（其他）](business_item)
+    - [国有建设用地使用权及房屋所有权注销登记（依有权机关嘱托注销登记）](business_item)
+    - [国有建设用地使用权及房屋所有权转移登记（夫妻婚内析产）](business_item)
+    - [国有建设用地使用权及房屋所有权转移登记（司法协执导致权属发生转移)](business_item)
+    - [国有建设用地使用权及房屋所有权转移登记（夫妻离婚析产）](business_item)
+    - [国有建设用地使用权及房屋所有权转移登记（公证继承、受遗赠或因生效法律文书取得继承权)](business_item)
+    - [国有建设用地使用权及房屋所有权转移登记（分割、合并导致权属发生转移)](business_item)
+    - [国有建设用地使用权及房屋所有权转移登记（房改购房)](business_item)
+    - [国有建设用地使用权及房屋所有权转移登记（房屋拆迁、征收产权调换)](business_item)
+    - [国有建设用地使用权及房屋所有权转移登记（赠与)](business_item)
+    - [国有建设用地使用权及房屋所有权转移登记（作价出资、入股)](business_item)
+    - [国有建设用地使用权及房屋所有权转移登记（非公证继承、受遗赠)](business_item)
+    - [国有建设用地使用权及房屋所有权转移登记（购买商品房、经济适用房、保障性住房等)](business_item)
+    - [国有建设用地使用权及房屋所有权转移登记（国有建设用地使用权及房屋所有权转移/抵押权登记（按揭贷款购买有首次登记的商品房或二手房））](business_item)
+    - [国有建设用地使用权首次登记办理项](business_item)
+    - [国有建设用地使用权首次登记-出让（招标、拍卖、挂牌）](business_item)
+    - [国有建设用地使用权首次登记（划拨）](business_item)
+    - [国有建设用地使用权首次登记（划拨转出让）](business_item)
+    - [国有建设用地使用权注销登记办理项](business_item)
+    - [国有建设用地使用权注销登记（其他情形）](business_item)
+    - [国有建设用地使用权注销登记（因人民法院、仲裁委员会生效法律文书致使权利消灭）](business_item)
+    - [国有建设用地使用权注销登记（权利人放弃权利）](business_item)
+    - [国有建设用地使用权注销登记（依法没收、收回）](business_item)
+    - [国有建设用地使用权注销登记（土地灭失）](business_item)
+    - [国有建设用地使用权注销登记（依有权机关嘱托注销登记）](business_item)
+    - [国有建设用地使用权转移登记办理项](business_item)
+    - [国有建设用地使用权转移登记（法人与其他组织合并、分立、兼并等原因发生转移）](business_item)
+    - [国有建设用地使用权转移登记（转让、互换、赠与）](business_item)
+    - [国有建设用地使用权转移登记（分割、合并导致权属发生转移）](business_item)
+    - [国有建设用地使用权转移登记-其他（法律、行政法律规定的其他情形）](business_item)
+    - [国有建设用地使用权转移登记（司法协执导致权属发生变化）](business_item)
+    - [国有农用地的使用权首次登记](business_item)
+    - [国有农用地的使用权注销登记](business_item)
+    - [国有农用地的使用权转移登记](business_item)
+    - [国有农用地的使用权变更登记](business_item)
+    - [其它登记（不动产权证书-国有建设用地使用权）](business_item)
+    - [其他登记（不动产权证明-国有建设用地使用权）](business_item)
+    - [其他登记（不动产权证书-国有建设用地使用权及房屋所有权）](business_item)
+    - [其它登记（不动产权证明-国有建设用地使用权及房屋所有权）](business_item)
+    - [依申请更正登记](business_item)
+    - [依嘱托更正登记](business_item)
+    - [异议登记办理项](business_item)
+    - [预告登记设立（不动产转移预告登记）](business_item)
+    - [预告登记设立（预购商品房预告及预购商品房抵押权预告）](business_item)
+    - [预告登记的变更办理项](business_item)
+    - [预告登记变更（预购商品房抵押预告变更登记）](business_item)
+    - [预告登记的注销办理项](business_item)
+    - [预告登记注销（预购商品房抵押权预告注销登记）](business_item)
+    - [预告登记注销（预购商品房预告注销登记）](business_item)
+    - [抵押权转移登记（国有建设用地使用权及房屋所有权转移及抵押权转移登记）](business_item)
+    - [国有建设用地使用权及房屋所有权转移登记（法人或其他组织合并、分立、重组、清算)](business_item)
+    - [国有建设用地使用权及房屋所有权转移登记（房地一体）](business_item)
+    - [国有建设用地使用权及房屋所有权转移登记（存量房买卖)](business_item)
+    - [国有建设用地使用权及房屋所有权变更登记（其它法律、行政法律规定的其他情形）](business_item)
+    - [国有建设用地使用权及房屋所有权变更登记（房屋面积、界址变化)](business_item)
+    - [国有建设用地使用权及房屋所有权变更登记（权利人姓名、身份证明类型/身份证明号码发生变化)](business_item)
+    - [国有建设用地使用权及房屋所有权变更登记（同一权利人分割、合并房屋)](business_item)
+    - [国有建设用地使用权及房屋所有权变更登记（不动产坐落、名称变化)](business_item)
+    - [国有建设用地使用权及房屋所有权变更登记（土地权利性质、权利期限变更、房屋规划用途变更)](business_item)
+    - [国有建设用地使用权及房屋所有权变更登记（共有方式/情况）发生变化)](business_item)
+    - [国有建设用地使用权及房屋所有权变更登记（房屋用途变化)](business_item)
+    - [安全监督备案](business_item)
+    - [直接发包的工程](business_item)
+    - [依法招标发包的工程](business_item)
+    - [政府采购的工程](business_item)
+    - [依法不需要组织专家评审](business_item)
+    - [依法需要组织专家评审](business_item)
+    - [二级建造师执业资格认定初审](business_item)
+    - [政府投资信息化项目建议书的审批（非申请中央预算内资金）](business_item)
+    - [政府投资信息化项目初步设计的审批（非申请中央预算内资金）](business_item)
+    - [燃气燃烧器具安装维修企业资质审批](business_item)
+    - [县级民办非企业单位成立登记](business_item)
+    - [县级民办非企业单位宗旨和业务范围变更登记](business_item)
+    - [县级民办非企业单位开办资金变更登记](business_item)
+    - [县级民办非企业单位法定代表人或负责人变更登记](business_item)
+    - [县级民办非企业单位业务主管单位变更登记](business_item)
+    - [县级民办非企业单位住所变更登记](business_item)
+    - [县级民办非企业单位名称变更登记](business_item)
+    - [县级民办非企业单位注销登记](business_item)
+    - [民办非企业单位印章式样备案](business_item)
+    - [民办非企业单位银行账号备案](business_item)
+    - [低保家庭应届高考生](business_item)
+    - [孤儿应届高考生](business_item)
+    - [低保家庭应届中考生](business_item)
+    - [孤儿应届中考生](business_item)
+    - [结婚登记](business_item)
+    - [军人结婚登记](business_item)
+    - [再婚登记](business_item)
+    - [军人离婚登记](business_item)
+    - [离婚登记](business_item)
+    - [市级社会团体成立登记](business_item)
+    - [市级社会团体业务主管单位变更登记](business_item)
+    - [市级社会团体活动资金变更登记](business_item)
+    - [市级社会团体名称变更登记](business_item)
+    - [市级社会团体法定代表人变更登记](business_item)
+    - [市级社会团体宗旨、业务范围、活动地域变更登记](business_item)
+    - [市级社会团体住所变更登记](business_item)
+    - [市级社会团体注销登记](business_item)
+    - [返乡农民工](business_item)
+    - [退役军人](business_item)
+    - [高校毕业生](business_item)
+    - [下岗失业人员](business_item)
+    - [享受最低生活保障且失业1年以上人员](business_item)
+    - [零就业家庭人员](business_item)
+    - [残疾人员](business_item)
+    - [失地农民](business_item)
+    - [大龄失业人员](business_item)
+    - [就业困难高校毕业生](business_item)
+    - [在用人单位食堂就餐造成食物中毒伤害，并经食品药品监督部门确认得](business_item)
+    - [在上下班途中，受到非本人主要责任的交通事故或者城市轨道交通、客运轮渡、火车事故伤害的](business_item)
+    - [法律、行政法规规定应当认定为工伤的其他情形](business_item)
+    - [工作试讲前后在工作场所内，从事与工作有关的预备性或者收尾性工作受到事故伤害的](business_item)
+    - [因工作环境存在有毒有害物质造成中毒伤害，并经安监部门确认的](business_item)
+    - [在工作时间和工作场所内，因工作原因受到事故伤害的](business_item)
+    - [参加用人单位组织或者受单位指派参加体育比赛、文艺表演受到伤害的](business_item)
+    - [职工原在军队服役，因战、因公负伤致残，已取得革命伤残军人证，到用人单位旧伤复发的](business_item)
+    - [在工作时间和工作场所内，因履行工作职责受到暴力等意外伤害的](business_item)
+    - [患职业病的](business_item)
+    - [在抢险救灾等维护国家利益、公共利益活动中受到伤害的](business_item)
+    - [受用人单位指派前往疫区工资或者公出，并经县级以上医疗机构诊断感染疫病的](business_item)
+    - [在工作时间和工作岗位，突发疾病死亡或者48小时之内经抢救无效死亡的](business_item)
+    - [因工外出期间，由于工作原因受到伤害或者发生事故下落不明的](business_item)
+    - [父母代18岁以下未成年子女申领](business_item)
+    - [18岁以上人员申领](business_item)
+    - [成品油零售经营批准证书变更（遗失补证）](business_item)
+    - [成品油零售经营批准证书变更（经营单位投资主体未变化）](business_item)
+    - [乡村医生执业注册（再注册）办理项](business_item)
+    - [乡村医生执业注册（补发）](business_item)
+    - [公共场所卫生许可证补发](business_item)
+    - [公共场所卫生许可证新办](business_item)
+    - [《中华人民共和国医师执业证书》补发](business_item)
+    - [首次注册](business_item)
+    - [变更执业地点](business_item)
+    - [变更执业范围](business_item)
+    - [备案](business_item)
+    - [取消备案](business_item)
+    - [补发](business_item)
+    - [新办](business_item)
+    - [营利性变非营利性](business_item)
+    - [增设诊疗科目](business_item)
+    - [变更机构名称](business_item)
+    - [变更所有制形式](business_item)
+    - [非营利性变营利性](business_item)
+    - [变更法定代表人或主要负责人](business_item)
+    - [医疗技术临床应用备案](business_item)
+    - [增设床位（牙椅）](business_item)
+    - [变更执业地址](business_item)
+    - [减少诊疗科目（床位、牙椅、执业地址）](business_item)
+    - [校验](business_item)
+    - [延续](business_item)
+    - [注册有效期届满未延续注册](business_item)
+    - [护士死亡或者丧失民事行为能力](business_item)
+    - [受吊销《护士执业证书》处罚](business_item)
+    - [新办（包含乙类大型医用设备）](business_item)
+    - [新办（不包含乙类大型医用设备）](business_item)
+    - [母婴保健技术考核合格证书（补发）](business_item)
+    - [母婴保健服务人员资格认定](business_item)
+    - [麻醉药品和第一类精神药品购用印鉴卡（补发）](business_item)
+    - [麻醉药品和第一类精神药品购用印鉴卡（申办）](business_item)
+    - [麻醉药品和第一类精神药品购用印鉴卡（换证）](business_item)
+    - [法定夫妻](business_item)
+    - [达到法定婚龄决定不再结婚并无子女的妇女](business_item)
+    - [食品生产许可变更（变更食品类别、类别名称、品种明细）（生产条件发生变化）（需要现场）](business_item)
+    - [食品生产许可变更（生产工艺未发生变化）（不需要现场）](business_item)
+    - [食品生产许可变更（生产地址变更）（需要现场）](business_item)
+    - [食品生产许可延续（生产条件未发生变化）（不需要现场）](business_item)
+    - [食品生产许可延续（生产条件发生变化）（需要现场）](business_item)
+    - [食品（含保健食品）经营许可新办（不需要现场）](business_item)
+    - [食品（含保健食品）经营许可新办（需要现场）](business_item)
+    - [食品（含保健食品）经营许可变更（不需现场核查）](business_item)
+    - [食品（含保健食品）经营许可变更（需现场核查）](business_item)
+    - [食品（含保健食品）经营许可延续（经营条件发生变化）](business_item)
+    - [食品（含保健食品）经营许可延续（经营条件未变化）](business_item)
+    - [食品添加剂生产许可变更（生产地址变更）（需要现场）](business_item)
+    - [食品添加剂生产许可变更（生产条件未发生变化）（不需要现场）](business_item)
+    - [食品添加剂生产许可变更（许可项目变更）（生产条件发生变化）（需要现场）](business_item)
+    - [食品添加剂生产许可延续（生产条件发生变化）（需要现场）](business_item)
+    - [食品添加剂生产许可延续（生产条件未发生变化）（不需要现场）](business_item)
+    - [食品小作坊变更登记（不需要现场）（未改变生产工艺、条件）](business_item)
+    - [食品小作坊变更登记（需要现场）（改变生产工艺、条件）](business_item)
+    - [食品小作坊延续登记（生产条件发生变化）（需核查）](business_item)
+    - [食品小作坊延续登记（生产条件未发生变化）（不需现场）](business_item)
+    - [小餐饮店变更登记（不需现场核查）](business_item)
+    - [小餐饮店变更登记（需现场核查）](business_item)
+    - [小餐饮店延续登记（不需现场核查）](business_item)
+    - [小餐饮店延续登记（需要现场核查）](business_item)
+    - [小食杂店变更登记（不需现场核查）](business_item)
+    - [小食杂店变更登记（需现场核查）](business_item)
+    - [小食杂店延续登记（不需现场核查）](business_item)
+    - [小食杂店延续登记（需要现场核查）](business_item)
+    - [第一类医疗器械产品注册备案核准变更（备案人名称、代理人、备注）](business_item)
+    - [第一类医疗器械产品注册备案核准变更（备案人注册地址、生产地址、代理人注册地址）](business_item)
+    - [第一类医疗器械产品注册备案核准变更（产品名称、型号/规格、产品描述、预期用途）](business_item)
+    - [第一类医疗器械生产企业备案核准变更（备注）](business_item)
+    - [第一类医疗器械生产企业备案核准变更（企业负责人）](business_item)
+    - [第一类医疗器械生产企业备案核准变更（企业名称、法人代表）](business_item)
+    - [第一类医疗器械生产企业备案核准变更（生产产品列表、生产范围、生产产品）](business_item)
+    - [第一类医疗器械生产企业备案核准变更（生产场所、生产地址）](business_item)
+    - [第一类医疗器械生产企业备案核准变更（住所）](business_item)
+    - [第二类医疗器械经营备案核准变更（法定代表人）](business_item)
+    - [第二类医疗器械经营备案核准变更（经营范围）](business_item)
+    - [第二类医疗器械经营备案核准变更（企业负责人）](business_item)
+    - [第二类医疗器械经营备案核准变更（企业名称）](business_item)
+    - [第二类医疗器械经营备案核准变更（住所、经营场所、库房地址）](business_item)
+    - [第三类医疗器械经营许可变更（不需进行现场核查）（变更法定代表人 ）](business_item)
+    - [第三类医疗器械经营许可变更（不需进行现场核查）（变更企业负责人 ）](business_item)
+    - [第三类医疗器械经营许可变更（不需进行现场核查）（变更企业名称）](business_item)
+    - [第三类医疗器械经营许可变更（不需进行现场核查）（变更住所 （不改变经营住所的实际地址）、经营场所（不改变经营场所的实际地址）、库房地址（不改变库房的实际地址） ）](business_item)
+    - [第三类医疗器械经营许可变更（不需进行现场核查）（增加经营范围（除6822、6840、6846）、减经营范围 ）](business_item)
+    - [第三类医疗器械经营许可变更（需进行现场核查）（库房地址（改变库房的实际地址）、注册地址）](business_item)
+    - [第三类医疗器械经营许可变更（需进行现场核查）（增加经营范围（增加6822、6840、 6846））](business_item)
+    - [药品零售企业许可变更（不需进行现场核查）（变更经营范围（增加范围：有生物制品（除疫苗）增加生化药品）、减少经营范围）](business_item)
+    - [药品零售企业许可变更（不需进行现场核查）（变更企业法人）](business_item)
+    - [药品零售企业许可变更（不需进行现场核查）（变更企业负责人）](business_item)
+    - [药品零售企业许可变更（不需进行现场核查）（变更企业名称）](business_item)
+    - [药品零售企业许可变更（不需进行现场核查）（变更企业质量负责人）](business_item)
+    - [药品零售企业许可变更（不需进行现场核查）（变更企业注册地址（不改变注册地址的实际地址）、企业仓库地址（不改变仓库地址的实际地址））](business_item)
+    - [药品零售企业许可变更（不需进行现场核查）（减企业仓库地址、仓库面积（留存仓库面积符合许可要求））](business_item)
+    - [药品零售企业许可变更（需进行现场核查）（变更仓库地址、注册地址）](business_item)
+    - [药品零售企业许可变更（需进行现场核查）（变更经营范围）](business_item)
+    - [特种设备使用登记达到设计使用年限继续使用的变更](business_item)
+    - [特种设备使用登记单位变更按（单位）办理](business_item)
+    - [特种设备使用登记单位变更按台（套）办理](business_item)
+    - [特种设备使用登记单位更名变更按（单位）办理](business_item)
+    - [特种设备使用登记更名变更按台（套）办理](business_item)
+    - [特种设备使用登记改造变更](business_item)
+    - [特种设备使用登记跨登记机关行政区域移装变更](business_item)
+    - [特种设备使用登记在登记机关行政区域内移装变更](business_item)
+    - [特种设备使用登记按（单位）办理](business_item)
+    - [特种设备使用登记按台（套）办理](business_item)
+    - [公司设立登记](business_item)
+    - [合伙企业设立登记](business_item)
+    - [分公司设立登记](business_item)
+    - [公司变更登记](business_item)
+    - [合伙企业变更登记](business_item)
+    - [分公司变更登记](business_item)
+    - [撤销变更登记](business_item)
+    - [公司注销登记](business_item)
+    - [合伙企业注销登记](business_item)
+    - [分公司注销登记](business_item)
+    - [农民专业合作社（联合社）分支机构设立登记](business_item)
+    - [农民专业合作社（联合社）设立登记](business_item)
+    - [农民专业合作社（联合社）变更登记](business_item)
+    - [农民专业合作社（联合社）分支机构变更登记](business_item)
+    - [农民专业合作社（联合社）分支机构注销登记](business_item)
+    - [农民专业合作社（联合社）注销登记](business_item)
+    - [承担国家法定计量检定机构任务（专项计量授权）](business_item)
+    - [承担国家法定计量检定机构任务授权（扩项）](business_item)
+    - [承担国家法定计量检定机构任务授权变更审批](business_item)
+    - [营业执照正、副本全部遗失](business_item)
+    - [未在国家企业信用信息公示系统公示营业执照作废声明](business_item)
+    - [营业执照正、副本未全部遗失](business_item)
+    - [从事对温度、湿度等有特殊要求的食品贮存业务的非食品生产经营者备案](business_item)
+    - [国家出资设立的律师事务所](business_item)
+    - [设立个人律师事务所](business_item)
+    - [设立律师事务所分所](business_item)
+    - [设立普通合伙律师事务所](business_item)
+    - [设立特殊的普通合伙律师事务所](business_item)
+    - [变更合伙人协议](business_item)
+    - [变更章程](business_item)
+    - [变更组织形式](business_item)
+    - [律师事务所变更负责人](business_item)
+    - [律师事务所变更名称](business_item)
+    - [律师事务所执业许可证注销](business_item)
+    - [基层法律服务所变更法定代表人](business_item)
+    - [基层法律服务所变更合伙人](business_item)
+    - [基层法律服务所变更住所（地址）](business_item)
+    - [基层法律服务所更换补发执业证](business_item)
+    - [公证机构变更办公场所](business_item)
+    - [公证机构变更负责人](business_item)
+    - [公证机构变更名称](business_item)
+    - [司法鉴定机构及其分支机构法定代表人（负责人）变更](business_item)
+    - [司法鉴定机构及其分支机构名称变更](business_item)
+    - [司法鉴定机构及其分支机构增加（减少）业务范围](business_item)
+    - [司法鉴定机构及其分支机构住所变更](business_item)
+    - [司法鉴定机构及其分支机构资金数额变更](business_item)
+    - [司法鉴定人执业机构变更](business_item)
+    - [司法鉴定人执业类别变更](business_item)
+    - [基层法律服务工作者变更执业机构](business_item)
+    - [基层法律服务工作者更换补发执业证](business_item)
+    - [申请兼职律师](business_item)
+    - [申请专职律师](business_item)
+    - [“律师年度考核备案”专用章盖满的换发](business_item)
+    - [律师执业证补发办理项](business_item)
+    - [对授予A类法律职业资格证书的换发](business_item)
+    - [对在法律援助工作中作出突出贡献的组织和个人进行表彰奖励](business_item)
+    - [法律援助律师工作证颁发](business_item)
+    - [公司律师工作证颁发](business_item)
+    - [公职律师工作证颁发](business_item)
+    - [对律师事务所、律师进行表彰奖励](business_item)
+    - [对人民调解委员会和调解员进行表彰奖励](business_item)
+    - [人民调解员因从事工作致伤致残、牺牲的救助、抚恤](business_item)
+    - [辐射安全许可证注销（含非密封放射性物质或放射源）](business_item)
+    - [对建设项目环境影响后评价报告的备案](business_item)
+    - [防治污染设施拆除或闲置审批](business_item)
+    - [放射性同位素转让审批](business_item)
+    - [放射源异地使用备案](business_item)
+    - [固体废物跨省转移审批](business_item)
+    - [核发《环保用微生物菌剂样品入境通知单》](business_item)
+    - [核技术利用建设项目环境影响评价报告表](business_item)
+    - [建设项目环境影响备案](business_item)
+    - [建设项目环境影响评价审批（非辐射）](business_item)
+    - [江河、湖泊新建、改建或者扩大排污口审核](business_item)
+    - [在野外进行放射性同位素示踪试验审批](business_item)
+    - [贮存危险废物超过一年的批准](business_item)
+    - [从事清真食品生产、经营的企业和个人取得有关证照后的备案和清真标识领取](business_item)
+    - [归侨、华侨子女、归侨子女考生身份确认](business_item)
+    - [华侨回国定居审批](business_item)
+    - [华侨身份证明办理项](business_item)
+    - [退休归侨生活补贴身份认定](business_item)
+    - [单位内部设立印刷厂登记](business_item)
+    - [电影放映单位变更审批](business_item)
+    - [电影放映单位设立审批](business_item)
+    - [电影流动放映活动备案登记](business_item)
+    - [设立电子出版物发行单位的审批（零售）](business_item)
+    - [设立通过互联网等信息网络从事出版物零售业务或其他单位申请通过互联网等信息网络从事出版物零售业务备案](business_item)
+    - [设立中外合资、合作和外商独资出版物发行企业的审核（零售）](business_item)
+    - [音像制品零售业务许可变更](business_item)
+    - [音像制品零售业务许可设立](business_item)
+    - [音像制作单位设立、变更名称，业务范围，或者兼并其他音像制作单位或者因合并、分立而设立新的音像制作单位的审批](business_item)
+    - [出版物零售单位和个体工商户延续审批](business_item)
+    - [出版物零售单位和个体工商户变更审批](business_item)
+    - [出版物零售单位和个体工商户设立审批](business_item)
+    - [从事包装装潢印刷品和其他印刷品经营活动企业的设立审批](business_item)
+    - [从事包装装潢印刷品和其他印刷品经营活动企业的变更审批](business_item)
+    - [从事出版物、包装装潢印刷品和其他印刷品印刷经营活动企业的变更审批](business_item)
+    - [单项体育运动协会登记前审查（变更法人）](business_item)
+    - [单项体育运动协会登记前审查（变更名称）](business_item)
+    - [单项体育运动协会登记前审查（变更章程）](business_item)
+    - [单项体育运动协会登记前审查（变更住所）](business_item)
+    - [单项体育运动协会登记前审查（成立登记）](business_item)
+    - [单项体育运动协会登记前审查（年检）](business_item)
+    - [单项体育运动协会登记前审查（注销登记）](business_item)
+    - [出境游领队备案](business_item)
+    - [导游变更旅游局申请](business_item)
+    - [导游变更手机号](business_item)
+    - [导游变更所在机构申请](business_item)
+    - [导游证磨损影响使用换发](business_item)
+    - [导游证丢失补发办理项](business_item)
+    - [导游证申请办理项](business_item)
+    - [导游证注销办理项](business_item)
+    - [电视剧制作许可证（乙种）变更审批](business_item)
+    - [电视剧制作许可证（乙种）延续审批](business_item)
+    - [电视剧制作许可证（乙种）注销审批](business_item)
+    - [对非物质文化遗产代表性传承人进行评审认定](business_item)
+    - [对非物质文化遗产代表性传承人组织推荐](business_item)
+    - [对非物质文化遗产代表性项目进行评审认定](business_item)
+    - [对非物质文化遗产代表性项目组织推荐](business_item)
+    - [对非物质文化遗产项目保护单位进行评审认定](business_item)
+    - [对非物质文化遗产项目保护单位组织推荐](business_item)
+    - [歌舞娱乐场所设立审批](business_item)
+    - [游艺娱乐场所设立审批](business_item)
+    - [外资歌舞娱乐场所设立审批](business_item)
+    - [外资游艺娱乐场所设立审批](business_item)
+    - [歌舞娱乐场所变更法定代表人、主要负责人、投资人员](business_item)
+    - [歌舞娱乐场所变更名称、注册资本](business_item)
+    - [游艺娱乐场所变更法定代表人、主要负责人、投资人员](business_item)
+    - [游艺娱乐场所变更名称、注册资本](business_item)
+    - [游艺娱乐场所变更游戏游艺设备](business_item)
+    - [外资歌舞娱乐场所变更法定代表人、主要负责人、投资人员](business_item)
+    - [外资歌舞娱乐场所变更名称、注册资本](business_item)
+    - [外资游艺娱乐场所变更法定代表人、主要负责人、投资人员](business_item)
+    - [外资游艺娱乐场所变更名称、注册资本](business_item)
+    - [外资游艺娱乐场所变更游戏游艺设备](business_item)
+    - [歌舞娱乐场所补证](business_item)
+    - [游艺娱乐场所补证](business_item)
+    - [外资歌舞娱乐场所补证](business_item)
+    - [外资游艺娱乐场所补证](business_item)
+    - [歌舞娱乐场所改建、扩建或者变更场地](business_item)
+    - [游艺娱乐场所改建、扩建或变更场地](business_item)
+    - [外资游艺娱乐场所改建、扩建或变更场地](business_item)
+    - [外资歌舞娱乐场所改建、扩建或者变更场地](business_item)
+    - [歌舞娱乐场所延续](business_item)
+    - [游艺娱乐场所延续](business_item)
+    - [外资歌舞娱乐场所延续](business_item)
+    - [外资游艺娱乐场所延续](business_item)
+    - [歌舞娱乐场所注销](business_item)
+    - [游艺娱乐场所注销](business_item)
+    - [外资歌舞娱乐场所注销](business_item)
+    - [外资游艺娱乐场所注销](business_item)
+    - [演出场所经营单位设立备案](business_item)
+    - [港、澳地区投资的演出场所经营单位设立审批](business_item)
+    - [台湾地区投资的演出场所经营单位设立审批](business_item)
+    - [港、澳地区投资的演出场所经营单位变更](business_item)
+    - [台湾地区投资的演出场所经营单位变更](business_item)
+    - [演出场所经营单位变更办理项](business_item)
+    - [港、澳地区投资的演出场所经营单位补证](business_item)
+    - [台湾地区投资的演出场所经营单位补证](business_item)
+    - [演出场所经营单位补证办理项](business_item)
+    - [港、澳地区投资的演出场所经营单位注销](business_item)
+    - [台湾地区投资的演出场所经营单位注销](business_item)
+    - [演出场所经营单位注销办理项](business_item)
+    - [内地的文艺表演团体、个人参加的营业性演出举办审批](business_item)
+    - [台湾地区的文艺表演团体、个人参加的营业性演出举办审批](business_item)
+    - [文艺表演团体设立审批](business_item)
+    - [香港、澳门特别行政区的文艺表演团体、个人参加的营业性演出举办审批](business_item)
+    - [内地的文艺表演团体、个人参加的营业性演出变更场地](business_item)
+    - [内地的文艺表演团体、个人参加的营业性演出变更节目](business_item)
+    - [内地的文艺表演团体、个人参加的营业性演出变更时间](business_item)
+    - [内地的文艺表演团体、个人参加的营业性演出变更演员](business_item)
+    - [台湾地区的文艺表演团体、个人参加的营业性演出变更场地](business_item)
+    - [台湾地区的文艺表演团体、个人参加的营业性演出变更节目](business_item)
+    - [台湾地区的文艺表演团体、个人参加的营业性演出变更时间](business_item)
+    - [台湾地区的文艺表演团体、个人参加的营业性演出变更演员](business_item)
+    - [文艺表演团体变更名称、住所、法定代表人或者主要负责人](business_item)
+    - [文艺表演团体变更演员](business_item)
+    - [香港、澳门特别行政区的文艺表演团体、个人参加的营业性变更节目](business_item)
+    - [香港、澳门特别行政区的文艺表演团体、个人参加的营业性演出变更场地](business_item)
+    - [香港、澳门特别行政区的文艺表演团体、个人参加的营业性演出变更时间](business_item)
+    - [香港、澳门特别行政区的文艺表演团体、个人参加的营业性演出变更演员](business_item)
+    - [内地的文艺表演团体、个人参加的营业性演出增加演出地备案](business_item)
+    - [台湾地区的文艺表演团体、个人参加的营业性演出增加演出地备案](business_item)
+    - [香港、澳门特别行政区的文艺表演团体、个人参加的营业性演出增加演出地备案](business_item)
+    - [互联网上网服务营业场所变更机器台数](business_item)
+    - [互联网上网服务营业场所变更经营地址筹建审批](business_item)
+    - [互联网上网服务营业场所变更经营地址最终审核](business_item)
+    - [互联网上网服务营业场所变更名称、法定代表人、主要负责人](business_item)
+    - [旅行社分社设立备案](business_item)
+    - [旅行社服务网点设立备案](business_item)
+    - [旅行社设立许可审批](business_item)
+    - [旅行社分社变更备案](business_item)
+    - [旅行社服务网点变更备案](business_item)
+    - [旅行社业务经营许可证事项变更](business_item)
+    - [旅行社分社备案证明换发补发](business_item)
+    - [旅行社服务网点备案证明换发补发](business_item)
+    - [旅行社经营许可证换发补发](business_item)
+    - [旅行社分社注销备案](business_item)
+    - [旅行社服务网点注销备案](business_item)
+    - [注销境内、入境旅游业务资质](business_item)
+    - [注销旅行社业务经营许可证（主体注销）](business_item)
+    - [广播电视节目制作经营单位补证审批](business_item)
+    - [广播电视节目制作经营单位地址变更审批](business_item)
+    - [广播电视节目制作经营单位法人变更审批](business_item)
+    - [广播电视节目制作经营单位名称变更审批](business_item)
+    - [广播电视节目制作经营单位设立初审](business_item)
+    - [广播电视节目制作经营单位设立审批（对私营企业）](business_item)
+    - [广播电视节目制作经营单位延续审批](business_item)
+    - [广播电视节目制作经营单位注销审批](business_item)
+    - [跨省经营广播电视节目传送（无线）业务初审](business_item)
+    - [省级行政区域内经营广播电视节目传送（无线）业务初审](business_item)
+    - [省级行政区域内经营广播电视节目传送（有线）业务初审](business_item)
+    - [市级行政区域内经营广播电视节目传送（无线）业务初审](business_item)
+    - [跨省经营广播电视节目传送（无线）业务审核](business_item)
+    - [跨省经营广播电视节目传送（有线）业务审核](business_item)
+    - [省级行政区域内经营广播电视节目传送（无线）业务审核](business_item)
+    - [省级行政区域内经营广播电视节目传送（有线）业务审核](business_item)
+    - [市级行政区域内经营广播电视节目传送（无线）业务审批](business_item)
+    - [县级行政区域内经营广播电视节目传送（无线）业务审批](business_item)
+    - [由宾馆饭店以外的机构申请《广播电视视频点播业务许可证（乙种）》的](business_item)
+    - [广播电视专用频段频率使用许可证（甲类）初审](business_item)
+    - [广播电视专用频段频率使用许可证（乙类）初审](business_item)
+    - [广播电视专用频段频率使用许可证（甲类）审核](business_item)
+    - [广播电视专用频段频率使用许可证（乙类）审核](business_item)
+    - [县级广播电台、电视台变更节目套数、设置范围初审](business_item)
+    - [县级广播电台、电视台变更节目套数、设置范围审核](business_item)
+    - [县级广播电台、电视台变更台名初审](business_item)
+    - [县级广播电台、电视台变更台名审核](business_item)
+    - [设置卫星电视广播地面接收设施初审](business_item)
+    - [设置卫星电视广播地面接收设施审核](business_item)
+    - [卫星电视广播地面接收设施安装许可初审](business_item)
+    - [卫星电视广播地面接收设施安装许可审核](business_item)
+    - [撤减分公司支取分公司旅游服务质量保证金](business_item)
+    - [旅游业务变更支取分公司旅游服务质量保证金](business_item)
+    - [旅游业务变更支取设立社旅游服务质量保证金](business_item)
+    - [依法降低旅游服务质量保证金数额50%支取设立社旅游服务质量保证金](business_item)
+    - [破产清算支取分公司旅游服务质量保证金](business_item)
+    - [破产清算支取设立社旅游服务质量保证金](business_item)
+    - [解散清算（或注销旅行社）支取设立社旅游服务质量保证金](business_item)
+    - [旅行社缴纳质量保证金证明文件备案](business_item)
+    - [旅行社申请垫付团队旅游者紧急救助费用支取旅游服务质量保证金](business_item)
+    - [其他情况支取旅游服务质量保证金](business_item)
+    - [对公共文化体育设施的名称、地址、服务项目等内容备案](business_item)
+    - [竞技体育后备人才输送与培养](business_item)
+    - [体育场、馆免费开放](business_item)
+    - [体育类民办非企业单位申请登记审查](business_item)
+    - [组织开展丰富多彩的群众体育活动 ，指导基层开展体育活动](business_item)
+    - [举办健身气功活动审批](business_item)
+    - [全民健身设施拆迁或者改变用途批准](business_item)
+    - [设立健身气功活动站点审批](business_item)
+    - [省级文物保护单位原址保护措施审批](business_item)
+    - [市级文物保护单位原址保护措施审批](business_item)
+    - [县级文物保护单位原址保护措施审批](business_item)
+    - [非国有不可移动文物修缮资金给付](business_item)
+    - [市级文物保护单位修缮审批](business_item)
+    - [县级文物保护单位及未核定为文物保护单位的不可移动文物修缮审批](business_item)
+    - [全国重点文物保护单位、省级及以下文物保护单位（含省级水下文物保护单位、水下文物保护区）的认定](business_item)
+    - [核定为文物保护单位的属于国家所有的纪念建筑物或者古建筑改变用途审批](business_item)
+    - [博物馆处理不够入藏标准、无保存价值的文物或标本审批](business_item)
+    - [有争议文物的裁定、特定文物的认定及文物级别的确认](business_item)
+    - [非国有文物收藏单位和其他单位借用国有文物收藏单位馆藏二级以下文物审批](business_item)
+    - [初级中学教师资格认定](business_item)
+    - [高级中学教师资格认定](business_item)
+    - [小学教师资格认定](business_item)
+    - [幼儿园教师资格认定](business_item)
+    - [中等职业学校教师资格认定](business_item)
+    - [中等职业学校实习指导教师资格认定](business_item)
+    - [民办学校的设立审批](business_item)
+    - [民办学校的设立审批（非学历教育）](business_item)
+    - [民办学校的分立审批](business_item)
+    - [民办学校的分立审批（非学历教育）](business_item)
+    - [民办学校的办学层次变更](business_item)
+    - [民办学校的办学类别变更](business_item)
+    - [民办学校的举办者变更审批](business_item)
+    - [民办学校的举办者变更审批（非学历教育）](business_item)
+    - [民办学校的学校名称变更审批](business_item)
+    - [民办学校的学校名称变更审批（非学历教育）](business_item)
+    - [民办学校的合并审批](business_item)
+    - [民办学校的合并审批（非学历教育）](business_item)
+    - [民办学校的终止审批](business_item)
+    - [民办学校的终止审批（非学历教育）](business_item)
+    - [持卡人出国（境）定居或工作](business_item)
+    - [持卡人死亡](business_item)
+    - [危险货物运输企业设立分公司](business_item)
+    - [道路危险货物运输企业设立子公司](business_item)
+    - [道路危险货物运输许可变更（变更地址、法人、名称、减少经营范围）](business_item)
+    - [道路危险货物运输变更许可事项](business_item)
+    - [危险货物道路运输从业人员资格证核发](business_item)
+    - [危险货物道路运输从业人员资格证换发、补发、变更](business_item)
+    - [危险货物道路运输从业人员资格证注销](business_item)
+    - [爆炸品道路运输驾驶员从业资格证补证、换证、变更](business_item)
+    - [爆炸品道路运输驾驶员从业资格证注销](business_item)
+    - [爆炸品道路运输驾驶员从业资格](business_item)
+    - [道路危险货物运输装卸管理人员和押运人员从业资格证办理项](business_item)
+    - [道路危险货物运输装卸管理人员和押运人员从业资格证换发、补发、变更](business_item)
+    - [道路危险货物运输装卸管理人员和押运人员从业资格注销](business_item)
+    - [剧毒化学品道路运输驾驶员从业资格证注销](business_item)
+    - [剧毒化学品道路运输驾驶员从业资格证补证、换证、变更](business_item)
+    - [剧毒化学品道路运输驾驶员从业资格证核发](business_item)
+    - [城市公共汽（电）车客运经营许可（暂停、终止）](business_item)
+    - [变更城市公共汽（电）车客运经营许可备案](business_item)
+    - [城市公共汽（电）车客运经营许可办理项](business_item)
+    - [终止城市公共汽（电）车客运线路经营许可](business_item)
+    - [暂停城市公共汽（电）车客运线路经营许可](business_item)
+    - [变更城市公共汽（电）车客运线路经营许可](business_item)
+    - [城市公共汽（电）车客运线路经营许可办理项](business_item)
+    - [延续城市公共汽（电）车客运线路经营许可](business_item)
+    - [补发网约车经营许可证](business_item)
+    - [新增网约车经营许可](business_item)
+    - [换发网约车经营许可证](business_item)
+    - [终止网约车经营许可](business_item)
+    - [个人新增出租汽车运营许可](business_item)
+    - [个人变更出租汽车运营许可主体](business_item)
+    - [个人延续出租汽车运营许可](business_item)
+    - [个人终止出租汽车运营许可](business_item)
+    - [个人出租车辆更新许可](business_item)
+    - [企业延续出租汽车运营许可](business_item)
+    - [企业新增出租汽车运营许可](business_item)
+    - [企业终止出租汽车运营许可](business_item)
+    - [企业出租车辆更新许可](business_item)
+    - [企业变更出租汽车运营许可主体](business_item)
+    - [终止道路客运班线经营许可](business_item)
+    - [暂停道路客运班线经营许可](business_item)
+    - [道路客运班线经营许可（新增、延续、变更班线经营主体、起讫地、日发班次下限）](business_item)
+    - [变更道路客运班线经营许可](business_item)
+    - [道路旅客运输经营许可（班车、包车、旅游、扩大经营范围及设立子公司）申请开业](business_item)
+    - [变更道路旅客运输备案信息](business_item)
+    - [终止道路旅客运输经营许可](business_item)
+    - [道路旅客运输分公司备案](business_item)
+    - [客运车辆年审](business_item)
+    - [定制客运备案](business_item)
+    - [道路客运经营许可（起讫地客运站点、途经路线、经营路线800公里以上班线车辆号牌备案）](business_item)
+    - [减少客运经营许可](business_item)
+    - [更新客运车辆许可](business_item)
+    - [换发经营许可证](business_item)
+    - [道路货物运输企业设立分公司](business_item)
+    - [道路货物运输企业设立子公司](business_item)
+    - [公司普货经营许可](business_item)
+    - [危货车辆](business_item)
+    - [普货车辆](business_item)
+    - [客运车辆](business_item)
+    - [公交车辆](business_item)
+    - [粮食收购企业负责人变更](business_item)
+    - [粮食收购企业名称变更](business_item)
+    - [粮食收购企业仓储设施变更](business_item)
+    - [粮食收购企业经营场所变更（营业执照登记地址）](business_item)
+    - [换证（驾驶证有效期满3个月之前）](business_item)
+    - [换证（驾驶人户籍迁入新农机监理机构管辖换证）](business_item)
+    - [换证（驾驶证记载的驾驶人信息发生变化或驾驶证损毁）](business_item)
+    - [申请补证](business_item)
+    - [危险化学品经营许可（主要负责人、企业名称变更）](business_item)
+    - [危险化学品经营许可（注册地址、企业名称变更）](business_item)
+    - [危险化学品经营许可（危险化学品储存设施及其监控措施的变更）](business_item)
+    - [危险化学品经营许可（新建、改建、扩建危险化学品储存设施建设项目的变更）](business_item)
+    - [危险化学品经营许可（不带有储存设施经营的危险化学品经营许可证延期申请）](business_item)
+    - [危险化学品经营许可（带有储存设施经营的危险化学品经营许可证延期申请）](business_item)
+    - [危险化学品经营许可（不带有储存设施经营的危险化学品经营许可证首次或重新核发）](business_item)
+    - [危险化学品经营许可（带有储存设施经营的危险化学品经营许可证首次或重新核发）](business_item)
