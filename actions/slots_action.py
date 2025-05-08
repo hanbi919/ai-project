@@ -192,7 +192,7 @@ class AskForBusinessItemSlotAction(Action):
                         #     # for idx, item in enumerate(business_items)
                         # ]
                         numbered_items = [
-                            f"{idx + 1}. {item}"
+                            f"{idx + 1}. {item}。"
                             # 按字母排序
                             for idx, item in enumerate(sorted(business_items))
                         ]
@@ -276,7 +276,7 @@ class AskForScenarioSlotAction(Action):
                         slot_event = [
                             SlotSet("current_options", scenarios_dict)]
                         options = "\n".join(
-                            [f"{i+1}. {item}" for i, item in enumerate(scenarios)])
+                            [f"{i+1}. {item}。" for i, item in enumerate(scenarios)])
                         message = f"{HIGENT}请选择'{business_item}'下的情形：\n{options}"
                         dispatcher.utter_message(text=message)
                         return slot_event

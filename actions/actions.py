@@ -126,7 +126,8 @@ class QueryMaterialsAction(Action):
             if materials[0] == "无需材料":
                 dispatcher.utter_message(text=f"{HIGENT}办理这个业务，您不需要准备材料。")
             else:
-                materials_list = "\n- " + "\n- ".join(materials)
+                materials_list = "\n- " + \
+                    "\n- ".join([f"{item}。" for item in materials])
                 dispatcher.utter_message(
                     text=f"{HIGENT}您需要准备以下材料：{materials_list}")
         else:
@@ -144,6 +145,7 @@ class ClearSlotAction(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         main_item = tracker.get_slot("main_item")
         return [SlotSet("business_item", None), SlotSet("scenario", None),]
+
 
 class OrdinalAction(Action):
     def name(self) -> Text:
