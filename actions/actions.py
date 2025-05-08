@@ -23,7 +23,7 @@ class QueryBusinessItemsAction(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        main_item = tracker.get_slot("main_item")
+        main_item = tracker.get_slot("main_item").rstrip('。')
 
         if not main_item:
             return []
@@ -60,8 +60,8 @@ class QueryScenariosAction(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        main_item = tracker.get_slot("main_item")
-        business_item = tracker.get_slot("business_item")
+        main_item = tracker.get_slot("main_item").rstrip('。')
+        business_item = tracker.get_slot("business_item").rstrip('。')
 
         if not business_item:
             return []
@@ -99,9 +99,9 @@ class QueryMaterialsAction(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        main_item = tracker.get_slot("main_item")
-        business_item = tracker.get_slot("business_item")
-        scenario = tracker.get_slot("scenario")
+        main_item = tracker.get_slot("main_item").rstrip('。')
+        business_item = tracker.get_slot("business_item").rstrip('。')
+        scenario = tracker.get_slot("scenario").rstrip('。')
 
         if not scenario:
             return []
