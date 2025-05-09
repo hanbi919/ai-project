@@ -50,10 +50,10 @@ class QueryServiceDetailsAction(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        main_item = tracker.get_slot("main_item")
-        business_item = tracker.get_slot("business_item")
-        detail_type = tracker.get_slot("detail_type")
-        district = tracker.get_slot("area")
+        main_item = tracker.get_slot("main_item").rstrip('。')
+        business_item = tracker.get_slot("business_item").rstrip('。')
+        detail_type = tracker.get_slot("detail_type").rstrip('。')
+        district = tracker.get_slot("area").rstrip('。')
         # district = tracker.get_slot("district")
         # 获取所有需要记录的slot值
         slots_to_log = {

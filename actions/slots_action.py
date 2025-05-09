@@ -238,8 +238,8 @@ class AskForScenarioSlotAction(Action):
         logger.debug("Starting action_ask_scenario execution")
 
         # 获取相关slot值
-        main_item = tracker.get_slot("main_item")
-        business_item = tracker.get_slot("business_item")
+        main_item = tracker.get_slot("main_item").rstrip('。')
+        business_item = tracker.get_slot("business_item").rstrip('。')
 
         if not business_item:
             dispatcher.utter_message(text="请先选择业务办理项")
@@ -317,8 +317,8 @@ class AskForDistrictSlotAction(Action):
         logger.debug("Starting action_ask_district execution")
 
         # 获取相关slot值
-        main_item = tracker.get_slot("main_item")
-        business_item = tracker.get_slot("business_item")
+        main_item = tracker.get_slot("main_item").rstrip('。')
+        business_item = tracker.get_slot("business_item").rstrip('。')
         # level = tracker.get_slot("level")
 
         if not business_item:
@@ -388,8 +388,8 @@ class AskForLevelSlotAction(Action):
         logger.debug("Starting action_ask_level execution")
 
         # 获取相关slot值
-        main_item = tracker.get_slot("main_item")
-        business_item = tracker.get_slot("business_item")
+        main_item = tracker.get_slot("main_item").rstrip('。')
+        business_item = tracker.get_slot("business_item").rstrip('。')
 
         if not business_item:
             dispatcher.utter_message(text="请先选择业务办理项")
