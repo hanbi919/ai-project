@@ -5,6 +5,8 @@ from rasa_sdk.events import SlotSet, FollowupAction
 from neo4j import GraphDatabase
 import logging
 from .const import HIGENT
+from .db_config import get_neo4j_driver  # 导入驱动获取方法
+
 # 配置日志格式（带文件名和行号）
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s [%(filename)s:%(lineno)d]',
@@ -12,10 +14,6 @@ logging.basicConfig(
 )
 # 初始化日志记录器
 logger = logging.getLogger(__name__)
-
-# Neo4j数据库配置
-NEO4J_URI = "bolt://localhost:7687"
-NEO4J_AUTH = ("neo4j", "password")
 
 
 def parse_options(options_str: str) -> dict:
@@ -71,7 +69,7 @@ class AskForMainItemSlotAction(Action):
 
         try:
             # 连接Neo4j数据库
-            with GraphDatabase.driver(NEO4J_URI, auth=NEO4J_AUTH) as driver:
+            with get_neo4j_driver() as driver:
                 with driver.session() as session:
                     # 查询所有不重复的主项名称
                     result = session.run("""
@@ -162,7 +160,7 @@ class AskForBusinessItemSlotAction(Action):
 
         try:
             # 连接Neo4j数据库
-            with GraphDatabase.driver(NEO4J_URI, auth=NEO4J_AUTH) as driver:
+            with get_neo4j_driver() as driver:
                 with driver.session() as session:
                     # 查询指定主项下的所有业务办理项
                     result = session.run("""
@@ -249,7 +247,7 @@ class AskForScenarioSlotAction(Action):
 
         try:
             # 连接Neo4j数据库
-            with GraphDatabase.driver(NEO4J_URI, auth=NEO4J_AUTH) as driver:
+            with get_neo4j_driver() as driver:
                 with driver.session() as session:
                     # 查询指定业务办理项下的所有情形
                     result = session.run("""
@@ -329,7 +327,7 @@ class AskForDistrictSlotAction(Action):
 
         try:
             # 连接Neo4j数据库
-            with GraphDatabase.driver(NEO4J_URI, auth=NEO4J_AUTH) as driver:
+            with get_neo4j_driver() as driver:
                 with driver.session() as session:
                     # 查询指定业务办理项对应的区划
                     result = session.run("""
@@ -399,7 +397,7 @@ class AskForLevelSlotAction(Action):
 
         try:
             # 连接Neo4j数据库
-            with GraphDatabase.driver(NEO4J_URI, auth=NEO4J_AUTH) as driver:
+            with get_neo4j_driver() as driver:
                 with driver.session() as session:
                     # 查询指定业务办理项对应的区划
                     result = session.run("""

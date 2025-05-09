@@ -1,5 +1,7 @@
 from neo4j import GraphDatabase
 from tqdm import tqdm
+from actions.db_config import get_neo4j_driver  # 导入驱动获取方法
+
 """_summary_
 
 查询数据库，对全部的location的address进行拆分
@@ -7,7 +9,7 @@ from tqdm import tqdm
 
 class Neo4jAddressProcessor:
     def __init__(self, uri, user, password):
-        self.driver = GraphDatabase.driver(uri, auth=(user, password))
+        self.driver = get_neo4j_driver()
 
     def close(self):
         self.driver.close()

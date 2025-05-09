@@ -2,12 +2,13 @@ import pandas as pd
 from neo4j import GraphDatabase
 from tqdm import tqdm
 import re
+from actions.db_config import get_neo4j_driver  # 导入驱动获取方法
 
 
 class Neo4jRegionInserter:
     def __init__(self, uri, user, password):
         """初始化Neo4j连接"""
-        self.driver = GraphDatabase.driver(uri, auth=(user, password))
+        self.driver = get_neo4j_driver()
         self.region_cache = {}  # 缓存已创建的区划节点
 
     def close(self):

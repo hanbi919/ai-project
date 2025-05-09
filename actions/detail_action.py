@@ -5,6 +5,7 @@ from rasa_sdk.events import SlotSet
 from neo4j import GraphDatabase
 import logging
 from .const import HIGENT
+from .db_config import get_neo4j_driver  # 导入驱动获取方法
 
 # 配置日志格式（带文件名和行号）
 logging.basicConfig(
@@ -76,8 +77,7 @@ class QueryServiceDetailsAction(Action):
             return []
 
         # 连接Neo4j数据库
-        driver = GraphDatabase.driver(
-            "bolt://localhost:7687", auth=("neo4j", "password"))
+        driver = get_neo4j_driver()
 
         with driver.session() as session:
             # 查询行政区划和办理地点信息

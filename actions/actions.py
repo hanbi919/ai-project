@@ -5,7 +5,7 @@ from rasa_sdk.events import SlotSet
 from neo4j import GraphDatabase
 import logging
 from .const import HIGENT
-
+from .db_config import get_neo4j_driver  # 导入驱动获取方法
 # 配置日志格式（带文件名和行号）
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s [%(filename)s:%(lineno)d]',
@@ -28,9 +28,8 @@ class QueryBusinessItemsAction(Action):
         if not main_item:
             return []
 
-        # 连接Neo4j数据库
-        driver = GraphDatabase.driver(
-            "bolt://localhost:7687", auth=("neo4j", "password"))
+        # 使用统一的驱动获取方法
+        driver = get_neo4j_driver()
 
         with driver.session() as session:
             result = session.run("""
@@ -67,8 +66,8 @@ class QueryScenariosAction(Action):
             return []
 
         # 连接Neo4j数据库
-        driver = GraphDatabase.driver(
-            "bolt://localhost:7687", auth=("neo4j", "password"))
+        # 使用统一的驱动获取方法
+        driver = get_neo4j_driver()
 
         with driver.session() as session:
             result = session.run("""
@@ -107,8 +106,8 @@ class QueryMaterialsAction(Action):
             return []
 
         # 连接Neo4j数据库
-        driver = GraphDatabase.driver(
-            "bolt://localhost:7687", auth=("neo4j", "password"))
+        # 使用统一的驱动获取方法
+        driver = get_neo4j_driver()
 
         with driver.session() as session:
             result = session.run("""

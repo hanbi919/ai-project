@@ -1,11 +1,7 @@
 from neo4j import GraphDatabase
 import pandas as pd
 from tqdm import tqdm
-
-# Neo4j 连接配置
-URI = "bolt://localhost:7687"
-USER = "neo4j"
-PASSWORD = "password"  # 替换为您的密码
+from actions.db_config import get_neo4j_driver  # 导入驱动获取方法
 
 """_summary_
     根据全部的区划数据导入neo4j
@@ -13,7 +9,7 @@ PASSWORD = "password"  # 替换为您的密码
 
 class DistrictImporter:
     def __init__(self, uri, user, password):
-        self.driver = GraphDatabase.driver(uri, auth=(user, password))
+        self.driver = get_neo4j_driver()
 
     def close(self):
         self.driver.close()

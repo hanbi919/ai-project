@@ -1,9 +1,10 @@
 from neo4j import GraphDatabase
+from actions.db_config import get_neo4j_driver
 
 
 class LocationAddressQuery:
     def __init__(self, uri, user, password):
-        self.driver = GraphDatabase.driver(uri, auth=(user, password))
+        self.driver = get_neo4j_driver()
 
     def close(self):
         self.driver.close()

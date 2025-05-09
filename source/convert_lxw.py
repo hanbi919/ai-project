@@ -1,15 +1,13 @@
 import pandas as pd
 from neo4j import GraphDatabase
 from tqdm import tqdm
+from .db_config import get_neo4j_driver  # 导入驱动获取方法
 
-# Neo4j数据库连接配置
-URI = "bolt://localhost:7687"
-AUTH = ("neo4j", "password")  # 替换为您的用户名和密码
 
 
 class Neo4jImporter:
     def __init__(self, uri, auth):
-        self.driver = GraphDatabase.driver(uri, auth=auth)
+        self.driver = get_neo4j_driver()
 
     def close(self):
         self.driver.close()
