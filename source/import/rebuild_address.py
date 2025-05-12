@@ -1,6 +1,6 @@
 from neo4j import GraphDatabase
 from tqdm import tqdm
-from actions.db_config import get_neo4j_driver  # 导入驱动获取方法
+from db_config import get_neo4j_driver  # 导入驱动获取方法
 
 """_summary_
 
@@ -8,7 +8,7 @@ from actions.db_config import get_neo4j_driver  # 导入驱动获取方法
 """
 
 class Neo4jAddressProcessor:
-    def __init__(self, uri, user, password):
+    def __init__(self,):
         self.driver = get_neo4j_driver()
 
     def close(self):
@@ -53,13 +53,8 @@ class Neo4jAddressProcessor:
 
 
 if __name__ == "__main__":
-    # Neo4j数据库连接配置
-    URI = "bolt://localhost:7687"
-    USER = "neo4j"
-    PASSWORD = "password"  # 替换为你的密码
-
     # 创建处理器实例
-    processor = Neo4jAddressProcessor(URI, USER, PASSWORD)
+    processor = Neo4jAddressProcessor()
 
     try:
         # 处理Location地址

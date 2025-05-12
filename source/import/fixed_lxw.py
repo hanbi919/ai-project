@@ -3,11 +3,11 @@ import pandas as pd
 from typing import List, Dict, Optional
 import re
 from tqdm import tqdm  # 导入进度条库
-from actions.db_config import get_neo4j_driver
+from db_config import get_neo4j_driver
 
 
 class Neo4jImporter:
-    def __init__(self, uri, auth):
+    def __init__(self):
         self.driver = get_neo4j_driver()
 
     def close(self):
@@ -192,7 +192,7 @@ class Neo4jImporter:
 
 
 if __name__ == "__main__":
-    importer = Neo4jImporter(URI, AUTH)
+    importer = Neo4jImporter()
 
     try:
         # 清空数据库（可选）
