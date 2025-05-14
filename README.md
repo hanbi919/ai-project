@@ -146,7 +146,7 @@ rasa example project
 
 2. 修改207行，使用最新的数据文件
 
-3. 执行 python source/import/fixed_lxw.py
+3. 执行 python source/import/fixed_lxw.py && python source/import/rebuild_address.py
 
 4. 执行 python source/import/rebuild_address.py
 
