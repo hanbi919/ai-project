@@ -35,7 +35,6 @@ nlu:
 - intent: inform_business_item
   examples: |
     - 你好，我想[办个](business_item:残疾人证新办)[残疾证](main_item:残疾人证办理)，该咋办啊？
-    - [残疾人证](main_item:残疾人证办理)[新办](business_item:残疾人证新办)
     - 我的[残疾证](main_item:残疾人证办理)[丢了](business_item:残疾人证挂失补办)，咋补办啊？
     - 补办要带啥东西
     - 我在[南关](area)，我想了解[残疾证](main_item:残疾人证办理)的事情
@@ -57,8 +56,8 @@ nlu:
 - intent: ask_service_details
   examples: |
     - 我在[南关](area)，我想问一下[残疾人证](main_item:残疾人证办理)在[哪里](detail_type:办理地点)办
-    - 我在[朝阳](area)，我想问一下[新办](business_item:残疾人证新办)[残疾人证](main_item:残疾人证办理)在[哪里](detail_type:办理地点)办
-    - 我在[朝阳区](area)，打算[新办](business_item:残疾人证新办)[残疾人证](main_item:残疾人证办理)，[几点](detail_type:办理时间)可以去
+    - 我在[朝阳](area)，我想问一下[残疾证新办](business_item:残疾人证新办)[残疾人证](main_item:残疾人证办理)在[哪里](detail_type:办理地点)办
+    - 我在[朝阳区](area)，打算[残疾证新办](business_item:残疾人证新办)[残疾人证](main_item:残疾人证办理)，[几点](detail_type:办理时间)可以去
 
 - intent: inform_district # 
   examples: |
