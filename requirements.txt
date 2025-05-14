@@ -291,7 +291,7 @@ virtualenv==20.4.2
 virtualenv-clone==0.5.4
 visions==0.8.1
 viztracer==0.15.4
-vnpy @ file:///Users/sunlingfeng/litao/vnpy-3.6.0
+vnpy 
 vnpy-algotrading==1.0.3
 vnpy-chartwizard==1.0.3
 vnpy-ctabacktester==1.1.0
