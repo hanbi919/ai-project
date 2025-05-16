@@ -6,6 +6,7 @@ from tqdm import tqdm  # 导入进度条库
 
 """
     生成nlu的"主项名称",'业务办理项名称', '情形业务'的训练数据
+    支持Rasa 3的lookup表格式输出
 """
 intent_main_name = "all_main_item "
 intent_business_name = "all_business_item "
@@ -27,6 +28,7 @@ with tqdm(column_list, desc="正在处理所有列", unit="column") as col_pbar:
     for column in col_pbar:
         col_pbar.set_postfix(column=column)  # 显示当前处理的列名
         data = []
+        lookup_data = []  # 存储lookup表数据
 
         # 获取该列的不重复值（去重）
         unique_values = df[column].dropna().unique()
@@ -39,6 +41,8 @@ with tqdm(column_list, desc="正在处理所有列", unit="column") as col_pbar:
                     continue
 
                 text = str(value).strip()
+
+                # 添加常规训练示例
                 example = Message.build(
                     text=text,
                     intent=intent_dict[column],
@@ -49,11 +53,26 @@ with tqdm(column_list, desc="正在处理所有列", unit="column") as col_pbar:
                     }]
                 )
                 data.append(example)
+
+                # 添加lookup表条目
+                lookup_data.append(text)
+
                 val_pbar.set_postfix(
                     当前处理=text[:10]+"..." if len(text) > 10 else text)  # 显示当前处理的文本
 
-        # 创建训练数据并保存
+        # 创建训练数据
         td = TrainingData(data)
+
+        # 添加lookup表
+        lookup_key = f"lookup_{entity_dict[column]}"
+        td.lookup_tables = [
+            {
+                "name": entity_dict[column],
+                "elements": lookup_data
+            }
+        ]
+
+        # 保存训练数据
         w1 = RasaYAMLWriter()
         output_path = f'data/business/{intent_dict[column]}.yml'
         w1.dump(output_path, td)

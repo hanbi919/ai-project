@@ -27,11 +27,12 @@ pipeline:
 #   model_name: "bert"
 #   model_weights: "pipeline/bert-base-chinese"
 - name: RegexEntityExtractor
-  case_sensitive: False
-  use_lookup_tables: True
-  use_regexes: True
-  use_word_boundaries: False
-- name: DIETClassifier                                              # 用于意图分类和实体识别
+  # case_sensitive: False
+  # use_lookup_tables: True
+  # use_regexes: True
+  # use_word_boundaries: False
+- name: DIETClassifier  
+  constrain_similarities: true                                            # 用于意图分类和实体识别
   # TRANSFORMER_SIZE: 512                                             # 默认256，扩大容量，记住复杂术语
   # NUM_HEADS: 8                                                      # 默认4，更多视角区分200+意图
   # BATCH_SIZES: [32, 128]                                            # 默认[64, 256]，控制训练时每次喂给模型的样本数量
@@ -57,7 +58,7 @@ pipeline:
   #     - name: LexicalSyntacticFeaturizer
   #   label:
   #     - name: CountVectorsFeaturizer                                    # 默认false， 确保批次一致性
-  epochs: 100                                                       # 训练轮次
+  epochs: 200                                                       # 训练轮次
 - name: FallbackClassifier
   threshold: 0.7  # 意图识别置信度阈值（低于此值触发回退）
   ambiguity_threshold: 0.1  # 可选：最高意图和第二意图的最小差值阈值
