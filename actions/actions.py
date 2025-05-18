@@ -4,7 +4,7 @@ from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
 from neo4j import GraphDatabase
 import logging
-from .const import HIGENT
+from .const import NO_MARTERIAL, NO_FOUND_MARTERIAL, RESP
 from .db_config import get_neo4j_driver  # 导入驱动获取方法
 # 配置日志格式（带文件名和行号）
 logging.basicConfig(
@@ -123,14 +123,14 @@ class QueryMaterialsAction(Action):
         driver.close()
         if materials:
             if materials[0] == "无需材料":
-                dispatcher.utter_message(text=f"{HIGENT}办理这个业务，您不需要准备材料。")
+                dispatcher.utter_message(text=NO_MARTERIAL)
             else:
                 materials_list = "\n- " + \
                     "\n- ".join([f"{item}。" for item in materials])
                 dispatcher.utter_message(
-                    text=f"{HIGENT}您需要准备以下材料：{materials_list}")
+                    text=f"{RESP}您需要准备以下材料：{materials_list}")
         else:
-            dispatcher.utter_message(text=f"{HIGENT}未找到对应的材料信息，请确认您的选择是否正确。")
+            dispatcher.utter_message(text=NO_FOUND_MARTERIAL)
 
         return [SlotSet("scenario", None),]
 

@@ -4,7 +4,7 @@ from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
 from neo4j import GraphDatabase
 import logging
-from .const import HIGENT
+from .const import NO_GET
 from .db_config import get_neo4j_driver  # 导入驱动获取方法
 
 # 配置日志格式（带文件名和行号）
@@ -98,7 +98,7 @@ class QueryServiceDetailsAction(Action):
         driver.close()
 
         if not record:
-            dispatcher.utter_message(text=f"{HIGENT}数据库未找到对应的业务信息")
+            dispatcher.utter_message(text=NO_GET)
             return []
 
         details = ""
@@ -107,7 +107,7 @@ class QueryServiceDetailsAction(Action):
         location_list = []
         import re
         for location in locations:
-            loc = location.get("name", "") 
+            loc = location.get("name", "")
             cleaned_text = re.sub(r"^\(|\)$|'|,$", "", loc)
             location_list.append(cleaned_text)
         numbered_lines = []  # 初始化一个空列表来存储带序号的行
@@ -152,8 +152,8 @@ class QueryServiceDetailsAction(Action):
             if detail_type != "全部信息":
                 header = ""
             dispatcher.utter_message(
-                text=f"{HIGENT}\n{details}".strip())
+                text=f"RESP\n{details}".strip())
         else:
-            dispatcher.utter_message(text=f"{HIGENT}未找到对应的详细业务信息")
+            dispatcher.utter_message(text=NO_GET)
 
         return []

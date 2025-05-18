@@ -3,7 +3,6 @@ from rasa_sdk import Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.forms import FormValidationAction
 import logging
-from .const import HIGENT
 from rasa_sdk.events import SlotSet, AllSlotsReset
 # 配置日志格式（带文件名和行号）
 logging.basicConfig(

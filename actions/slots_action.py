@@ -4,7 +4,7 @@ from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet, FollowupAction
 from neo4j import GraphDatabase
 import logging
-from .const import HIGENT
+from .const import RESP, HIGENT, FOLLOW_UP
 from .db_config import get_neo4j_driver  # 导入驱动获取方法
 
 # 配置日志格式（带文件名和行号）
@@ -93,7 +93,6 @@ class AskForMainItemSlotAction(Action):
 
                     if main_items:
 
-
                         # 创建按钮列表
                         # buttons = [
                         #     {
@@ -104,12 +103,13 @@ class AskForMainItemSlotAction(Action):
                         # ]
                         numbered_items = [
                             f"{idx + 1}. {item}"
-                            for idx, item in enumerate(sorted(main_items))  # 按字母排序
+                            # 按字母排序
+                            for idx, item in enumerate(sorted(main_items))
                         ]
 
                         # 将列表转换为换行分隔的字符串
                         items_list = "\n".join(numbered_items)
-                        message = f"{HIGENT}请选择您要查询的主项名称：\n {items_list}"
+                        message = f"{RESP}请选择您要查询的主项名称：\n {items_list}"
                         logger.debug(
                             f"Prepared message with {len(main_items)} options")
                     else:
@@ -177,7 +177,7 @@ class AskForBusinessItemSlotAction(Action):
                         f"Found {len(business_items)} business items for {main_item}")
                     if len(business_items) == 1:
                         if tracker.active_loop:
-                            form_name=tracker.active_loop.get("name") 
+                            form_name = tracker.active_loop.get("name")
                         return [SlotSet("business_item", business_items[0]), FollowupAction(form_name)]
                     if business_items:
                         # buttons = [
@@ -275,7 +275,7 @@ class AskForScenarioSlotAction(Action):
                             SlotSet("current_options", scenarios_dict)]
                         options = "\n".join(
                             [f"{i+1}. {item}。" for i, item in enumerate(scenarios)])
-                        message = f"{HIGENT}请选择'{business_item}'下的情形：\n{options}"
+                        message = f"{FOLLOW_UP}请选择'{business_item}'下的情形：\n{options}"
                         dispatcher.utter_message(text=message)
                         return slot_event
                     else:
@@ -362,7 +362,7 @@ class AskForDistrictSlotAction(Action):
             dispatcher.utter_message(text=f"{HIGENT}查询服务区划时发生错误，请稍后再试")
 
         return []
-    
+
 
 class AskForLevelSlotAction(Action):
     """询问用户选层级的动作"""
@@ -420,7 +420,7 @@ class AskForLevelSlotAction(Action):
                     if levels:
                         options = "\n".join(
                             [f"{i+1}. {item}" for i, item in enumerate(levels)])
-                        message = f"{HIGENT}请选择'{business_item}'服务的层级：\n{options}"
+                        message = f"{FOLLOW_UP}请选择'{business_item}'服务的层级：\n{options}"
                     else:
                         message = f"{HIGENT}'{business_item}'没有指定服务层级"
                         logger.warning(
