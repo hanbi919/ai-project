@@ -4,7 +4,7 @@ from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
 from neo4j import GraphDatabase
 import logging
-from .const import NO_GET
+from .const import NO_GET, RESP
 from .db_config import get_neo4j_driver  # 导入驱动获取方法
 
 # 配置日志格式（带文件名和行号）
@@ -152,7 +152,7 @@ class QueryServiceDetailsAction(Action):
             if detail_type != "全部信息":
                 header = ""
             dispatcher.utter_message(
-                text=f"RESP\n{details}".strip())
+                text=f"{RESP}\n{details}".strip())
         else:
             dispatcher.utter_message(text=NO_GET)
 
