@@ -4,7 +4,7 @@ from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet, FollowupAction
 from neo4j import GraphDatabase
 import logging
-from .const import RESP, HIGENT, FOLLOW_UP
+from .const import RESP, HIGENT, FOLLOW_UP, NO_GET
 from .db_config import get_neo4j_driver  # 导入驱动获取方法
 
 # 配置日志格式（带文件名和行号）
@@ -66,6 +66,10 @@ class AskForMainItemSlotAction(Action):
         # 获取当前slot值
         main_item = tracker.get_slot("main_item")
         logger.debug(f"Current 'main_item' slot value: {main_item}")
+
+        if main_item == None:
+            dispatcher.utter_message(text=NO_GET)
+            return []
 
         try:
             # 连接Neo4j数据库

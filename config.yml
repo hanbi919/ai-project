@@ -58,7 +58,9 @@ pipeline:
   #     - name: LexicalSyntacticFeaturizer
   #   label:
   #     - name: CountVectorsFeaturizer                                    # 默认false， 确保批次一致性
-  epochs: 200                                                       # 训练轮次
+  epochs: 200 
+- name: EntitySynonymMapper
+- name: components.remove.OverlappingEntitiesRemover                                                      # 训练轮次
 - name: FallbackClassifier
   threshold: 0.7  # 意图识别置信度阈值（低于此值触发回退）
   ambiguity_threshold: 0.1  # 可选：最高意图和第二意图的最小差值阈值
@@ -74,7 +76,7 @@ pipeline:
   learning_rate: 0.001
   constrain_similarities: True
   scale_loss: false
-- name: EntitySynonymMapper
+
 # # No configuration for the NLU pipeline was provided. The following default pipeline was used to train your model.
 # # If you'd like to customize it, uncomment and adjust the pipeline.
 # # See https://rasa.com/docs/rasa/tuning-your-model for more information.
