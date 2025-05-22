@@ -16,7 +16,7 @@ NEO4J_CONFIG = {
         os.getenv("NEO4J_PASSWORD", "password")
     ),
     "database": os.getenv("NEO4J_DATABASE", "neo4j"),
-    "max_connection_pool_size": int(os.getenv("NEO4J_MAX_POOL_SIZE", 10))
+    "max_connection_pool_size": int(os.getenv("NEO4J_MAX_POOL_SIZE", 50))
 }
 
 
