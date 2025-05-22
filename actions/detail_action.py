@@ -46,7 +46,7 @@ class QueryServiceDetailsAction(Action):
             formatted.append(location_info)
         return formatted
 
-    def run(self, dispatcher: CollectingDispatcher,
+    async def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
@@ -77,11 +77,11 @@ class QueryServiceDetailsAction(Action):
             return []
 
         # 连接Neo4j数据库
-        driver = get_neo4j_driver()
+        driver = await get_neo4j_driver()
 
-        with driver.session() as session:
+        async with driver.session() as session:
             # 查询行政区划和办理地点信息
-            result = session.run("""
+            result = await session.run("""
                 MATCH (:MainItem {name: $main_item})-[:HAS_BUSINESS_ITEM]->
                       (b:BusinessItem {name: $business_item})-[:LOCATED_IN]->
                       (d:District {main_item:$main_item,business_item:$business_item})-[:HAS_LOCATION]->(l:Location)-[:HAS_ADDRESS]->(addr:Address)
@@ -93,7 +93,7 @@ class QueryServiceDetailsAction(Action):
                 LIMIT 1
             """, main_item=main_item, business_item=business_item, district=district)
 
-            record = result.single()
+            record = await result.single()
 
         driver.close()
 

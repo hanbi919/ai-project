@@ -2,16 +2,15 @@ from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
-from neo4j import GraphDatabase
 import logging
 from .const import NO_MARTERIAL, NO_FOUND_MARTERIAL, RESP
-from .db_config import get_neo4j_driver  # 导入驱动获取方法
-# 配置日志格式（带文件名和行号）
+from .db_config import get_neo4j_driver  # 确保这是异步版本的驱动获取方法
+
+# 配置日志
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s [%(filename)s:%(lineno)d]',
     level=logging.DEBUG
 )
-# 初始化日志记录器
 logger = logging.getLogger(__name__)
 
 
@@ -19,34 +18,38 @@ class QueryBusinessItemsAction(Action):
     def name(self) -> Text:
         return "action_query_business_items"
 
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+    async def run(self, dispatcher: CollectingDispatcher,
+                  tracker: Tracker,
+                  domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
         main_item = tracker.get_slot("main_item").rstrip('。')
-
         if not main_item:
             return []
 
-        # 使用统一的驱动获取方法
-        driver = get_neo4j_driver()
+        try:
+            driver = await get_neo4j_driver()
+            async with driver.session() as session:
+                result = await session.run("""
+                    MATCH (m:MainItem {name: $main_item})-[:HAS_BUSINESS_ITEM]->(b:BusinessItem)
+                    RETURN b.name AS business_item
+                    ORDER BY b.name
+                """, main_item=main_item)
 
-        with driver.session() as session:
-            result = session.run("""
-                MATCH (m:MainItem {name: $main_item})-[:HAS_BUSINESS_ITEM]->(b:BusinessItem)
-                RETURN b.name AS business_item
-                ORDER BY b.name
-            """, main_item=main_item)
+                records = await result.values()
+                business_items = [record[0] for record in records]
 
-            business_items = [record["business_item"] for record in result]
+            if business_items:
+                options = "\n- ".join([""] + business_items)
+                dispatcher.utter_message(text=f"请选择业务办理项名称：{options}")
+            else:
+                dispatcher.utter_message(text=f"未找到'{main_item}'下的业务办理项")
 
-        driver.close()
-
-        if business_items:
-            options = "\n- ".join([""] + business_items)
-            dispatcher.utter_message(text=f"请选择业务办理项名称：{options}")
-        else:
-            dispatcher.utter_message(text=f"未找到'{main_item}'下的业务办理项")
+        except Exception as e:
+            logger.error(f"查询业务办理项时出错: {str(e)}", exc_info=True)
+            dispatcher.utter_message(text="查询业务办理项时发生错误")
+        finally:
+            if 'driver' in locals():
+                await driver.close()
 
         return []
 
@@ -55,37 +58,40 @@ class QueryScenariosAction(Action):
     def name(self) -> Text:
         return "action_query_scenarios"
 
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+    async def run(self, dispatcher: CollectingDispatcher,
+                  tracker: Tracker,
+                  domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
         main_item = tracker.get_slot("main_item").rstrip('。')
         business_item = tracker.get_slot("business_item").rstrip('。')
-
         if not business_item:
             return []
 
-        # 连接Neo4j数据库
-        # 使用统一的驱动获取方法
-        driver = get_neo4j_driver()
+        try:
+            driver = await get_neo4j_driver()
+            async with driver.session() as session:
+                result = await session.run("""
+                    MATCH (:MainItem {name: $main_item})-[:HAS_BUSINESS_ITEM]->
+                          (b:BusinessItem {name: $business_item})-[:HAS_SCENARIO]->(s:Scenario)
+                    RETURN s.name AS scenario
+                    ORDER BY s.name
+                """, main_item=main_item, business_item=business_item)
 
-        with driver.session() as session:
-            result = session.run("""
-                MATCH (:MainItem {name: $main_item})-[:HAS_BUSINESS_ITEM]->
-                      (b:BusinessItem {name: $business_item})-[:HAS_SCENARIO]->(s:Scenario)
-                RETURN s.name AS scenario
-                ORDER BY s.name
-            """, main_item=main_item, business_item=business_item)
+                records = await result.values()
+                scenarios = [record[0] for record in records]
 
-            scenarios = [record["scenario"] for record in result]
+            if scenarios:
+                options = "\n- ".join([""] + scenarios)
+                dispatcher.utter_message(text=f"请选择情形：{options}")
+            else:
+                dispatcher.utter_message(text=f"未找到'{business_item}'下的情形")
 
-        driver.close()
-
-        if scenarios:
-            options = "\n- ".join([""] + scenarios)
-            dispatcher.utter_message(text=f"请选择情形：{options}")
-        else:
-            dispatcher.utter_message(text=f"未找到'{business_item}'下的情形")
+        except Exception as e:
+            logger.error(f"查询情形时出错: {str(e)}", exc_info=True)
+            dispatcher.utter_message(text="查询情形时发生错误")
+        finally:
+            if 'driver' in locals():
+                await driver.close()
 
         return []
 
@@ -94,86 +100,92 @@ class QueryMaterialsAction(Action):
     def name(self) -> Text:
         return "action_query_materials"
 
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+    async def run(self, dispatcher: CollectingDispatcher,
+                  tracker: Tracker,
+                  domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        main_item = tracker.get_slot("main_item").rstrip('。')
-        business_item = tracker.get_slot("business_item").rstrip('。')
-        scenario = tracker.get_slot("scenario").rstrip('。')
-
+        main_item = tracker.get_slot("main_item")
+        if main_item:
+            main_item = main_item.rstrip('。')
+        business_item = tracker.get_slot("business_item")
+        if business_item:
+            business_item = business_item.rstrip('。')
+        scenario = tracker.get_slot("scenario")
+        if scenario:
+            scenario = scenario.rstrip('。')
         if not scenario:
             return []
 
-        # 连接Neo4j数据库
-        # 使用统一的驱动获取方法
-        driver = get_neo4j_driver()
+        try:
+            driver = await get_neo4j_driver()
+            async with driver.session() as session:
+                result = await session.run("""
+                    MATCH (:MainItem {name: $main_item})-[:HAS_BUSINESS_ITEM]->
+                          (:BusinessItem {name: $business_item})-[:HAS_SCENARIO]->
+                          (s:Scenario {name: $scenario})-[:REQUIRES]->(m:Material)
+                    RETURN m.name AS material
+                    ORDER BY m.name
+                """, main_item=main_item, business_item=business_item, scenario=scenario)
 
-        with driver.session() as session:
-            result = session.run("""
-                MATCH (:MainItem {name: $main_item})-[:HAS_BUSINESS_ITEM]->
-                      (:BusinessItem {name: $business_item,main_item:$main_item})-[:HAS_SCENARIO]->
-                      (s:Scenario {name: $scenario,business_item:$business_item,main_item:$main_item})-[:REQUIRES]->(m:Material)
-                RETURN m.name AS material
-                ORDER BY m.name
-            """, main_item=main_item, business_item=business_item, scenario=scenario)
+                records = await result.values()
+                materials = [record[0] for record in records]
 
-            materials = [record["material"] for record in result]
-
-        driver.close()
-        if materials:
-            if materials[0] == "无需材料":
-                dispatcher.utter_message(text=NO_MARTERIAL)
+            if materials:
+                if materials[0] == "无需材料":
+                    dispatcher.utter_message(text=NO_MARTERIAL)
+                else:
+                    materials_list = "\n- " + \
+                        "\n- ".join([f"{item}。" for item in materials])
+                    dispatcher.utter_message(
+                        text=f"{RESP}您需要准备以下材料：{materials_list}")
             else:
-                materials_list = "\n- " + \
-                    "\n- ".join([f"{item}。" for item in materials])
-                dispatcher.utter_message(
-                    text=f"{RESP}您需要准备以下材料：{materials_list}")
-        else:
-            dispatcher.utter_message(text=NO_FOUND_MARTERIAL)
+                dispatcher.utter_message(text=NO_FOUND_MARTERIAL)
 
-        return [SlotSet("scenario", None),]
+        except Exception as e:
+            logger.error(f"查询材料时出错: {str(e)}", exc_info=True)
+            dispatcher.utter_message(text="查询材料时发生错误")
+        finally:
+            if 'driver' in locals():
+                await driver.close()
+
+        return [SlotSet("scenario", None)]
 
 
 class ClearSlotAction(Action):
     def name(self) -> Text:
         return "action_reset_main_item"
 
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        main_item = tracker.get_slot("main_item")
-        return [SlotSet("business_item", None), SlotSet("scenario", None),]
+    async def run(self, dispatcher: CollectingDispatcher,
+                  tracker: Tracker,
+                  domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        # 无数据库操作，无需修改
+        return [SlotSet("business_item", None), SlotSet("scenario", None)]
 
 
 class OrdinalAction(Action):
     def name(self) -> Text:
         return "action_ordinal_mention"
 
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+    async def run(self, dispatcher: CollectingDispatcher,
+                  tracker: Tracker,
+                  domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        # 无数据库操作，逻辑保持不变
         requested_slot = tracker.get_slot("requested_slot")
         if not requested_slot:
             dispatcher.utter_message(text="系统错误：未找到当前请求的slot")
             return []
 
-        # 2. 获取用户输入的数字
         value = tracker.latest_message.get("text", "").strip()
-
         options = tracker.get_slot("current_options") or {}
-        # 检查输入是否是数字且在 options 的范围内
+
         if value.isdigit():
-            # 检查数字是否在 options 的键中
             if value in options:
                 selected_value = options[value]
                 return [SlotSet(requested_slot, selected_value)]
             else:
-                # 数字超出范围（比如 options 只有1-3，但用户输入4）
                 max_option = max(
                     options.keys(), key=lambda x: int(x)) if options else "0"
-                dispatcher.utter_message(text=f"请输入1到{max_option}之间的数字！"
-                                         )
+                dispatcher.utter_message(text=f"请输入1到{max_option}之间的数字！")
         else:
-            # 输入不是数字
             dispatcher.utter_message(text="请输入有效的数字（如1、2、3）！")
+        return []

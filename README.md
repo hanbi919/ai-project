@@ -197,3 +197,8 @@ tmux a -t rasa-action
 
 
 SANIC_WORKERS=5 rasa run --enable-api --cors "*" --debug
+
+### 压力测试
+
+ab -n 400 -c 20 -p data.json -T "application/json" http://localhost:5005/webhooks/rest/webhook > test_results.txt
+
