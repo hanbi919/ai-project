@@ -68,9 +68,6 @@ class AskForMainItemSlotAction(Action):
         except Exception as e:
             logger.error(f"查询主项时出错：{str(e)}", exc_info=True)
             dispatcher.utter_message(text=f"{HIGENT}查询主项服务时发生错误，请稍后再试")
-        finally:
-            if 'driver' in locals():
-                await driver.close()
 
         return []
 
@@ -120,10 +117,6 @@ class AskForBusinessItemSlotAction(Action):
         except Exception as e:
             logger.error(f"查询业务办理项时出错：{str(e)}", exc_info=True)
             dispatcher.utter_message(text=f"{HIGENT}查询业务办理项时发生错误，请稍后再试")
-        finally:
-            if 'driver' in locals():
-                await driver.close()
-
         return []
 
 
@@ -172,10 +165,6 @@ class AskForScenarioSlotAction(Action):
         except Exception as e:
             logger.error(f"查询情形时出错：{str(e)}", exc_info=True)
             dispatcher.utter_message(text=f"{HIGENT}查询情形时发生错误，请稍后再试")
-        finally:
-            if 'driver' in locals():
-                await driver.close()
-
         return []
 
 
@@ -221,9 +210,6 @@ class AskForDistrictSlotAction(Action):
         except Exception as e:
             logger.error(f"查询区划时出错：{str(e)}", exc_info=True)
             dispatcher.utter_message(text=f"{HIGENT}查询服务区划时发生错误，请稍后再试")
-        finally:
-            if 'driver' in locals():
-                await driver.close()
 
         return []
 
@@ -274,8 +260,4 @@ class AskForLevelSlotAction(Action):
         except Exception as e:
             logger.error(f"查询层级时出错：{str(e)}", exc_info=True)
             dispatcher.utter_message(text=f"{HIGENT}查询服务层级时发生错误，请稍后再试")
-        finally:
-            if 'driver' in locals():
-                await driver.close()
-
         return []

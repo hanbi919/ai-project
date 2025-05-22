@@ -204,4 +204,14 @@ ab -n 400 -c 20 -p data.json -T "application/json" http://localhost:5005/webhook
 
 ab -n 400 -c 20 -p data.json -T "application/json" -l -k http://localhost:5005/webhooks/rest/webhook > test_results.txt
 
-nohup ab -n 50 -c 10 -p data.json -T "application/json" -l -k http://localhost:5005/webhooks/rest/webhook > test_results.txt 2>&1 &
+nohup ab -n 10 -c 1 -p data.json -T "application/json" -l -k http://localhost:5005/webhooks/rest/webhook > test_results.txt 2>&1 &
+ab -n 10 -c 1
+
+### neo4j
+
+docker exec -it neo4j cypher-shell -u neo4j -p password
+
+
+docker run --name neo4j   -p 7474:7474 -p 7687:7687   -v neo4j_data:/data   -v neo4j_logs:/logs   -v neo4j_import:/var/lib/neo4j/import   --env NEO4J_AUTH=neo4j/password   --restart unless-stopped --memory 16g --cpus 8  -d neo4j:latest 
+
+--memory 16g --cpus 8
