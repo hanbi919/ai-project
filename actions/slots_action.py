@@ -4,7 +4,7 @@ from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet, FollowupAction
 import logging
 from .const import RESP, HIGENT, FOLLOW_UP, NO_MAIN_ITEM
-from .db_config import get_neo4j_driver  # 确保这是异步版本的驱动获取方法
+from .db_config import get_neo4j_session  # 确保这是异步版本的驱动获取方法
 
 # 配置日志
 logging.basicConfig(
@@ -43,8 +43,7 @@ class AskForMainItemSlotAction(Action):
             return []
 
         try:
-            driver = await get_neo4j_driver()
-            async with driver.session() as session:
+            async with await get_neo4j_session() as session:
                 result = await session.run("""
                     MATCH (m:MainItem)
                     RETURN DISTINCT m.name AS main_item
@@ -92,8 +91,7 @@ class AskForBusinessItemSlotAction(Action):
             return []
 
         try:
-            driver = await get_neo4j_driver()
-            async with driver.session() as session:
+            async with await get_neo4j_session() as session:
                 result = await session.run("""
                     MATCH (m:MainItem {name: $main_item})-[:HAS_BUSINESS_ITEM]->(b:BusinessItem)
                     RETURN b.name AS business_item
@@ -146,8 +144,7 @@ class AskForScenarioSlotAction(Action):
             return []
 
         try:
-            driver = await get_neo4j_driver()
-            async with driver.session() as session:
+            async with await get_neo4j_session() as session:
                 result = await session.run("""
                     MATCH (:MainItem {name: $main_item})-[:HAS_BUSINESS_ITEM]->
                           (b:BusinessItem {name: $business_item})-[:HAS_SCENARIO]->(s:Scenario)
@@ -199,8 +196,7 @@ class AskForDistrictSlotAction(Action):
             return []
 
         try:
-            driver = await get_neo4j_driver()
-            async with driver.session() as session:
+            async with await get_neo4j_session() as session:
                 result = await session.run("""
                     MATCH (:MainItem {name: $main_item})-[:HAS_BUSINESS_ITEM]->
                           (b:BusinessItem {name: $business_item})-[:LOCATED_IN]->(s:District)
@@ -249,8 +245,8 @@ class AskForLevelSlotAction(Action):
             return []
 
         try:
-            driver = await get_neo4j_driver()
-            async with driver.session() as session:
+            async with await get_neo4j_session() as session:
+                
                 result = await session.run("""
                     MATCH (:MainItem {name: $main_item})-[:HAS_BUSINESS_ITEM]->
                           (b:BusinessItem {name: $business_item})-[:LOCATED_IN]->(s:District)

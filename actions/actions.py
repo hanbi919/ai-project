@@ -4,7 +4,7 @@ from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
 import logging
 from .const import NO_MARTERIAL, NO_FOUND_MARTERIAL, RESP
-from .db_config import get_neo4j_driver  # 确保这是异步版本的驱动获取方法
+from .db_config import get_neo4j_session  # 确保这是异步版本的驱动获取方法
 
 # 配置日志
 logging.basicConfig(
@@ -27,8 +27,7 @@ class QueryBusinessItemsAction(Action):
             return []
 
         try:
-            driver = await get_neo4j_driver()
-            async with driver.session() as session:
+            async with await get_neo4j_session() as session:
                 result = await session.run("""
                     MATCH (m:MainItem {name: $main_item})-[:HAS_BUSINESS_ITEM]->(b:BusinessItem)
                     RETURN b.name AS business_item
@@ -68,8 +67,7 @@ class QueryScenariosAction(Action):
             return []
 
         try:
-            driver = await get_neo4j_driver()
-            async with driver.session() as session:
+            async with await get_neo4j_session() as session:
                 result = await session.run("""
                     MATCH (:MainItem {name: $main_item})-[:HAS_BUSINESS_ITEM]->
                           (b:BusinessItem {name: $business_item})-[:HAS_SCENARIO]->(s:Scenario)
@@ -117,8 +115,8 @@ class QueryMaterialsAction(Action):
             return []
 
         try:
-            driver = await get_neo4j_driver()
-            async with driver.session() as session:
+            async with await get_neo4j_session() as session:
+            
                 result = await session.run("""
                     MATCH (:MainItem {name: $main_item})-[:HAS_BUSINESS_ITEM]->
                           (:BusinessItem {name: $business_item})-[:HAS_SCENARIO]->
@@ -144,9 +142,7 @@ class QueryMaterialsAction(Action):
         except Exception as e:
             logger.error(f"查询材料时出错: {str(e)}", exc_info=True)
             dispatcher.utter_message(text="查询材料时发生错误")
-        finally:
-            if 'driver' in locals():
-                await driver.close()
+
 
         return [SlotSet("scenario", None)]
 

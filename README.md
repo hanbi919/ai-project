@@ -202,3 +202,6 @@ SANIC_WORKERS=5 rasa run --enable-api --cors "*" --debug
 
 ab -n 400 -c 20 -p data.json -T "application/json" http://localhost:5005/webhooks/rest/webhook > test_results.txt
 
+ab -n 400 -c 20 -p data.json -T "application/json" -l -k http://localhost:5005/webhooks/rest/webhook > test_results.txt
+
+nohup ab -n 50 -c 10 -p data.json -T "application/json" -l -k http://localhost:5005/webhooks/rest/webhook > test_results.txt 2>&1 &

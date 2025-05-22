@@ -5,7 +5,7 @@ from rasa_sdk.events import SlotSet
 from neo4j import GraphDatabase
 import logging
 from .const import NO_GET, RESP
-from .db_config import get_neo4j_driver  # 导入驱动获取方法
+from .db_config import get_neo4j_session  # 导入驱动获取方法
 
 # 配置日志格式（带文件名和行号）
 logging.basicConfig(
@@ -76,10 +76,7 @@ class QueryServiceDetailsAction(Action):
         if not all([main_item, business_item, detail_type]):
             return []
 
-        # 连接Neo4j数据库
-        driver = await get_neo4j_driver()
-
-        async with driver.session() as session:
+        async with await get_neo4j_session() as session:
             # 查询行政区划和办理地点信息
             result = await session.run("""
                 MATCH (:MainItem {name: $main_item})-[:HAS_BUSINESS_ITEM]->
@@ -95,7 +92,7 @@ class QueryServiceDetailsAction(Action):
 
             record = await result.single()
 
-        driver.close()
+        # driver.close()
 
         if not record:
             dispatcher.utter_message(text=NO_GET)
