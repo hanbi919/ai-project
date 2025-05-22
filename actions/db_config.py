@@ -16,7 +16,8 @@ NEO4J_CONFIG = {
         os.getenv("NEO4J_PASSWORD", "password")
     ),
     "database": os.getenv("NEO4J_DATABASE", "neo4j"),
-    "max_connection_pool_size": int(os.getenv("NEO4J_MAX_POOL_SIZE", 50))
+    "max_connection_pool_size": int(os.getenv("NEO4J_MAX_POOL_SIZE", 50)),
+    "connection_timeout": 30.0  # 增加连接超时时间
 }
 
 
@@ -38,7 +39,8 @@ class Neo4jConnectionPool:
                 self._driver = AsyncGraphDatabase.driver(
                     NEO4J_CONFIG["uri"],
                     auth=NEO4J_CONFIG["auth"],
-                    max_connection_pool_size=NEO4J_CONFIG["max_connection_pool_size"]
+                    max_connection_pool_size=NEO4J_CONFIG["max_connection_pool_size"],
+                    connection_timeout=NEO4J_CONFIG["connection_timeout"]
                 )
                 # 测试连接是否有效
                 async with self._driver.session() as session:
