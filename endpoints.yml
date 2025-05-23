@@ -28,7 +28,8 @@ action_endpoint:
 # 使用 Redis 替代默认 SQLite
 tracker_store:
   type: redis
-  url: "redis://localhost:6379/0"
+  url:  localhost
+  db: 0
   key_prefix: "rasa:"
   # 优化参数
   connection_pool:
