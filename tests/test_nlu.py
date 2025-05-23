@@ -14,8 +14,8 @@ def random_user_id(length=16):
 
 
 class ChatApiUser(HttpUser):
-    host = "http://116.141.0.77:5005"  # 基础地址
-    # host = "http://116.141.0.77:5678"  # 基础地址
+    # host = "http://116.141.0.77:5005"  # 基础地址
+    host = "http://116.141.0.77:5678"  # 基础地址
     wait_time = between(0.1, 0.3)      # 缩短等待时间以快速完成400请求
 
     questions = [
@@ -29,18 +29,18 @@ class ChatApiUser(HttpUser):
     @task
     def ask_question(self):
         # 准备随机请求数据
-        payload = {
-            "sender": f"{random_user_id()}",
-            "message": f"{random.choice(self.questions)}"
-        }
         # payload = {
-        #     "question": f"用户问题：“{random.choice(self.questions)}”，用户标识：“{random_user_id()}”"
+        #     "sender": f"{random_user_id()}",
+        #     "message": f"{random.choice(self.questions)}"
         # }
+        payload = {
+            "question": f"用户问题：“{random.choice(self.questions)}”，用户标识：“{random_user_id()}”"
+        }
 
         # 发送POST请求
         with self.client.post(
-            "/webhooks/rest/webhook",
-            # "/chat",
+            # "/webhooks/rest/webhook",
+            "/chat",
             json=payload,
             headers={"Content-Type": "application/json"},
             catch_response=True

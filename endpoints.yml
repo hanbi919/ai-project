@@ -25,7 +25,15 @@ action_endpoint:
 #    db: <number of your database within redis, e.g. 0>
 #    password: <password used for authentication>
 #    use_ssl: <whether or not the communication is encrypted, default false>
-
+# 使用 Redis 替代默认 SQLite
+tracker_store:
+  type: redis
+  url: "redis://redis:6379/0"
+  key_prefix: "rasa:"
+  # 优化参数
+  connection_pool:
+    max_connections: 100
+    timeout: 30s
 #tracker_store:
 #    type: mongod
 #    url: <url to your mongo instance, e.g. mongodb://localhost:27017>
