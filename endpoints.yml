@@ -28,13 +28,20 @@ action_endpoint:
 # 使用 Redis 替代默认 SQLite
 tracker_store:
   type: redis
-  url:  localhost
+  url:  "localhost"
   db: 0
   key_prefix: "rasa:"
   # 优化参数
   connection_pool:
     max_connections: 100
     timeout: 30s
+lock_store:  # 避免并发问题
+  type: redis
+  url: "localhost"
+  port: 6379
+  db: 1
+  key_prefix: "rasa:"
+
 #tracker_store:
 #    type: mongod
 #    url: <url to your mongo instance, e.g. mongodb://localhost:27017>
