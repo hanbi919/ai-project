@@ -196,7 +196,7 @@ tmux a -t rasa-action
 遗属待遇申领 地址是空格分割的
 
 
-SANIC_WORKERS=5 rasa run --enable-api --cors "*" --debug
+SANIC_WORKERS=12 rasa run --enable-api --cors "*" --debug
 
 ### 压力测试
 
@@ -204,14 +204,30 @@ ab -n 400 -c 20 -p data.json -T "application/json" http://localhost:5005/webhook
 
 ab -n 400 -c 20 -p data.json -T "application/json" -l -k http://localhost:5005/webhooks/rest/webhook > test_results.txt
 
-nohup ab -n 10 -c 1 -p data.json -T "application/json" -l -k http://localhost:5005/webhooks/rest/webhook > test_results.txt 2>&1 &
+nohup ab -n 400 -c 20  -t 60 -p data.json -T "application/json" -l -k http://localhost:5005/webhooks/rest/webhook > test_results.txt 2>&1 &
 ab -n 10 -c 1
+
+nohup ab -n 400 -c 20 -p data.json -T "application/json" -l -k http://localhost:5005/webhooks/rest/webhook > test_results.txt 2>&1 &
+
 
 ### neo4j
 
 docker exec -it neo4j cypher-shell -u neo4j -p password
 
 
-docker run --name neo4j   -p 7474:7474 -p 7687:7687   -v neo4j_data:/data   -v neo4j_logs:/logs   -v neo4j_import:/var/lib/neo4j/import   --env NEO4J_AUTH=neo4j/password   --restart unless-stopped --memory 16g --cpus 8  -d neo4j:latest 
+docker run --name neo4j   -p 7474:7474 -p 7687:7687   -v neo4j_data:/data   -v neo4j_logs:/logs   -v neo4j_import:/var/lib/neo4j/import   --env NEO4J_AUTH=neo4j/password  --env NEO4J_dbms_connector_bolt_thread__pool__min__size=20 --env NEO4J_dbms_connector_bolt_thread__pool__max__size=50 --env NEO4J_dbms_memory_heap_initial__size=1G  --env NEO4J_dbms_memory_heap_max__size=2G --env NEO4J_dbms_memory_pagecache_size=4G --env NEO4J_dbms_memory_heap_initial__size=2G --env NEO4J_dbms_memory_heap_max__size=4G --restart unless-stopped --memory 16g --cpus 8  -d neo4j:latest 
 
---memory 16g --cpus 8
+
+### rasa run 
+
+SANIC_WORKERS=17 \
+SANIC_ACCESS_LOG=false \
+SANIC_REQUEST_MAX_SIZE=100000000 \
+SANIC_REQUEST_TIMEOUT=120 \
+rasa run \
+  --enable-api \
+  --cors "*" \
+  --model models/latest.tar.gz \
+  --endpoints endpoints.yml \
+  --credentials credentials.yml \
+  --log-file rasa.log 

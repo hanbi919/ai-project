@@ -14,7 +14,7 @@ pipeline:
 - name: JiebaTokenizer
   dictionary_path: "pipeline/jieba_userdict" 
 - name: RegexFeaturizer
-- name: LexicalSyntacticFeaturizer
+# - name: LexicalSyntacticFeaturizer
 - name: CountVectorsFeaturizer
   # stop_words: ["的","吧","啊","哦","呢"]                            # 自定义垃圾词黑名单
   # min_df: 2                                                         # 过滤只出现1次的词（如错别字）
@@ -58,24 +58,24 @@ pipeline:
   #     - name: LexicalSyntacticFeaturizer
   #   label:
   #     - name: CountVectorsFeaturizer                                    # 默认false， 确保批次一致性
-  epochs: 200 
+  epochs: 100 
 - name: EntitySynonymMapper
 - name: components.remove.OverlappingEntitiesRemover                                                      # 训练轮次
 - name: FallbackClassifier
   threshold: 0.7  # 意图识别置信度阈值（低于此值触发回退）
   ambiguity_threshold: 0.1  # 可选：最高意图和第二意图的最小差值阈值
-- name: ResponseSelector
-  retrieval_intent: faq
-  epochs: 100
-  learning_rate: 0.001
-  constrain_similarities: True
-  scale_loss: false
-- name: ResponseSelector
-  retrieval_intent: chitchat
-  epochs: 100
-  learning_rate: 0.001
-  constrain_similarities: True
-  scale_loss: false
+# - name: ResponseSelector
+#   retrieval_intent: faq
+#   epochs: 100
+#   learning_rate: 0.001
+#   constrain_similarities: True
+#   scale_loss: false
+# - name: ResponseSelector
+#   retrieval_intent: chitchat
+#   epochs: 100
+#   learning_rate: 0.001
+#   constrain_similarities: True
+#   scale_loss: false
 
 # # No configuration for the NLU pipeline was provided. The following default pipeline was used to train your model.
 # # If you'd like to customize it, uncomment and adjust the pipeline.
