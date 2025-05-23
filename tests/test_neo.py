@@ -85,23 +85,23 @@ def analyze_results(results):
         throughputs.append(throughput)
 
     # 绘制图表
-    plt.figure(figsize=(12, 5))
+    # plt.figure(figsize=(12, 5))
 
-    plt.subplot(1, 2, 1)
-    plt.plot(sorted(results.keys()), avg_times, 'b-o')
-    plt.xlabel('并发级别')
-    plt.ylabel('平均响应时间 (ms)')
-    plt.title('响应时间 vs 并发级别')
+    # plt.subplot(1, 2, 1)
+    # plt.plot(sorted(results.keys()), avg_times, 'b-o')
+    # plt.xlabel('并发级别')
+    # plt.ylabel('平均响应时间 (ms)')
+    # plt.title('响应时间 vs 并发级别')
 
-    plt.subplot(1, 2, 2)
-    plt.plot(sorted(results.keys()), throughputs, 'g-o')
-    plt.xlabel('并发级别')
-    plt.ylabel('吞吐量 (QPS)')
-    plt.title('吞吐量 vs 并发级别')
+    # plt.subplot(1, 2, 2)
+    # plt.plot(sorted(results.keys()), throughputs, 'g-o')
+    # plt.xlabel('并发级别')
+    # plt.ylabel('吞吐量 (QPS)')
+    # plt.title('吞吐量 vs 并发级别')
 
-    plt.tight_layout()
-    plt.savefig('neo4j_performance.png')
-    plt.show()
+    # plt.tight_layout()
+    # plt.savefig('neo4j_performance.png')
+    # plt.show()
 
 
 async def main():
