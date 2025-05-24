@@ -48,7 +48,7 @@ class OverlappingEntitiesRemover(GraphComponent):
 
             filtered_entities = []
             prev_entity = None
-            print(f"current entity:{sorted_entities}")
+            # print(f"current entity:{sorted_entities}")
             for entity in sorted_entities:
                 if prev_entity is None:
                     prev_entity = entity

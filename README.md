@@ -220,7 +220,7 @@ docker run --name neo4j   -p 7474:7474 -p 7687:7687   -v neo4j_data:/data   -v n
 
 ### rasa run 
 
-SANIC_WORKERS=17 \
+SANIC_WORKERS=8 \
 SANIC_ACCESS_LOG=false \
 SANIC_REQUEST_MAX_SIZE=100000000 \
 SANIC_REQUEST_TIMEOUT=120 \
@@ -230,4 +230,50 @@ rasa run \
   --model models/latest.tar.gz \
   --endpoints endpoints.yml \
   --credentials credentials.yml \
-  --log-file rasa.log 
+  --log-file rasa.log \
+  --port 5006
+
+
+
+  ### rasa 集群
+
+  rasa run --enable-api --cors "*" --port 5007 --debug
+
+  ```
+  http {
+  upstream rasa_cluster {
+    # 配置所有Rasa实例
+    server localhost:5006;  # 实例1
+    server localhost:5007;  # 实例2
+    server localhost:5008;  # 实例3
+    
+    # 会话保持(同一用户分配到同一后端)
+    ip_hash;
+    
+    # 健康检查
+    keepalive 32;
+  }
+
+  server {
+    listen 5005;
+    server_name 192.168.213.65;
+
+    location / {
+      proxy_pass http://rasa_cluster;
+      proxy_set_header Host $host;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      
+      # 重要超时设置
+      proxy_connect_timeout 300s;
+      proxy_read_timeout 300s;
+      proxy_send_timeout 300s;
+      
+      # WebSocket支持
+      proxy_http_version 1.1;
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection "upgrade";
+    }
+  }
+}
+```

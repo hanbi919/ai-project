@@ -5,7 +5,7 @@ import string
 
 # 初始化环境（Locust 2.x+ 的正确方式）
 env = Environment()
-# locust -f tests/test_nlu.py --web-host=0.0.0.0
+
 
 def random_user_id(length=16):
     """生成随机用户标识"""
@@ -14,42 +14,42 @@ def random_user_id(length=16):
 
 
 class ChatApiUser(HttpUser):
-    # host = "http://116.141.0.77:5005"  # 基础地址
-    host = "http://116.141.0.77:5678"  # 基础地址
+    host = "http://116.141.0.116:5005"  # 基础地址
     wait_time = between(0.1, 0.3)      # 缩短等待时间以快速完成400请求
 
     questions = [
-        "门诊慢特病待遇认定怎么办理",
-        "医保报销需要什么材料",
-        "如何查询医保余额",
-        "异地就医怎么备案",
-        "生育津贴如何申领"
+        "个人住房公积金账户合并"
     ]
+
+    def on_start(self):
+        """每个用户开始时执行"""
+        self.user_id = random_user_id()  # 为每个虚拟用户分配固定ID
 
     @task
     def ask_question(self):
-        # 准备随机请求数据
-        # payload = {
-        #     "sender": f"{random_user_id()}",
-        #     "message": f"{random.choice(self.questions)}"
-        # }
+        # 准备请求数据
         payload = {
-            "question": f"用户问题：“{random.choice(self.questions)}”，用户标识：“{random_user_id()}”"
+            "sender": self.user_id,  # 使用固定用户ID而非每次生成
+            "message": random.choice(self.questions)
         }
 
         # 发送POST请求
         with self.client.post(
-            # "/webhooks/rest/webhook",
-            "/chat",
+            "/webhooks/rest/webhook",
             json=payload,
-            headers={"Content-Type": "application/json"},
+            headers={
+                "Content-Type": "application/json",
+                "X-Sender-ID": self.user_id  # 保持与sender一致
+            },
             catch_response=True
         ) as response:
-            # 验证响应
+            # 更健壮的响应验证
             if response.status_code != 200:
                 response.failure(f"HTTP {response.status_code}")
-            elif not response.json().get("success", False):
-                response.failure("API returned failure")
+            elif not response.json():  # 检查是否有响应内容
+                response.failure("Empty response")
+            elif isinstance(response.json(), list) and not response.json():
+                response.failure("Empty list response")
 
 
 # 精确控制总请求数
@@ -66,13 +66,13 @@ def track_requests(request_type, name, response_time, response_length, exception
 
         if request_count >= target_requests:
             print("\n🎯 已达到目标请求数，停止测试")
-            env.runner.quit()
+            env.runner.quit()  # 安全停止测试
 
 
 @events.test_start.add_listener
 def on_test_start(environment, **kwargs):
     global env
-    env = environment  # 保存环境引用
+    env = environment
     print(f"🚀 测试开始，目标请求数: {target_requests}")
 
 
