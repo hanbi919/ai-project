@@ -16,7 +16,7 @@ Content-Type: application/json
 }
 
 ### 测试意图识别 (NLU解析)
-POST http://localhost:5005/model/parse
+POST http://116.142.76.181:5005/model/parse
 Content-Type: application/json
 
 {
