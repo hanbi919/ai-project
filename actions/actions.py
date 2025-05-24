@@ -46,9 +46,7 @@ class QueryBusinessItemsAction(Action):
         except Exception as e:
             logger.error(f"查询业务办理项时出错: {str(e)}", exc_info=True)
             dispatcher.utter_message(text="查询业务办理项时发生错误")
-        finally:
-            if 'driver' in locals():
-                await driver.close()
+
 
         return []
 
@@ -87,10 +85,6 @@ class QueryScenariosAction(Action):
         except Exception as e:
             logger.error(f"查询情形时出错: {str(e)}", exc_info=True)
             dispatcher.utter_message(text="查询情形时发生错误")
-        finally:
-            if 'driver' in locals():
-                await driver.close()
-
         return []
 
 
@@ -115,23 +109,20 @@ class QueryMaterialsAction(Action):
             return []
 
         try:
-            # async with await get_neo4j_session() as session:
-            
-            #     result = await session.run("""
-            #         MATCH (mi:MainItem {name: $main_item})
-            #         USING INDEX mi:MainItem(name)
-            #         MATCH (bi:BusinessItem {name: $business_item})
-            #         USING INDEX bi:BusinessItem(name)
-            #         MATCH (s:Scenario {name: $scenario})
-            #         USING INDEX s:Scenario(name)
-            #         MATCH (mi)-[:HAS_BUSINESS_ITEM]->(bi)-[:HAS_SCENARIO]->(s)-[:REQUIRES]->(m:Material)
-            #         RETURN m.name AS material
-            #         ORDER BY m.name
-            #     """, main_item=main_item, business_item=business_item, scenario=scenario)
+            async with await get_neo4j_session() as session:
 
-            #     records = await result.values()
-            #     materials = [record[0] for record in records]
-            materials=[]
+                result = await session.run("""
+                    MATCH (mi:MainItem {name: $main_item})-[:HAS_BUSINESS_ITEM]->
+                    (bi:BusinessItem {name: $business_item})-[:HAS_SCENARIO]->
+                    (s:Scenario {name: $scenario})-[:REQUIRES]->
+                    (m:Material)
+                    RETURN m.name AS material
+                    ORDER BY m.name
+                """, main_item=main_item, business_item=business_item, scenario=scenario)
+
+                records = await result.values()
+                materials = [record[0] for record in records]
+            # materials=[]
             if materials:
                 if materials[0] == "无需材料":
                     dispatcher.utter_message(text=NO_MARTERIAL)
@@ -146,7 +137,6 @@ class QueryMaterialsAction(Action):
         except Exception as e:
             logger.error(f"查询材料时出错: {str(e)}", exc_info=True)
             dispatcher.utter_message(text="查询材料时发生错误")
-
 
         return [SlotSet("scenario", None)]
 
