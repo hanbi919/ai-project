@@ -115,23 +115,22 @@ class QueryMaterialsAction(Action):
             return []
 
         try:
-            """async with await get_neo4j_session() as session:
+            # async with await get_neo4j_session() as session:
             
-                result = await session.run("""
-                    MATCH (mi:MainItem {name: $main_item})
-                    USING INDEX mi:MainItem(name)
-                    MATCH (bi:BusinessItem {name: $business_item})
-                    USING INDEX bi:BusinessItem(name)
-                    MATCH (s:Scenario {name: $scenario})
-                    USING INDEX s:Scenario(name)
-                    MATCH (mi)-[:HAS_BUSINESS_ITEM]->(bi)-[:HAS_SCENARIO]->(s)-[:REQUIRES]->(m:Material)
-                    RETURN m.name AS material
-                    ORDER BY m.name
-                """, main_item=main_item, business_item=business_item, scenario=scenario)
+            #     result = await session.run("""
+            #         MATCH (mi:MainItem {name: $main_item})
+            #         USING INDEX mi:MainItem(name)
+            #         MATCH (bi:BusinessItem {name: $business_item})
+            #         USING INDEX bi:BusinessItem(name)
+            #         MATCH (s:Scenario {name: $scenario})
+            #         USING INDEX s:Scenario(name)
+            #         MATCH (mi)-[:HAS_BUSINESS_ITEM]->(bi)-[:HAS_SCENARIO]->(s)-[:REQUIRES]->(m:Material)
+            #         RETURN m.name AS material
+            #         ORDER BY m.name
+            #     """, main_item=main_item, business_item=business_item, scenario=scenario)
 
-                records = await result.values()
-                materials = [record[0] for record in records]
-"""
+            #     records = await result.values()
+            #     materials = [record[0] for record in records]
             materials=[]
             if materials:
                 if materials[0] == "无需材料":
