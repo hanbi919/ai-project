@@ -2,18 +2,7 @@ from typing import Text, List, Dict, Any, Union
 from rasa_sdk import Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.forms import FormValidationAction
-import logging
-
-
-# 配置日志格式（带文件名和行号）
-logging.basicConfig(
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s [%(filename)s:%(lineno)d]',
-    level=logging.DEBUG
-)
-# 初始化日志记录器
-logger = logging.getLogger(__name__)
-
-# 主表单验证类
+from .sys_logger import logger
 
 
 class MainServiceForm(FormValidationAction):

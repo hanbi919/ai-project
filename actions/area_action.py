@@ -3,7 +3,7 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
 from neo4j import GraphDatabase
-import logging
+from .sys_logger import logger
 
 class QueryAreaAction(Action):
     def name(self) -> Text:

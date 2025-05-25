@@ -2,12 +2,9 @@ from typing import Dict, Text, Any, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
-
-import logging
+from .sys_logger import logger
 from rasa_sdk.knowledge_base.actions import ActionQueryKnowledgeBase
 
-# 初始化logger
-logger = logging.getLogger(__name__)
 
 class ValidateCityForm(Action):
     def name(self) -> Text:

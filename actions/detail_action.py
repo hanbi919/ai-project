@@ -3,17 +3,9 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
 from neo4j import GraphDatabase
-import logging
+from .sys_logger import logger
 from .const import NO_GET, RESP
 from .db_config import get_neo4j_session  # 导入驱动获取方法
-
-# 配置日志格式（带文件名和行号）
-logging.basicConfig(
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s [%(filename)s:%(lineno)d]',
-    level=logging.DEBUG
-)
-# 初始化日志记录器
-logger = logging.getLogger(__name__)
 
 
 class QueryServiceDetailsAction(Action):

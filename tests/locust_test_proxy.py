@@ -5,8 +5,10 @@ import string
 
 # 初始化环境（Locust 2.x+ 的正确方式）
 env = Environment()
-
-
+"""
+locust -f tests/locust_test_proxy.py --users 20 \
+ --spawn-rate 10 --web-host 0.0.0.0
+"""
 def random_user_id(length=16):
     """生成随机用户标识"""
     letters = string.ascii_lowercase + string.digits
@@ -14,11 +16,22 @@ def random_user_id(length=16):
 
 
 class ChatApiUser(HttpUser):
-    host = "http://116.141.0.116:5005"  # 基础地址
+    # host = "http://116.142.76.181:5005"  # 基础地址
+    # host = "http://116.141.0.116:5005"  # 基础地址
+    host = "http://116.141.0.77:5678"  # 基础地址
     wait_time = between(0.1, 0.3)      # 缩短等待时间以快速完成400请求
+    
+    # questions = [
+    #     "个人住房公积金账户合并"
+    #     # "你好"
+    # ]
 
     questions = [
-        "个人住房公积金账户合并"
+        "门诊慢特病待遇认定怎么办理",
+        "医保报销需要什么材料",
+        "如何查询医保余额",
+        "异地就医怎么备案",
+        "生育津贴如何申领"
     ]
 
     def on_start(self):
@@ -28,14 +41,18 @@ class ChatApiUser(HttpUser):
     @task
     def ask_question(self):
         # 准备请求数据
+        # payload = {
+        #     "sender": self.user_id,  # 使用固定用户ID而非每次生成
+        #     "message": random.choice(self.questions)
+        # }
         payload = {
-            "sender": self.user_id,  # 使用固定用户ID而非每次生成
-            "message": random.choice(self.questions)
+            "question": f"用户问题：“{random.choice(self.questions)}”，用户标识：“{random_user_id()}”"
         }
 
         # 发送POST请求
         with self.client.post(
-            "/webhooks/rest/webhook",
+            "/chat",
+            # "/webhooks/rest/webhook",
             json=payload,
             headers={
                 "Content-Type": "application/json",

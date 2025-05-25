@@ -2,17 +2,9 @@ from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
-import logging
+from .sys_logger import logger
 from .const import NO_MARTERIAL, NO_FOUND_MARTERIAL, RESP
 from .db_config import get_neo4j_session  # 确保这是异步版本的驱动获取方法
-
-# 配置日志
-logging.basicConfig(
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s [%(filename)s:%(lineno)d]',
-    level=logging.DEBUG
-)
-logger = logging.getLogger(__name__)
-
 
 class QueryBusinessItemsAction(Action):
     def name(self) -> Text:

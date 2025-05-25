@@ -148,7 +148,7 @@ rasa example project
 
 3. 执行 python source/import/fixed_lxw.py && python source/import/rebuild_address.py
 
-4. 执行 python source/import/rebuild_address.py
+4. 执行 python source/import/create_index.py
 
 #### 生成新的nlu训练数据
 
@@ -231,6 +231,7 @@ rasa run \
   --endpoints endpoints.yml \
   --credentials credentials.yml \
   --log-file rasa.log \
+  --debug \
   --port 5006
 
 
@@ -240,7 +241,6 @@ rasa run \
   rasa run --enable-api --cors "*" --port 5007 --debug
 
   ```
-  http {
   upstream rasa_cluster {
     # 配置所有Rasa实例
     server localhost:5006;  # 实例1
@@ -248,8 +248,8 @@ rasa run \
     server localhost:5008;  # 实例3
     
     # 会话保持(同一用户分配到同一后端)
-    ip_hash;
-    
+    # ip_hash;
+    hash $http_x_sender_id consistent; 
     # 健康检查
     keepalive 32;
   }
@@ -275,5 +275,12 @@ rasa run \
       proxy_set_header Connection "upgrade";
     }
   }
-}
+
 ```
+
+ln -s /etc/nginx/sites-available/rasa.conf /etc/nginx/sites-enabled/
+
+### rasa actions
+
+export ACTION_SERVER_SANIC_WORKERS=12
+ACTION_SERVER_SANIC_WORKERS=12 rasa run  actions --debug
