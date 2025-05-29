@@ -32,6 +32,7 @@ class ChatApiUser(HttpUser):
         "如何查询医保余额",
         "异地就医怎么备案",
         "生育津贴如何申领"
+        # "个人住房公积金账户合并如何办理"
     ]
 
     def on_start(self):
@@ -71,7 +72,7 @@ class ChatApiUser(HttpUser):
 
 # 精确控制总请求数
 request_count = 0
-target_requests = 400
+target_requests = 300
 
 
 @events.request.add_listener

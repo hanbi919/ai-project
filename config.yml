@@ -58,7 +58,7 @@ pipeline:
   #     - name: LexicalSyntacticFeaturizer
   #   label:
   #     - name: CountVectorsFeaturizer                                    # 默认false， 确保批次一致性
-  epochs: 100 
+  epochs: 200 
 - name: EntitySynonymMapper
 - name: components.remove.OverlappingEntitiesRemover                                                      # 训练轮次
 - name: FallbackClassifier

@@ -284,3 +284,5 @@ ln -s /etc/nginx/sites-available/rasa.conf /etc/nginx/sites-enabled/
 
 export ACTION_SERVER_SANIC_WORKERS=12
 ACTION_SERVER_SANIC_WORKERS=12 rasa run  actions --debug
+
+
