@@ -138,31 +138,7 @@ rasa example project
 2. 重新整理业务办理项，重新定义业务主项名称（企业登记注册）
 3. 细分业务办理项，针对无情形的业务，把业务办理项较多的业务下放变成情形（企业登记注册）
 
-### 更新测试的业务数据
 
-#### 导入数据到neo4j数据库
-
-1. 复制文件到source/import下
-
-2. 修改207行，使用最新的数据文件
-
-3. 执行 python source/import/fixed_lxw.py && python source/import/rebuild_address.py
-
-4. 执行 python source/import/create_index.py
-
-#### 生成新的nlu训练数据
-
-1. 修改 nlu/import_district.py 12行
-
-2. 修改 nlu/import_data.py 12行
-
-3. 分别运行 ： python source/nlu/import_district.py  和 python source/nlu/import_data.py
-
-4. 文件生成在：data/business 目录
-
-#### 重新训练数据
-
-rasa train 
 
 ### 服务器端的更新
 
