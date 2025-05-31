@@ -100,7 +100,7 @@ class AskForBusinessItemSlotAction(Action):
                         for idx, item in enumerate(sorted(business_items))
                     ]
                     _str = "\n".join(numbered_items)
-                    message = f"{RESP}请选择'{main_item}'下的业务办理项: \n{_str}"
+                    message = f"{FOLLOW_UP}请选择'{main_item}'下的业务办理项: \n{_str}"
                 else:
                     message = f"{HIGENT}'{main_item}'下没有可用的业务办理项"
 
