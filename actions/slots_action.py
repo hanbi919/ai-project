@@ -3,8 +3,9 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet, FollowupAction
 from .sys_logger import logger
-from .const import RESP, HIGENT, FOLLOW_UP, NO_MAIN_ITEM
+from .const import RESP, HIGENT, FOLLOW_UP, NO_MAIN_ITEM, service_centers
 from .db_config import get_neo4j_session  # 确保这是异步版本的驱动获取方法
+
 
 def parse_options(options_str: str) -> dict:
     """异步版本保持不变"""
@@ -78,6 +79,12 @@ class AskForBusinessItemSlotAction(Action):
         if not main_item:
             dispatcher.utter_message(text="请先选择主项服务")
             return []
+        # 设置默认的区域
+        user_input = tracker.sender_id
+        area = None
+        if "&" in user_input:
+            _area = user_input.split("&")[-1]
+            area = service_centers.get(_area, "")
 
         try:
             async with await get_neo4j_session() as session:
@@ -92,7 +99,7 @@ class AskForBusinessItemSlotAction(Action):
                 if len(business_items) == 1:
                     if tracker.active_loop:
                         form_name = tracker.active_loop.get("name")
-                    return [SlotSet("business_item", business_items[0]), FollowupAction(form_name)]
+                    return [SlotSet("area", area),SlotSet("business_item", business_items[0]), FollowupAction(form_name)]
 
                 if business_items:
                     numbered_items = [
@@ -109,7 +116,8 @@ class AskForBusinessItemSlotAction(Action):
         except Exception as e:
             logger.error(f"查询业务办理项时出错：{str(e)}", exc_info=True)
             dispatcher.utter_message(text=f"{HIGENT}查询业务办理项时发生错误，请稍后再试")
-        return []
+
+        return [SlotSet("area", area)]
 
 
 class AskForScenarioSlotAction(Action):
@@ -224,7 +232,7 @@ class AskForLevelSlotAction(Action):
 
         try:
             async with await get_neo4j_session() as session:
-                
+
                 result = await session.run("""
                     MATCH (:MainItem {name: $main_item})-[:HAS_BUSINESS_ITEM]->
                           (b:BusinessItem {name: $business_item})-[:LOCATED_IN]->(s:District)
