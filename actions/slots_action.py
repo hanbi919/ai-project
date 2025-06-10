@@ -80,10 +80,10 @@ class AskForBusinessItemSlotAction(Action):
             dispatcher.utter_message(text="请先选择主项服务")
             return []
         # 设置默认的区域
-        user_input = tracker.sender_id
+        sender_id = tracker.sender_id
         area = None
-        if "&" in user_input:
-            _area = user_input.split("&")[-1]
+        if "&" in sender_id:
+            _area = sender_id.split("&")[-1]
             area = service_centers.get(_area, "")
 
         try:
