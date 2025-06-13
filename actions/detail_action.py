@@ -123,15 +123,15 @@ class QueryServiceDetailsAction(Action):
             details += f"- 办理地点：{location_result} \n"
         else:
             if detail_type == "办理时间":
-                details += f"- 办理时间：\n{record['schedule']}\n- 办理地点：\n{location_result}"
+                details += f"- 办理时间：\n{record['schedule']}"
             elif detail_type == "咨询方式":
-                details += f"- 咨询方式：\n{record['phone']}\n- 办理地点：\n{location_result}"
+                details += f"- 咨询方式：\n{record['phone']}"
             elif detail_type == "是否收费":
-                details += f"- 是否收费：\n{record['fee']}\n- 办理地点：\n{location_result}"
+                details += f"- 是否收费：\n{record['fee']}"
             elif detail_type == "受理条件":
-                details += f"- 受理条件：\n{record['condition']}\n- 办理地点：\n{location_result}"
+                details += f"- 受理条件：\n{record['condition']}"
             elif detail_type == "承诺办结时限":
-                details += f"- 承诺办结时限：\n{record['deadline']}个工作日\n- 办理地点：\n{location_result}"
+                details += f"- 承诺办结时限：\n{record['deadline']}个工作日"
             elif detail_type == "办理地点":
                 details += f"- 办理地点：\n{location_result}"
 
