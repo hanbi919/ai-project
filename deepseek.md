@@ -64,11 +64,7 @@
     4.材料(Material)
     5.区划名称(District)
     6.办理地点(Location)
-    7.办理时间(Schedule)
-    8.咨询方式(Phone)
-    9.是否收费（Fee）
-    10.承诺办结时限（Deadline）
-    11.受理条件（condition）
+
 建立如下关系：
     HAS_BUSINESS_ITEM: 主项名称与业务办理项名称之间的关系
     HAS_SCENARIO: 业务办理项名称与情形之间的关系
@@ -84,3 +80,23 @@
 ### 生成cypher脚本
 
 我在neo4j里面有一个节点location，另外一个节点address，location-》has_address-address。我想模糊查询address，location和address是一对多的关系。我如何通过对address模糊查询，获得多条数据，同时我也希望可以让location的属性也同时返回结果，如何实现
+
+mcp-flight-search/
+├── mcp_flight_search/
+│   ├── __init__.py              # Package initialization and exports
+│   ├── config.py                # Configuration variables (API keys)
+│   ├── models/
+│   │   ├── __init__.py          # Models package init
+│   │   └── schemas.py           # Pydantic models (FlightInfo)
+│   ├── services/
+│   │   ├── __init__.py          # Services package init
+│   │   ├── search_service.py    # Main flight search logic
+│   │   └── serpapi_client.py    # SerpAPI client wrapper
+│   ├── utils/
+│   │   ├── __init__.py          # Utils package init
+│   │   └── logging.py           # Logging configuration
+│   └── server.py                # MCP server setup and tool registration
+├── main.py                      # Main entry point
+├── pyproject.toml               # Python packaging configuration
+├── LICENSE                      # MIT License
+└── README.md                    # Project documentation
