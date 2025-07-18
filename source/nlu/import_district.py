@@ -7,7 +7,7 @@ from tqdm import tqdm  # 导入进度条库
 """
     生成nlu的"区划名称"的训练数据，包含常规训练示例和lookup表
 """
-df = pd.read_excel("source/import/excel_main0425.xlsx")
+df = pd.read_excel("source/import/excel_main0530.xlsx")
 print("Excel列名:", df.columns.tolist())  # 查看所有列名
 
 # 配置列名、实体和意图映射
